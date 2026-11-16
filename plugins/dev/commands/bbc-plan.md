@@ -31,7 +31,7 @@ As `/dev:j-new-feature` steps 1-3: the uncommitted changes reviewed and committe
 
 ### 4. Notes
 `{@tasks}/NN-<name>/notes.md` as `/dev:j-new-feature` step 4, with one more line under its title —
-`Flow: /dev:bbc-plan`, or the name of the command that follows these steps (`/dev:bbc-core`, `/dev:bbc-refactor`,
+`Flow: bbc-plan`, or the name of the command that follows these steps (`/dev:bbc-core`, `/dev:bbc-refactor`,
 `/dev:bbc-integrate`, `/dev:bbc-e2e`) — so that `/dev:j-continue` resumes the work with that command, and one more
 section before `## Requirements`:
 ```markdown

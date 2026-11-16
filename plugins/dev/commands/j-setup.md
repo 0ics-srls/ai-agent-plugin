@@ -369,7 +369,7 @@ included.
 
 ### 16. Write and commit
 `j-settings.md` with the sections above that have values, and the header line
-`# Base settings — /dev:j-new-project completes them`. Commit it alone:
+`# Base settings — j-new-project completes them`. Commit it alone:
 `git add j-settings.md .claude/settings.json <what step 0b wrote> && git commit -m "chore(j-setup): base settings"`.
 
 ### 17. Report
@@ -385,7 +385,7 @@ command: `/dev:j-new-project` — or `/dev:bbc-analyze`, for a project designed 
 mindsets branches and overlay files, the base library, the exposure. Nothing is scanned and nothing is asked again:
 1. Write the keys of step 11 from the profile into `j-settings.md` — the test levels in the forms of
    the language's overlay (step 8) — keeping the base settings already there; the header line
-   `# Base settings — /dev:j-new-project completes them` goes.
+   `# Base settings — j-new-project completes them` goes.
 2. Wire the lint gate with step 7 for each component's language — the native configuration files go
    where its §7 says, in the repository of the project to come, except for a component its §7 says gets them
    after its scaffold: there the keys are written now, and the files come with its first block — and

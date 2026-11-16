@@ -17,7 +17,7 @@ description: "BBC — plan the end-to-end tests of the map's flows: every flow t
 ## Steps
 
 ### 1. The task
-`/dev:bbc-plan` steps 1-4, the name `/dev:bbc-e2e`, the line `Flow: /dev:bbc-e2e`; `## BB scope` lists the flows and
+`/dev:bbc-plan` steps 1-4, the name `/dev:bbc-e2e`, the line `Flow: bbc-e2e`; `## BB scope` lists the flows and
 the BBs they cross.
 
 ### 2. The level — ANALYZE

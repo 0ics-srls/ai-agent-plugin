@@ -109,7 +109,7 @@ redone from nothing.
 **A project with a black-box map.** `{@tasks}/bbc/BBC-MAP.md` exists → ISOLATE follows the map, as
 `${CLAUDE_PLUGIN_ROOT}/commands/bbc-debug.md` step 6 orders it (the BBs the failure crosses, their tests leaves
 first, then the integration points), and `bug-notes.md` carries the line
-`Flow: /dev:bbc-debug, ISOLATE on {@tasks}/bbc/BBC-MAP.md` under its title. The fix stays in the BB that
+`Flow: bbc-debug, ISOLATE on {@tasks}/bbc/BBC-MAP.md` under its title. The fix stays in the BB that
 owns the cause; a fix that changes a contract → STOP, `/dev:bbc-refactor`.
 
 Apply Protocol D (`debug-protocol.md`), writing each step under `## Diagnosis`:

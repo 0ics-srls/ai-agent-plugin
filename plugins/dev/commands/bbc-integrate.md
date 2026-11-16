@@ -19,7 +19,7 @@ description: BBC — integrate black boxes after one of them changed its contrac
 ## Steps
 
 ### 1. The task
-`/dev:bbc-plan` steps 1-4, the name `bb-integrate-<BBs>`, the line `Flow: /dev:bbc-integrate`; `## BB scope`
+`/dev:bbc-plan` steps 1-4, the name `bb-integrate-<BBs>`, the line `Flow: bbc-integrate`; `## BB scope`
 lists every BB named, with its files and contract.
 
 ### 2. The integration points — ANALYZE

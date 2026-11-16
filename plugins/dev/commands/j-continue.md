@@ -71,7 +71,7 @@ Updates from the user → listen. Confirmed → resume the phase, as the command
 `/dev:j-close`'s, DEPLOY `/dev:j-deploy`'s). A task whose `notes.md` has `## BB scope` is a black-box work: its
 phases are resumed as the command of its `Flow:` line says (`/dev:bbc-core`, `/dev:bbc-plan`, `/dev:bbc-refactor`,
 `/dev:bbc-integrate`, `/dev:bbc-e2e`; `/dev:bbc-plan` when the line is missing), with the BB's scope (`bbc.md` §3); a bug whose `bug-notes.md`
-says `Flow: /dev:bbc-debug` keeps its ISOLATE on the map (`/dev:bbc-debug` step 6). Resuming is entering the phase: whatever was in context when the work
+says `Flow: bbc-debug` keeps its ISOLATE on the map (`/dev:bbc-debug` step 6). Resuming is entering the phase: whatever was in context when the work
 stopped is gone.
 
 **LISTEN** — show what `## Requirements` (or `## Problem`) already holds, and go on listening until the

@@ -18,7 +18,7 @@ changed. **It writes no fix: `/dev:j-cvm-exec-plan` executes the plan.**
 
 ### 1-5. Up to LISTEN
 `/dev:j-bug` steps 1-5: clean state, base branch, `bugfix/NN-<bug>` and its folder, `bug-notes.md`,
-LISTEN. `bug-notes.md` carries one more line under its title — `Flow: /dev:bbc-debug, ISOLATE on
+LISTEN. `bug-notes.md` carries one more line under its title — `Flow: bbc-debug, ISOLATE on
 {@tasks}/bbc/BBC-MAP.md` — so that `/dev:j-continue` resumes it with the map.
 
 ### 6. DIAGNOSE — Protocol D, ISOLATE on the map

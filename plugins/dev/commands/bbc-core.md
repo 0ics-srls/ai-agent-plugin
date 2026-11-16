@@ -34,7 +34,7 @@ the BB cannot drift apart. **It writes no code: `/dev:j-cvm-exec-plan` executes 
 ## Steps
 
 ### 1. The task
-`/dev:bbc-plan` steps 1-4, the name `core`, the line `Flow: /dev:bbc-core`. `## BB scope`:
+`/dev:bbc-plan` steps 1-4, the name `core`, the line `Flow: bbc-core`. `## BB scope`:
 `- BB: Core — the contracts of every BB of the map`, its files the project's Core and the tests'
 shared support.
 

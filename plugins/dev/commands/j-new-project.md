@@ -220,7 +220,7 @@ expects to do with it.
 ### E2. SETTINGS — the project wired
 `j-settings.md` missing → run `/dev:j-setup`: its EXISTING PROJECT mode scans the project, asks what it
 cannot establish, writes the settings and wires the lint gate. `j-settings.md` with only the base
-settings (header `# Base settings — /dev:j-new-project completes them`) → run `/dev:j-setup`: its VALIDATE MODE
+settings (header `# Base settings — j-new-project completes them`) → run `/dev:j-setup`: its VALIDATE MODE
 completes it as an EXISTING PROJECT (step 20). Full settings with a key missing → `/dev:j-setup` VALIDATE
 adds the missing keys, as its step 20 says.
 

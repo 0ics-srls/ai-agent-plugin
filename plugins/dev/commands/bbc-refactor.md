@@ -21,7 +21,7 @@ executes the plan.**
 `/dev:bbc-plan` steps 1-2. In a worktree opened by `/dev:bbc-work` they are skipped, as `/dev:bbc-plan` says.
 
 ### 2. The task
-`/dev:bbc-plan` steps 3-4, the name `bb<N>-refactor-<what>`, the line `Flow: /dev:bbc-refactor`.
+`/dev:bbc-plan` steps 3-4, the name `bb<N>-refactor-<what>`, the line `Flow: bbc-refactor`.
 
 ### 3. LISTEN
 **Update MB** as `/dev:j-new-feature` step 5 says: `@state::LISTEN`, `@feature::NN-<name>`,

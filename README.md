@@ -1,6 +1,6 @@
 # ai-agent — Claude Code plugins
 
-**v2.31.42** — the ai-agent skill set by 0ics srl, as a catalogue of Claude Code plugins. This
+**v2.31.43** — the ai-agent skill set by 0ics srl, as a catalogue of Claude Code plugins. This
 repository is generated from the set's source at each release: its files are not edited here (see
 [CONTRIBUTING.md](CONTRIBUTING.md)).
 

@@ -1,6 +1,6 @@
 # biz — a plugin of the ai-agent catalogue
 
-**v2.31.45** — The funnel of the startup ideas (biz-*): capture, evaluate, techscape, research, validate, MVP spec.
+**v2.31.46** — The funnel of the startup ideas (biz-*): capture, evaluate, techscape, research, validate, MVP spec.
 
 Start with `/biz:biz-help`: an idea is captured, scored, checked against the software that already exists, researched on its market, validated on its assumptions, and turned into the specification of an MVP. It writes its documents in the project's folder and needs no setup.
 

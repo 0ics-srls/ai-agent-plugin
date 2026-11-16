@@ -140,7 +140,7 @@ other.
   forms — and that each card is read in `${CLAUDE_PLUGIN_ROOT}/commands/mind-sets/audit.md` by its id: a block names
   its cards, it does not copy them;
 - the block ids `NN-kebab-case`: NN two digits from `01` (after `99`, `01` again), and the slug carries
-  this run's label, `r<yymmddhhmm>`, so that every id is new to the project;
+  this run's label, `r<yymmddhhmm>`, so that an id is not repeated inside the plan;
 - no block writes the report: it is step 5's, written by this command.
 Then `mcp__cvm__parsePlan` with it (invalid → correct it and parse again); commit it and
 `audit/candidates.md`, by path; execute it here, as `j-cvm-exec-plan.md` steps 1-5 say. When it

@@ -24,7 +24,7 @@ flowchart TD
     IDLE -->|/dev:j-bug| BUG_LISTEN([LISTEN])
     BUG_LISTEN --> DIAGNOSE([DIAGNOSE])
     DIAGNOSE --> PLAN
-    PLAN -->|user approves the reviewed plan<br>j-cvm-exec-plan| DEVELOP([DEVELOP])
+    PLAN -->|user approves the reviewed plan<br>/dev:j-cvm-exec-plan| DEVELOP([DEVELOP])
     DEVELOP -->|/dev:j-close| CLOSE([CLOSE])
     CLOSE -->|/dev:j-deploy, or /dev:j-release with CI/CD| DEPLOY([DEPLOY])
     CLOSE --> IDLE

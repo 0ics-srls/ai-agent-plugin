@@ -41,7 +41,7 @@ These files are the only source of truth: no rule from memory, none stricter or 
 are.
 
 ### 4. The plan in itself
-- **Structure**: every tag the planner requires, unique block ids, none of them already in `.cvm/uplan-progress.json`, the mission with its
+- **Structure**: every tag the planner requires, block ids unique in the plan and numbered from `01`, the mission with its
   `## Shared Capabilities` (every capability more than one block uses, with its owner and its
   consumers), `## Design principles` and `## Code rules` (each rule with its source), each block's
   Protocol D line, as the planner states them.

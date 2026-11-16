@@ -273,6 +273,9 @@ Notes for the /dev:j-close context:
   the BBs integrated by a `/dev:bbc-integrate`, the flows of a `/dev:bbc-e2e`; a `/dev:bbc-refactor` has none. A step
   is done when all of its lines are (`bbc.md` §2). The audit's line is `/dev:bbc-audit`'s to mark, not this
   command's.
+- **The plan's progress is deleted**: `.cvm/uplan-progress.json`, when the `sourceFile` of
+  `.cvm/uplan.json` is this task's plan — step 3b read it, and the plan is finished. The next plan
+  numbers its blocks from `01`, and a list left here would make the planexecutor skip them.
 - Update MB:
   - In `progress.md` → the closed task's lines move to `history.md` (the rotation below)
   - In `activeContext.md` → clear `@feature` or `@bug`, `@branch` and `@plan`; set `@state::IDLE`

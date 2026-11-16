@@ -21,11 +21,21 @@ and drives it: it takes a task, does it, reports the outcome.
   ask with AskUserQuestion and wait.
 - **The plan file is not read here, and no plan file is searched for.** Each task points at the part
   of the plan its phase needs; reading the whole plan beside it invites working ahead of it.
+- **The progress of the plan before, first — before `parsePlan`, which overwrites what tells whose it is.**
+  `.cvm/uplan-progress.json` is the list of the block ids the planexecutor completed, and it skips a
+  block whose id is there, silently: that is how an interrupted plan resumes, and why the list of one
+  plan must not be there when another one starts — every plan numbers its blocks from `01`. Whose
+  list it is: the `sourceFile` of `.cvm/uplan.json`, the plan parsed last.
+  - no `.cvm/uplan-progress.json`, or `sourceFile` is the plan to execute → nothing to do: the plan
+    starts, or resumes;
+  - `sourceFile` is another plan, and every block id of `.cvm/uplan.json` is in the list → that plan
+    is finished: delete `.cvm/uplan-progress.json`, and say so in one line;
+  - `sourceFile` is another plan, and some of its block ids are not in the list → that plan was left
+    half done. Say which plan and which block it stopped before, and ask with AskUserQuestion:
+    finish that one first, or drop its progress and start this one. Dropped on the user's word only.
 - `mcp__cvm__parsePlan` with `filePath`, the path. Invalid → show the errors and STOP.
-- **A block whose id is in `.cvm/uplan-progress.json` is skipped, silently.** That is how an interrupted plan resumes;
-  a new plan with an id an earlier plan completed loses that block. Before a new plan starts, its ids are compared with that
-  list: one that is there is renamed in the plan, and the review runs again.
-- To start over instead of resuming, on the user's word only: delete `.cvm/uplan-progress.json`.
+- To start the same plan over instead of resuming it, on the user's word only: delete
+  `.cvm/uplan-progress.json`.
 
 ### 2. Start the planexecutor
 ```

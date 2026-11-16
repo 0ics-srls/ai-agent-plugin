@@ -59,8 +59,7 @@ shows it:
 ### 4. Here, or a plan of its own
 When the BBs to check do not fit one session, the checks become a Step plan
 (`${CLAUDE_PLUGIN_ROOT}/commands/mind-sets/step-planner.md`, read in full): `{@tasks}/bbc/audit-plan.md`, one block per
-BB, each block running step 3 on its BB and writing its findings into the report of step 5. Its block
-ids are new to the project, as `step-planner.md` Tag Rule 2 says. The plan is validated with
+BB, each block running step 3 on its BB and writing its findings into the report of step 5. The plan is validated with
 `mcp__cvm__parsePlan` (invalid → corrected and parsed again): it has no task folder, and the review of
 a plan is made against one. Then it is executed here, as `${CLAUDE_PLUGIN_ROOT}/commands/j-cvm-exec-plan.md` steps
 1-5 say, and on to step 5: this command writes only its report, so no stop protects anything.

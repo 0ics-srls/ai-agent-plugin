@@ -81,8 +81,8 @@ If an action or a criterion fails, the cause is found with Protocol D — `${CLA
 
 ### Tag Rules
 1. `<mission>` — EXACTLY once, plain tag (no attributes). Plan type is auto-detected: all `- action:` blocks → step
-2. `<block id="">` — id format: `NN-kebab-case`, must be unique across ALL files, and new to the project: the planexecutor
-   skips an id an earlier plan completed (`.cvm/uplan-progress.json`), so a slug says what THIS plan does
+2. `<block id="">` — id format: `NN-kebab-case`, NN from `01` in every plan, in the order of the blocks, and unique across
+   ALL the files of the plan. A plan does not go on from the numbers of the one before it
 3. `<intro>` — MUST include preconditions if the step depends on prior steps
 4. `<actions>` — each line starts with `- action:`, describes ONE concrete action. Can be file removal, config edit, command execution, etc.
 5. `<success>` — checklist that **proves the work of THIS block was done**, in `- [ ]` format,

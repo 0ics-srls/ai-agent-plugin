@@ -1,0 +1,5 @@
+# ai-agent shell pack — shellcheck config
+# Gate severity is warning (style/info findings do not gate; see manifest native_lint).
+# SC1091: "not following: <file> was not specified as input" — external sources sourced at
+# runtime are out of scope for static analysis; disabling avoids noise on `source`/`.` lines.
+disable=SC1091

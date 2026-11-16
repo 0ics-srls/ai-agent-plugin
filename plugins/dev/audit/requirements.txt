@@ -1,0 +1,32 @@
+# Python dependencies of the audit's fact collection (.claude/audit/facts.py).
+#
+# Co-change needs only git, and clones run through npx without adding a dependency; what is here is
+# what has to be installed.
+#
+# lizard: nloc, cyclomatic complexity and token count per function, for C/C++, C#, Java,
+# JavaScript, TypeScript, Swift, Python, Ruby, PHP, Scala, GDScript, Go, Lua, Rust, Kotlin,
+# Fortran, Solidity, Erlang and Zig — the whole set this corpus supports, in one tool. It is the
+# reason there is no metric computer to write.
+lizard>=1.17,<2
+
+# The dependency graph (deps.py, F3) and the similar code (similar.py, F5b) — built in-process by
+# a parser, so the audit makes ONE run instead of one navigation call per file. One grammar package
+# per language, each with its grammar compiled into the wheel: nothing is downloaded at analysis
+# time, and nothing is written outside the project. All MIT. A grammar that is missing is a
+# declared gap in coverage.md, never a crash.
+tree-sitter>=0.23,<1
+tree-sitter-gdscript>=6,<7
+tree-sitter-python>=0.23,<1
+tree-sitter-javascript>=0.23,<1
+tree-sitter-typescript>=0.23,<1
+tree-sitter-c-sharp>=0.23,<1
+tree-sitter-java>=0.23,<1
+tree-sitter-kotlin>=1,<2
+tree-sitter-swift>=0.7,<1
+tree-sitter-php>=0.23,<1
+tree-sitter-rust>=0.23,<1
+tree-sitter-c>=0.23,<1
+tree-sitter-cpp>=0.23,<1
+tree-sitter-go>=0.23,<1
+tree-sitter-dart>=0.1,<1
+tree-sitter-perl>=2,<3

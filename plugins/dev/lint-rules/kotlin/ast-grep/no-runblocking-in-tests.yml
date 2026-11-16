@@ -1,0 +1,9 @@
+id: kotlin-no-runblocking-in-tests
+language: kotlin
+severity: error
+message: "Coroutine tests must use runTest, not runBlocking."
+files:
+  - "**/commonTest/**"
+  - "**/*Test.kt"
+rule:
+  pattern: runBlocking { $$$ }

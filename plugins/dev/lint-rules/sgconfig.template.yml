@@ -1,0 +1,7 @@
+# ast-grep config template — copied to a consumer project root as `sgconfig.yml`.
+# `${LANG}` is expanded per detected language at generation time (j-setup, step 7); a monorepo
+# gets one ruleDir line per component language. `_shared` applies to every project.
+# ast-grep reads `ruleDirs` and applies every rule whose `language` matches a scanned file.
+ruleDirs:
+  - .ast-grep/_shared
+  - .ast-grep/${LANG}

@@ -1,0 +1,23 @@
+id: no-null-forgiving
+language: csharp
+severity: error
+message: "The null-forgiving `!` silences the nullable analysis: give the value at construction, declare it nullable and handle its absence, or fail where it is known (`?? throw new InvalidOperationException(\"why it cannot be missing\")`)."
+# Scope: PRODUCTION code, every `expr!` — `s!.Length`, `return x!`, `Use(y!)`, `default!` — the Db
+# project included. A `null!` initializer is no-null-forgiving-initializer's, which knows the
+# entities' navigation properties.
+# Test projects are out of scope: a guard test passes null into a non-nullable parameter (`null!`),
+# and a test asserts what its own setup guarantees.
+ignores:
+  - "**/*.Tests/**"
+  - "**/*.Test/**"
+  - "**/*.test/**"
+rule:
+  pattern: "$X!"
+  not:
+    all:
+      - pattern: "null!"
+      - inside:
+          any:
+            - kind: property_declaration
+            - kind: field_declaration
+          stopBy: end

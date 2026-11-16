@@ -1,0 +1,10 @@
+id: php-no-debug-dump
+language: php
+severity: error
+message: "Remove debug output (var_dump/dd/dump/print_r) — use the logger."
+rule:
+  any:
+    - pattern: var_dump($$$)
+    - pattern: dd($$$)
+    - pattern: dump($$$)
+    - pattern: print_r($$$)

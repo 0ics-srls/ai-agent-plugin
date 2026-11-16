@@ -1,0 +1,15 @@
+id: no-sql-string-format-c
+language: c
+severity: error
+message: "No SQL built by formatting values into the text; use parameterized queries (placeholders + bound params)."
+rule:
+  kind: call_expression
+  all:
+    - has:
+        field: function
+        regex: '^(sprintf|snprintf|strcat|strncat)$'
+    - has:
+        field: arguments
+        has:
+          kind: string_literal
+          regex: "(?i)\\b(select|insert|update|delete)\\b"

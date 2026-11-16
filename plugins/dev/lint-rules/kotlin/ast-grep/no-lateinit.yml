@@ -1,0 +1,12 @@
+id: kotlin-no-lateinit
+language: kotlin
+severity: error
+message: "`lateinit` promises a value the compiler cannot check: give it in the constructor, make it nullable, `by lazy`, or an explicit state (Loading / Ready(value))."
+# Production code; a test's fields set before each test (`@BeforeTest`) are out of scope.
+ignores:
+  - "**/commonTest/**"
+  - "**/*Test/**"
+  - "**/*Test.kt"
+rule:
+  kind: member_modifier
+  regex: "^lateinit$"

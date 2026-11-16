@@ -1,0 +1,98 @@
+# The lint pack for Dart, beside pubspec.yaml: the analyzer's strict type checks, and the lints listed
+# here and only them, each an error because it finds a defect:
+#   unawaited_futures: a future nobody awaits
+#   discarded_futures: a future dropped in a function that is not async
+#   await_only_futures: await on what is not a future
+#   cancel_subscriptions: a subscription nobody cancels
+#   close_sinks: a sink nobody closes
+#   empty_catches: an error swallowed by an empty catch
+#   only_throw_errors: a throw of what is not an error
+#   control_flow_in_finally: a return or a break inside finally
+#   throw_in_finally: a throw inside finally
+#   hash_and_equals: == without hashCode
+#   test_types_in_equals: == that does not test the type
+#   unrelated_type_equality_checks: a comparison of unrelated types: always false
+#   collection_methods_unrelated_type: a collection asked for a value it cannot hold
+#   no_duplicate_case_values: the same case twice
+#   no_self_assignments: a variable assigned to itself
+#   no_adjacent_strings_in_list: a comma missing between two strings of a list
+#   literal_only_boolean_expressions: a condition that is always true or always false
+#   unnecessary_statements: a statement with no effect
+#   avoid_empty_else: an else followed by an empty statement
+#   void_checks: a value given where void is expected
+#   recursive_getters: a getter that calls itself
+#   valid_regexps: a regular expression that does not compile
+#   avoid_dynamic_calls: a call on dynamic: the analyzer stops checking
+#   avoid_print: the console written directly (code principles 4.9)
+#   use_build_context_synchronously: Flutter: a BuildContext used after an await
+#   no_logic_in_create_state: Flutter: logic inside createState
+# The lints of style, of naming, of const and final, of import form are not here, and the gate checks no
+# formatting: they find no defect, and on code that exists they only make it be rewritten. A lint joins
+# or leaves the list by the project owner's decision, with its reason.
+analyzer:
+  language:
+    strict-casts: true
+    strict-inference: true
+    strict-raw-types: true
+  errors:
+    dead_code: error
+    # A name never used is cleaning, not a defect.
+    unused_import: ignore
+    unused_local_variable: ignore
+    unused_element: ignore
+    unused_field: ignore
+    unawaited_futures: error
+    discarded_futures: error
+    await_only_futures: error
+    cancel_subscriptions: error
+    close_sinks: error
+    empty_catches: error
+    only_throw_errors: error
+    control_flow_in_finally: error
+    throw_in_finally: error
+    hash_and_equals: error
+    test_types_in_equals: error
+    unrelated_type_equality_checks: error
+    collection_methods_unrelated_type: error
+    no_duplicate_case_values: error
+    no_self_assignments: error
+    no_adjacent_strings_in_list: error
+    literal_only_boolean_expressions: error
+    unnecessary_statements: error
+    avoid_empty_else: error
+    void_checks: error
+    recursive_getters: error
+    valid_regexps: error
+    avoid_dynamic_calls: error
+    avoid_print: error
+    use_build_context_synchronously: error
+    no_logic_in_create_state: error
+
+linter:
+  rules:
+    - unawaited_futures
+    - discarded_futures
+    - await_only_futures
+    - cancel_subscriptions
+    - close_sinks
+    - empty_catches
+    - only_throw_errors
+    - control_flow_in_finally
+    - throw_in_finally
+    - hash_and_equals
+    - test_types_in_equals
+    - unrelated_type_equality_checks
+    - collection_methods_unrelated_type
+    - no_duplicate_case_values
+    - no_self_assignments
+    - no_adjacent_strings_in_list
+    - literal_only_boolean_expressions
+    - unnecessary_statements
+    - avoid_empty_else
+    - void_checks
+    - recursive_getters
+    - valid_regexps
+    - avoid_dynamic_calls
+    - avoid_print
+    - use_build_context_synchronously
+    - no_logic_in_create_state

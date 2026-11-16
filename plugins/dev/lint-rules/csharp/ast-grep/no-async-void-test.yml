@@ -1,0 +1,10 @@
+id: no-async-void-test
+language: csharp
+severity: error
+message: "xUnit v3 test methods must be 'async Task', never 'async void'."
+files:
+  - "**/*Tests.cs"
+  - "**/*Test.cs"
+rule:
+  kind: method_declaration
+  regex: "async\\s+void"

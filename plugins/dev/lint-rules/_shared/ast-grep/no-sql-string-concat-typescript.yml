@@ -1,0 +1,21 @@
+id: no-sql-string-concat-typescript
+language: typescript
+severity: error
+message: "No SQL built by string concatenation or template interpolation; use parameterized queries (placeholders + bound params)."
+# typescript-senior.md "Injection Prevention". Two shapes of the same defect: a string with an SQL
+# keyword joined with `+`, and a template literal with an SQL keyword and a `${...}` substitution —
+# the form the senior's own wrong example shows. A template literal with no substitution is a
+# constant and is fine. Without types the rule sees words, not queries: a message such as
+# `Update ${table}` matches too, as `"Update " + table` already did — that line takes
+# `// ast-grep-ignore: no-sql-string-concat-typescript`.
+rule:
+  any:
+    - pattern: $SQL + $VAR
+    - kind: template_string
+      regex: "(?i)\\b(select|insert|update|delete)\\b"
+      has:
+        kind: template_substitution
+constraints:
+  SQL:
+    kind: string
+    regex: "(?i)(select|insert|update|delete)\\b"

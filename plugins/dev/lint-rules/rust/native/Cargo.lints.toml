@@ -1,0 +1,45 @@
+# The lint pack for Rust: merged into the project's Cargo.toml (overlays/rust/language.md §5).
+# The lints that find a defect are errors, and only them: Clippy's correctness and suspicious groups,
+# and the lints listed below, each chosen for what it finds. Clippy's style, complexity, perf, pedantic,
+# nursery and cargo groups are off as groups: they find no defect, and on code that exists they only
+# make it be rewritten. The gate adds -D warnings. A lint joins or leaves the list by the project
+# owner's decision, with its reason.
+[lints.rust]
+unsafe_code = "forbid"
+# A name, an import or a variable never used is cleaning, not a defect; a result never used stays an
+# error (unused_must_use).
+dead_code = "allow"
+unused_imports = "allow"
+unused_variables = "allow"
+unused_mut = "allow"
+# Names are the author's: the compiler's naming lints find no defect.
+nonstandard_style = { level = "allow", priority = -1 }
+
+[lints.clippy]
+all = { level = "allow", priority = -2 }
+# Code that is outright wrong, or very likely to be.
+correctness = { level = "deny", priority = -1 }
+suspicious = { level = "deny", priority = -1 }
+# The absence of a value silenced (code principles 3.3). Allowed in the tests by clippy.toml.
+unwrap_used = "deny"
+expect_used = "deny"
+# The console written directly (code principles 4.9), a debug macro left behind. Allowed in the tests.
+print_stdout = "deny"
+print_stderr = "deny"
+dbg_macro = "deny"
+# Unfinished code that panics when it runs.
+todo = "deny"
+unimplemented = "deny"
+# A result or an error dropped on purpose without saying so; the cause of an error lost.
+let_underscore_must_use = "deny"
+map_err_ignore = "deny"
+# A value leaked without its destructor.
+mem_forget = "deny"
+# A number converted to a type that cannot hold it: the value changes in silence.
+cast_possible_truncation = "deny"
+cast_possible_wrap = "deny"
+cast_sign_loss = "deny"
+# Floats compared with ==.
+float_cmp = "deny"
+# A silenced lint says why.
+allow_attributes_without_reason = "deny"

@@ -1,0 +1,10 @@
+id: sh-no-curl-pipe-sh
+language: Bash
+severity: error
+message: "Do not pipe a downloader straight into a shell — download, inspect, then run."
+note: |
+  `curl … | sh` executes remote code with no chance to inspect it and fails
+  unpredictably on partial downloads. Download to a file, verify, then run.
+rule:
+  kind: pipeline
+  regex: "(curl|wget)[^|]*\\|\\s*(ba|z|da)?sh\\b"

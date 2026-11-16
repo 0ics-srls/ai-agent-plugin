@@ -1,0 +1,23 @@
+id: no-null-forgiving-initializer
+language: csharp
+severity: error
+message: "Initialize required members with a real value (string.Empty), or declare them `required`, never null!."
+# Scope: PRODUCTION code, and only the INITIALIZER position this rule is named for (the `!` anywhere
+# else is no-null-forgiving).
+# 1. The entities of the Db project are out of scope: a navigation property is filled by EF Core only
+#    when the query includes it, so whatever its declaration says, it is null when it is not loaded —
+#    `= null!` there is EF's pattern, and a query that reads a navigation includes it or projects
+#    (`efcore.md`). Scalars of an entity are still `required`.
+# 2. Test projects are out of scope: a fixture field is assigned in InitializeAsync.
+ignores:
+  - "**/*.Tests/**"
+  - "**/*.Test/**"
+  - "**/*.test/**"
+  - "**/*.Db/**"
+rule:
+  pattern: "null!"
+  inside:
+    any:
+      - kind: property_declaration
+      - kind: field_declaration
+    stopBy: end

@@ -1,0 +1,13 @@
+id: no-todo-without-issue-csharp
+language: csharp
+severity: error
+message: "Bare TODO without an issue reference; use TODO(#123) linking a tracked issue."
+rule:
+  kind: comment
+  # Only a real TODO *marker* counts: `TODO:` or `TODO(#123)`. A bare `\bTODO\b` matches ordinary
+  # prose — a doc comment that reads "Generates TODO list file", a file named TODO-FACTORIES.txt.
+  # Trade-off, stated on purpose: `// TODO fix this` (no colon, no parens) is not caught.
+  # Rust regex has no lookaround, so the shape has to be positive rather than an exclusion.
+  regex: "\\bTODO\\s*[:(]"
+  not:
+    regex: "#[0-9]+"

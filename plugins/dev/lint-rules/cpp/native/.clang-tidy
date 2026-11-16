@@ -1,0 +1,22 @@
+# The C++ gate's analysis, run by the build on every target of the project (cmake/lint-gate.cmake):
+# a finding is an error. The checks that find a defect are on, and only them: the static analyzer, the
+# bugprone family, and the checks listed one by one from the other families. The checks of style, of
+# naming, of modernization and of micro-optimization are not here: they find no defect, and on code
+# that exists they only make it be rewritten. A check joins or leaves the list by the project owner's
+# decision, with its reason.
+Checks: >
+  -*,
+  clang-analyzer-*,
+  bugprone-*,
+  -bugprone-easily-swappable-parameters,-bugprone-reserved-identifier,
+  cppcoreguidelines-init-variables,cppcoreguidelines-pro-type-member-init,
+  cppcoreguidelines-slicing,cppcoreguidelines-narrowing-conversions,
+  cppcoreguidelines-virtual-class-destructor,cppcoreguidelines-interfaces-global-init,
+  cppcoreguidelines-avoid-capturing-lambda-coroutines,cppcoreguidelines-avoid-reference-coroutine-parameters,
+  cppcoreguidelines-misleading-capture-default-by-value,
+  misc-redundant-expression,misc-misplaced-const,misc-definitions-in-headers,misc-non-copyable-objects,
+  misc-throw-by-value-catch-by-reference,misc-new-delete-overloads,
+  misc-misleading-bidirectional,misc-misleading-identifier,
+  readability-misleading-indentation
+WarningsAsErrors: '*'
+HeaderFilterRegex: '.*'

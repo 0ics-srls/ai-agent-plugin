@@ -1,0 +1,12 @@
+# A type that says "never absent" while it can be: the check is skipped at every use (code principles 3.3).
+id: swift-no-implicitly-unwrapped-optional
+language: swift
+severity: error
+message: "An implicitly unwrapped optional (`Type!`) promises a value the compiler cannot check: give it in the initializer, or declare it optional and handle its absence."
+# Production code; the tests assert what their own setup guarantees.
+ignores:
+  - "**/Tests/**"
+  - "**/*Tests.swift"
+rule:
+  kind: type_annotation
+  regex: '!\s*$'

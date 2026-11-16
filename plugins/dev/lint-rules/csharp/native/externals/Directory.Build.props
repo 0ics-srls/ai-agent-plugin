@@ -1,0 +1,5 @@
+<!-- The code under externals/ (a base library, another submodule) is not this project's sources: the
+     build settings of the project, its analyzers and its warnings as errors, stop here. A submodule
+     with a Directory.Build.props of its own uses that one, which is nearer. -->
+<Project>
+</Project>

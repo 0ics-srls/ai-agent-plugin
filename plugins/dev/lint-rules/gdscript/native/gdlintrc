@@ -1,0 +1,37 @@
+# The lint pack for GDScript: of gdtoolkit's gdlint, the two rules that find a defect — a value compared
+# with itself, an expression with no effect. Every other rule is off: names, order, width, style. They
+# find no defect, and on code that exists they only make it be rewritten. addons/ (third-party code)
+# and .godot/ (the engine's cache) are not the project's.
+disable:
+- duplicated-load
+- private-method-call
+- unused-argument
+- no-elif-return
+- no-else-return
+- unnecessary-pass
+- class-definitions-order
+- max-line-length
+- mixed-tabs-and-spaces
+- trailing-whitespace
+- class-name
+- sub-class-name
+- class-variable-name
+- class-load-variable-name
+- constant-name
+- load-constant-name
+- enum-name
+- enum-element-name
+- function-name
+- function-argument-name
+- function-variable-name
+- function-preload-variable-name
+- loop-variable-name
+- signal-name
+- function-arguments-number
+- max-file-lines
+- max-public-methods
+- max-returns
+excluded_directories: !!set
+  .git: null
+  .godot: null
+  addons: null

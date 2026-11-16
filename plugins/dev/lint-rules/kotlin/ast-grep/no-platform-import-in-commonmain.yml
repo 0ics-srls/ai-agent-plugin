@@ -1,0 +1,9 @@
+id: kotlin-no-platform-import-in-commonmain
+language: kotlin
+severity: error
+message: "commonMain must not import platform APIs (android.*, platform.*); use expect/actual."
+files:
+  - "**/commonMain/**"
+rule:
+  kind: import_header
+  regex: "import (android|platform)\\."

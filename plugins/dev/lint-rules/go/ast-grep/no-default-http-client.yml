@@ -1,0 +1,10 @@
+id: go-no-default-http-client
+language: go
+severity: error
+message: "http.Get/http.DefaultClient has no timeout. Use &http.Client{Timeout: 30 * time.Second}."
+rule:
+  any:
+    - kind: call_expression
+      regex: "^http\\.Get\\("
+    - kind: selector_expression
+      regex: "^http\\.DefaultClient$"

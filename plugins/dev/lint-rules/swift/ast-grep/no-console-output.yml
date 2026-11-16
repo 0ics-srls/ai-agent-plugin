@@ -1,0 +1,10 @@
+# A direct write to the console skips the logger: its levels, its privacy and every other sink
+# (code principles 4.9). The code logs through os.Logger; a command-line tool writes its output to
+# FileHandle.standardOutput.
+id: swift-no-console-output
+language: swift
+severity: error
+message: "Log through os.Logger, not to the console directly."
+rule:
+  kind: call_expression
+  regex: '^(Swift\.)?(print|debugPrint|dump|NSLog)\('

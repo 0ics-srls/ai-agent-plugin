@@ -1,0 +1,22 @@
+# A direct write to the console skips the logger: its levels, its file and every other sink
+# (code principles 4.9). What the program writes goes through the project's logger, whose console
+# sink writes to a stream it is handed.
+id: c-no-console-output
+language: c
+severity: error
+message: "Write through the project's logger, not to the console directly."
+rule:
+  any:
+    - kind: call_expression
+      has:
+        field: function
+        regex: '^(printf|vprintf|puts|putchar|perror)$'
+    - kind: call_expression
+      all:
+        - has:
+            field: function
+            regex: '^(fprintf|vfprintf|fputs|fputc|putc|fwrite)$'
+        - has:
+            field: arguments
+            has:
+              regex: '^(stdout|stderr)$'

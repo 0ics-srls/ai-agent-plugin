@@ -1,0 +1,9 @@
+id: no-junit-assertions
+language: java
+severity: error
+message: "Use AssertJ assertThat(...), never JUnit assertEquals/assertTrue/assertNotNull."
+rule:
+  any:
+    - pattern: assertEquals($$$)
+    - pattern: assertTrue($$$)
+    - pattern: assertNotNull($$$)

@@ -1,0 +1,18 @@
+id: no-sql-string-concat-csharp
+language: csharp
+severity: error
+message: "No SQL built by string concatenation; use parameterized queries (placeholders + bound params)."
+# Scope: PRODUCTION code only. A test that interpolates TABLE and COLUMN identifiers into
+# information_schema / pg_catalog probes has no parameterized rewrite — SQL cannot parameterize an
+# identifier. The injection risk this rule exists for lives in the request path, not in a schema
+# assertion against a throwaway test database.
+ignores:
+  - "**/*.test/**"
+  - "**/*.Test/**"
+rule:
+  kind: binary_expression
+  pattern: $SQL + $VAR
+constraints:
+  SQL:
+    kind: string_literal
+    regex: "(?i)(select|insert|update|delete)\\b"

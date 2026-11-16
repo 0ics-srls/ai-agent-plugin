@@ -1,0 +1,6 @@
+id: no-xunit-abstractions
+language: csharp
+severity: error
+message: "xUnit v3 removed Xunit.Abstractions; write test output through TestContext.Current.TestOutputHelper. A project that stays on xUnit v2 runs the gate with --off=no-xunit-abstractions (overlays/csharp/language.md §7)."
+rule:
+  pattern: "using Xunit.Abstractions;"

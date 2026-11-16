@@ -1,0 +1,15 @@
+# The absence of a value is part of its type, and the type is not silenced (code principles 3.3):
+# `value!` crashes where the absence shows, far from where it was known.
+id: swift-no-force-unwrap
+language: swift
+severity: error
+message: "`!` silences the optional: give the value at construction, keep it optional and handle its absence (`if let`, `guard let`, `??`), or fail where it is known (`guard let … else { fatalError(\"why it cannot be missing\") }`)."
+# Production code; the tests assert what their own setup guarantees.
+ignores:
+  - "**/Tests/**"
+  - "**/*Tests.swift"
+rule:
+  kind: postfix_expression
+  has:
+    field: operation
+    kind: bang

@@ -1,0 +1,32 @@
+name: Proposal
+description: A change to a skill, a mindset or a lint gate
+labels: [proposal]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Read CONTRIBUTING.md first: it says what a good change looks like and what is declined as a rule.
+  - type: dropdown
+    id: plugin
+    attributes:
+      label: Plugin
+      options: [dev, biz, info]
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: The problem
+      description: What the agent did, on what kind of project, and why it is wrong. The problem comes before the solution.
+    validations:
+      required: true
+  - type: textarea
+    id: change
+    attributes:
+      label: The change you propose
+      description: Which page, and the text. For a lint rule, the defect it finds and real code where it finds one.
+  - type: textarea
+    id: tried
+    attributes:
+      label: How you tried it
+      description: The same command run again with your text, and what the agent did then.

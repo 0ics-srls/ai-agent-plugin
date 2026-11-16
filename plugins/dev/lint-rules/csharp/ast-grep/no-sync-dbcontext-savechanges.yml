@@ -1,0 +1,16 @@
+id: no-sync-dbcontext-savechanges
+language: csharp
+severity: error
+message: "DB calls must be async: use SaveChangesAsync(ct), not SaveChanges()."
+# Scope: PRODUCTION code. In a test, seeding inside a synchronous setup (a fixture constructor, the
+# WebApplicationFactory bootstrap) calls SaveChanges() on purpose: there is no request thread to
+# block there. Startup seeding in production is production code and stays in scope.
+# A justified exception in production marks its line with `// ast-grep-ignore: no-sync-dbcontext-savechanges`.
+ignores:
+  - "**/*.Tests/**"
+  - "**/*.Test/**"
+  - "**/*.test/**"
+rule:
+  any:
+    - pattern: $CTX.SaveChanges()
+    - pattern: $CTX.SaveChanges($$$)

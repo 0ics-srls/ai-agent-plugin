@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security problem
+    url: https://github.com/0ics-srls/ai-agent-plugin/security/advisories/new
+    about: Report a vulnerability privately. Do not open a public issue for it.
+  - name: Claude Code itself
+    url: https://github.com/anthropics/claude-code/issues
+    about: A problem of Claude Code, not of these plugins, belongs there.

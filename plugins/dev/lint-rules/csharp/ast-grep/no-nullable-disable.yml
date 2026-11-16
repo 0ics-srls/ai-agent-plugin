@@ -1,0 +1,12 @@
+id: no-nullable-disable
+language: csharp
+severity: error
+message: "`#nullable disable` turns the nullable analysis off for the rest of the file: fix the types instead (code principles 3.3)."
+# Generated code is out of scope: EF Core writes `#nullable disable` at the top of every migration.
+ignores:
+  - "**/Migrations/**"
+  - "**/*.Designer.cs"
+  - "**/*.g.cs"
+rule:
+  kind: preproc_nullable
+  regex: "disable"

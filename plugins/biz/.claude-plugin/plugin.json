@@ -1,0 +1,10 @@
+{
+  "name": "biz",
+  "version": "2.31.39",
+  "description": "The funnel of the startup ideas (biz-*): capture, evaluate, techscape, research, validate, MVP spec.",
+  "license": "MPL-2.0",
+  "repository": "https://github.com/0ics-srls/ai-agent-plugin",
+  "homepage": "https://github.com/0ics-srls/ai-agent-plugin#readme",
+  "keywords": ["startup", "ideas", "market-research", "mvp"],
+  "author": { "name": "0ics srl", "email": "mail@0ics.it", "url": "https://github.com/0ics-srls" }
+}

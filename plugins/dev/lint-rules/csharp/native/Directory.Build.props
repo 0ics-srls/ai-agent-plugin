@@ -1,0 +1,21 @@
+<Project>
+  <!-- The build of every project of the solution, copied to its folder: .NET 10, the latest language,
+       nullable references and implicit usings, the artifacts output, the NuGet audit of every
+       transitive package. And the gate: one command, `dotnet build App.slnx`. Every warning is an
+       error (TreatWarningsAsErrors below; the code under externals/ has its own settings): the
+       compiler's, the nullable analysis included, and the analyzer's — the SDK's standard level, plus
+       the rules .editorconfig lists one by one, each because it finds a defect. -->
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <AnalysisLevel>latest</AnalysisLevel>
+    <EnforceCodeStyleInBuild>false</EnforceCodeStyleInBuild>
+    <UseArtifactsOutput>true</UseArtifactsOutput>
+    <NuGetAudit>true</NuGetAudit>
+    <NuGetAuditMode>all</NuGetAuditMode>
+    <NuGetAuditLevel>low</NuGetAuditLevel>
+  </PropertyGroup>
+</Project>

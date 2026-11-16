@@ -1,0 +1,12 @@
+# A direct write to the console skips the logger: its levels, its writers and every other sink
+# (code principles 4.9). The app logs through Kermit.
+id: kotlin-no-console-output
+language: kotlin
+severity: error
+message: "Log through Kermit, not to the console directly."
+rule:
+  any:
+    - kind: call_expression
+      regex: '^(kotlin\.io\.)?(println|print)\('
+    - kind: navigation_expression
+      regex: '^System\.(out|err)$'

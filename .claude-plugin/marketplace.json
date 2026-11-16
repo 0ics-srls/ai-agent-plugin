@@ -1,0 +1,10 @@
+{
+  "name": "ai-agent",
+  "owner": { "name": "0ics srl", "email": "mail@0ics.it" },
+  "plugins": [
+    { "name": "dev", "source": "./plugins/dev", "description": "Software development with an agent that writes well-organized code: the junior workflow (j-*), the black-box method (bbc-*), the code audit, the mindsets and the lint gates." },
+    { "name": "biz", "source": "./plugins/biz", "description": "The funnel of the startup ideas (biz-*): capture, evaluate, techscape, research, validate, MVP spec." },
+    { "name": "info", "source": "./plugins/info", "description": "Research verified (info-*): search, cross-reference, audit, report." },
+    { "name": "ai-agent", "source": "./plugins/ai-agent", "description": "The whole ai-agent set: it installs the plugins dev, biz and info." }
+  ]
+}

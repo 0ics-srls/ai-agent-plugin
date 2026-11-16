@@ -1,0 +1,55 @@
+name: Bug
+description: A command does not do what its page says, a path is wrong, a gate fails on correct code or passes a defect
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Update to the latest version first, and search the existing issues. A security problem does not go here: see SECURITY.md.
+        Remove from what you paste anything private: code that is not yours to publish, names, keys.
+  - type: dropdown
+    id: plugin
+    attributes:
+      label: Plugin
+      options: [dev, biz, info, ai-agent]
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version of the plugin
+      description: "`claude plugin list`, or the version at the top of the plugin's README"
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Claude Code version, system, model
+      placeholder: "Claude Code 2.x, Ubuntu 24.04 (WSL2), Sonnet"
+    validations:
+      required: true
+  - type: input
+    id: command
+    attributes:
+      label: The command you ran
+      placeholder: "/dev:j-setup"
+    validations:
+      required: true
+  - type: textarea
+    id: happened
+    attributes:
+      label: What happened
+      description: What the agent did. The part of the transcript that shows it is the best evidence.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected
+    validations:
+      required: true
+  - type: textarea
+    id: project
+    attributes:
+      label: The project
+      description: Language and stack, new or existing, anything unusual about it.

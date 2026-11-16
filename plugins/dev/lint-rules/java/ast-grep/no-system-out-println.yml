@@ -1,0 +1,8 @@
+id: no-system-out-println
+language: java
+severity: error
+message: "Use SLF4J (logger.debug/info), never System.out.println / System.err.println."
+rule:
+  any:
+    - pattern: System.out.println($$$)
+    - pattern: System.err.println($$$)

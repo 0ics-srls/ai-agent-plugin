@@ -1,0 +1,11 @@
+id: kotlin-no-not-null-assertion
+language: kotlin
+severity: error
+message: "`!!` silences the null check: give the value at construction, keep the type nullable and handle its absence (`?.`, `?:`), or fail where it is known (`?: error(\"why it cannot be missing\")`)."
+# Production code; the tests assert what their own setup guarantees.
+ignores:
+  - "**/commonTest/**"
+  - "**/*Test/**"
+  - "**/*Test.kt"
+rule:
+  pattern: "$X!!"

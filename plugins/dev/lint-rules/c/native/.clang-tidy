@@ -1,0 +1,19 @@
+# The C gate's analysis, run by the build on every target of the project (cmake/lint-gate.cmake):
+# a finding is an error. The checks that find a defect are on, and only them: the static analyzer, the
+# bugprone and cert families, and the checks listed one by one from the other families. The checks of
+# style, of naming and of micro-optimization are not here: they find no defect, and on code that exists
+# they only make it be rewritten. Off in the analyzer: the demand for the bounds-checked functions of
+# C11's Annex K (snprintf_s) — glibc and musl do not provide them, so every snprintf would fail with no
+# replacement to write. A check joins or leaves the list by the project owner's decision, with its reason.
+Checks: >
+  -*,
+  clang-analyzer-*,
+  -clang-analyzer-security.insecureAPI.DeprecatedOrUnsafeBufferHandling,
+  bugprone-*,
+  -bugprone-easily-swappable-parameters,-bugprone-reserved-identifier,
+  cert-*,
+  misc-redundant-expression,misc-misplaced-const,misc-definitions-in-headers,misc-non-copyable-objects,
+  misc-misleading-bidirectional,misc-misleading-identifier,
+  readability-misleading-indentation
+WarningsAsErrors: '*'
+HeaderFilterRegex: '.*'

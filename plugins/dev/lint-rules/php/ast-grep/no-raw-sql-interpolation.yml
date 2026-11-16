@@ -1,0 +1,9 @@
+id: php-no-raw-sql-interpolation
+language: php
+severity: error
+message: "No string interpolation in SQL — use parameterized bindings (DB::select('... ?', [$id]))."
+rule:
+  pattern: DB::$METHOD($$$)
+  has:
+    kind: encapsed_string
+    stopBy: end

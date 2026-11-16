@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SpotBugs reports the bug categories: correctness, multithreaded correctness, security, bad
+     practice, internationalization. Excluded, because they find no defect: the "dodgy code" style
+     category, the micro-optimizations, the exposure of a mutable field (a design guideline), the
+     experimental detectors, and the serialization and naming patterns. A <Match> joins or leaves by
+     the owner's decision, with its reason. -->
+<FindBugsFilter>
+  <Match><Bug category="STYLE"/></Match>
+  <Match><Bug category="PERFORMANCE"/></Match>
+  <Match><Bug category="MALICIOUS_CODE"/></Match>
+  <Match><Bug category="EXPERIMENTAL"/></Match>
+  <Match><Bug code="SE,Se,Nm"/></Match>
+</FindBugsFilter>

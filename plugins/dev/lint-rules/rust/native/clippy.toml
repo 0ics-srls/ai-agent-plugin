@@ -1,0 +1,6 @@
+# Clippy's configuration, beside the root Cargo.toml.
+# What the pack refuses in the code is allowed in the tests.
+allow-unwrap-in-tests = true
+allow-expect-in-tests = true
+allow-print-in-tests = true
+allow-dbg-in-tests = true

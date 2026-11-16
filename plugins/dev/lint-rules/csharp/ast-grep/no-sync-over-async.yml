@@ -1,0 +1,19 @@
+id: no-sync-over-async
+language: csharp
+severity: error
+message: "Sync-over-async is forbidden. Await the Task, never .Result / .Wait(). (Flags a receiver whose name suggests a Task/ValueTask, or a direct call to a method named *Async; a Task held in a variable with another name needs the type-aware native linter.)"
+# csharp-senior.md / csharp-senior_10.md "Never block on a Task". Without type information the rule
+# recognises a Task two ways: the receiver's name says it (`loadTask.Result`), or the receiver is the
+# call of a method whose name ends in Async (`_service.GetAsync(id).Result`) — the rule's own example.
+rule:
+  any:
+    - pattern: $EXPR.Result
+    - pattern: $EXPR.Wait()
+constraints:
+  EXPR:
+    any:
+      - regex: "(?i)(task|valuetask)"
+      - kind: invocation_expression
+        has:
+          field: function
+          regex: "Async$"

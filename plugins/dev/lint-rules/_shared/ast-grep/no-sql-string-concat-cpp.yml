@@ -1,0 +1,11 @@
+id: no-sql-string-concat-cpp
+language: cpp
+severity: error
+message: "No SQL built by string concatenation; use parameterized queries (placeholders + bound params)."
+rule:
+  kind: binary_expression
+  pattern: $SQL + $VAR
+constraints:
+  SQL:
+    kind: string_literal
+    regex: "(?i)(select|insert|update|delete)\\b"

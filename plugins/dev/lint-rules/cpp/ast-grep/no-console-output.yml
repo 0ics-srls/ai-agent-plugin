@@ -1,0 +1,24 @@
+# A direct write to the console skips the logger: its levels, its file and every other sink
+# (code principles 4.9). What the program writes goes through spdlog, whose console sink reaches the
+# terminal.
+id: cpp-no-console-output
+language: cpp
+severity: error
+message: "Write through the logger (spdlog), not to the console directly."
+rule:
+  any:
+    - kind: qualified_identifier
+      regex: '^std::(cout|cerr|clog|wcout|wcerr|wclog)$'
+    - kind: call_expression
+      has:
+        field: function
+        regex: '^((std::)?(printf|puts|putchar)|std::(print|println))$'
+    - kind: call_expression
+      all:
+        - has:
+            field: function
+            regex: '^(std::)?(fprintf|fputs|fputc)$'
+        - has:
+            field: arguments
+            has:
+              regex: '^(stdout|stderr)$'

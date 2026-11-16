@@ -1,0 +1,37 @@
+# The lint pack for Perl, beside cpanfile: Perl::Critic's most severe policies (severity 5: the ones
+# that find a defect — strict missing, a two-argument open, a stringy eval, a bareword file handle, a
+# return of undef in list context), and the policies raised below because they find one too: a system
+# call, an open or a close nobody checks, an eval whose failure nobody reads, booleans of two
+# precedences mixed. The policies of style, of naming, of layout and of documentation stay below the
+# threshold: they find no defect, and on code that exists they only make it be rewritten. A policy
+# joins or leaves by the project owner's decision, with its reason.
+severity = 5
+verbose = 8
+
+[TestingAndDebugging::RequireUseStrict]
+equivalent_modules = Moo Moose Moo::Role
+
+[TestingAndDebugging::RequireUseWarnings]
+severity = 5
+equivalent_modules = Moo Moose Moo::Role
+
+[InputOutput::RequireCheckedSyscalls]
+severity = 5
+functions = :builtins
+exclude_functions = print say sleep
+
+[InputOutput::RequireCheckedOpen]
+severity = 5
+
+[InputOutput::RequireCheckedClose]
+severity = 5
+
+[ErrorHandling::RequireCheckingReturnValueOfEval]
+severity = 5
+
+[ValuesAndExpressions::ProhibitMixedBooleanOperators]
+severity = 5
+
+# `use v5.36` is how a file opens (overlays/perl/language.md §1): the signatures it enables are read
+# by PPI as prototypes.
+[-Subroutines::ProhibitSubroutinePrototypes]

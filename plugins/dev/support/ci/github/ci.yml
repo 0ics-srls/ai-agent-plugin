@@ -1,0 +1,22 @@
+# The CI of the project: every pull request to the production branch runs the final gate.
+# j-ci-setup fills it: the branch, the toolchain steps of each component, the gate.
+name: CI
+on:
+  pull_request:
+    branches: [__PRODUCTION_BRANCH__]
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      # __TOOLCHAIN_STEPS__
+      # Only when the project has .00-secrets/: the key of git-crypt, a secret of the repository.
+      - name: Unlock the secrets
+        env:
+          GIT_CRYPT_KEY: ${{ secrets.GIT_CRYPT_KEY }}
+        run: |
+          sudo apt-get install -y git-crypt
+          printf '%s' "$GIT_CRYPT_KEY" | base64 -d > "$RUNNER_TEMP/git-crypt.key"
+          git-crypt unlock "$RUNNER_TEMP/git-crypt.key"
+      - name: The final gate
+        run: __GATE_FINAL__

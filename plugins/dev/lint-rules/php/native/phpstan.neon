@@ -1,0 +1,23 @@
+# The type gate, beside composer.json: vendor/bin/phpstan analyse
+# The highest level: every type is checked. Of the strict rules, the ones that find a defect and only
+# them — a loose comparison, a function that compares loosely, a parent constructor not called, a loop
+# that overwrites a variable, arithmetic on what is not a number. The ones that only ask for another
+# form (no empty(), no short ternary, booleans only in conditions, no useless cast) are off: they find
+# no defect, and on code that exists they only make it be rewritten. paths are the project's own.
+includes:
+    - vendor/phpstan/phpstan-strict-rules/rules.neon
+parameters:
+    level: max
+    paths:
+        - src
+    treatPhpDocTypesAsCertain: false
+    strictRules:
+        allRules: false
+        disallowedLooseComparison: true
+        strictFunctionCalls: true
+        requireParentConstructorCall: true
+        overwriteVariablesWithLoop: true
+        numericOperandsInArithmeticOperators: true
+        switchConditionsMatchingType: true
+        noVariableVariables: true
+        illegalConstructorMethodCall: true

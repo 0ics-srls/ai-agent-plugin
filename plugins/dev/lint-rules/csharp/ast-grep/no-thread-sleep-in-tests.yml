@@ -1,0 +1,9 @@
+id: no-thread-sleep-in-tests
+language: csharp
+severity: error
+message: "No Thread.Sleep in tests; use Task.Delay(ct) or a deterministic wait."
+files:
+  - "**/*Tests.cs"
+  - "**/*Test.cs"
+rule:
+  pattern: Thread.Sleep($$$)

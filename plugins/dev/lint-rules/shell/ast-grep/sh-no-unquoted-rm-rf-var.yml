@@ -1,0 +1,10 @@
+id: sh-no-unquoted-rm-rf-var
+language: Bash
+severity: error
+message: "rm -rf on an unquoted variable — quote it and guard against empty values."
+note: |
+  An unquoted or empty variable after `rm -rf` can expand to a catastrophic path.
+  Quote the expansion and use a guard, e.g. rm -rf "${DIR:?}".
+rule:
+  kind: command
+  regex: "rm\\s+-[a-zA-Z]*(rf|fr)[a-zA-Z]*\\s+\\$[A-Za-z_{]"

@@ -1,0 +1,10 @@
+id: sh-no-backtick-substitution
+language: Bash
+severity: error
+message: "Use $(...) instead of backticks for command substitution."
+note: |
+  Backtick command substitution does not nest and mangles backslashes.
+  Prefer $(...) which nests cleanly and is POSIX-standard.
+rule:
+  kind: command_substitution
+  regex: "^`"

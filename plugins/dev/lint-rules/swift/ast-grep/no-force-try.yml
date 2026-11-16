@@ -1,0 +1,11 @@
+# An error is handled or passed on, never silenced (principles 4.2): `try!` crashes on the first failure.
+id: swift-no-force-try
+language: swift
+severity: error
+message: "`try!` silences the error: handle it with `do`/`catch`, or pass it on with `try` in a throwing function."
+# Production code; the tests assert what their own setup guarantees.
+ignores:
+  - "**/Tests/**"
+  - "**/*Tests.swift"
+rule:
+  pattern: "try! $X"

@@ -1,0 +1,6 @@
+id: go-no-panic
+language: go
+severity: error
+message: "Return an error; do not panic for recoverable conditions in library code."
+rule:
+  pattern: panic($$$)

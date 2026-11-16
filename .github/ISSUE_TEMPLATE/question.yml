@@ -1,0 +1,14 @@
+name: Question
+description: How something is meant to be used
+labels: [question]
+body:
+  - type: textarea
+    id: goal
+    attributes:
+      label: What you are trying to do
+    validations:
+      required: true
+  - type: textarea
+    id: tried
+    attributes:
+      label: What you tried

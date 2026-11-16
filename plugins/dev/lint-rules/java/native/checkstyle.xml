@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!DOCTYPE module PUBLIC "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN" "https://checkstyle.org/dtds/configuration_1_3.dtd">
+<!-- The three checks that find a defect the compiler, Error Prone and SpotBugs leave: an error
+     swallowed by an empty catch, equals without hashCode, a loop that changes its own counter. No
+     check of imports, of layout or of form: they find no defect. -->
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="EmptyCatchBlock"/>
+    <module name="EqualsHashCode"/>
+    <module name="ModifiedControlVariable"/>
+  </module>
+</module>

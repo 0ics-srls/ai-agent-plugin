@@ -1,0 +1,71 @@
+<!-- The lint pack for Java: merged into <build><plugins> (overlays/java/language.md §5), with the property
+     <error-prone.version>2.52.0</error-prone.version>. The compiler's warnings that find a defect at
+     error, Error Prone's bug patterns, three Checkstyle checks and SpotBugs' bug categories on verify:
+     each is there because it finds a defect; no check of style, of naming or of format. A test that carries @Tag("slow") is left out of the default run. -->
+<plugin>
+  <groupId>org.apache.maven.plugins</groupId>
+  <artifactId>maven-compiler-plugin</artifactId>
+  <version>3.16.0</version>
+  <configuration>
+    <compilerArgs>
+      <!-- The lint categories that find a defect; not serial, this-escape, cast, the documentation
+           comments or the module system's. -->
+      <arg>-Xlint:unchecked,rawtypes,fallthrough,finally,divzero,empty,overrides,varargs,removal,lossy-conversions,identity</arg>
+      <arg>-Werror</arg>
+      <arg>-XDcompilePolicy=simple</arg>
+      <arg>--should-stop=ifError=FLOW</arg>
+      <!-- Error Prone's default bug patterns; a name never used and the documentation checks are off. -->
+      <arg>-Xplugin:ErrorProne -Xep:UnusedVariable:OFF -Xep:UnusedMethod:OFF -Xep:UnusedNestedClass:OFF -Xep:MissingSummary:OFF -Xep:InlineMeSuggester:OFF</arg>
+    </compilerArgs>
+    <annotationProcessorPaths>
+      <path>
+        <groupId>com.google.errorprone</groupId>
+        <artifactId>error_prone_core</artifactId>
+        <version>${error-prone.version}</version>
+      </path>
+      <!-- Every other annotation processor (Lombok) is listed here too: with annotationProcessorPaths set,
+           processors are no longer found on the classpath. -->
+    </annotationProcessorPaths>
+  </configuration>
+</plugin>
+<plugin>
+  <groupId>org.apache.maven.plugins</groupId>
+  <artifactId>maven-surefire-plugin</artifactId>
+  <version>3.6.1</version>
+  <configuration>
+    <excludedGroups>slow</excludedGroups>
+  </configuration>
+</plugin>
+<plugin>
+  <groupId>org.apache.maven.plugins</groupId>
+  <artifactId>maven-checkstyle-plugin</artifactId>
+  <version>3.6.0</version>
+  <configuration>
+    <configLocation>checkstyle.xml</configLocation>
+    <includeTestSourceDirectory>true</includeTestSourceDirectory>
+    <violationSeverity>warning</violationSeverity>
+  </configuration>
+  <executions>
+    <execution>
+      <phase>verify</phase>
+      <goals><goal>check</goal></goals>
+    </execution>
+  </executions>
+</plugin>
+<plugin>
+  <groupId>com.github.spotbugs</groupId>
+  <artifactId>spotbugs-maven-plugin</artifactId>
+  <version>4.10.5.0</version>
+  <configuration>
+    <effort>Max</effort>
+    <threshold>Medium</threshold>
+    <excludeFilterFile>spotbugs-exclude.xml</excludeFilterFile>
+    <includeTests>true</includeTests>
+  </configuration>
+  <executions>
+    <execution>
+      <phase>verify</phase>
+      <goals><goal>check</goal></goals>
+    </execution>
+  </executions>
+</plugin>

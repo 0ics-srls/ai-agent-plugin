@@ -1,0 +1,29 @@
+# The CD of the project: what reaches the production branch is deployed.
+# j-ci-setup fills it: the branch, the toolchain steps, the backup when there is one, the deploy.
+name: CD
+on:
+  push:
+    branches: [__PRODUCTION_BRANCH__]
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+      # __TOOLCHAIN_STEPS__
+      # Only when the project has .00-secrets/: the key of git-crypt, a secret of the repository.
+      - name: Unlock the secrets
+        env:
+          GIT_CRYPT_KEY: ${{ secrets.GIT_CRYPT_KEY }}
+        run: |
+          sudo apt-get install -y git-crypt
+          printf '%s' "$GIT_CRYPT_KEY" | base64 -d > "$RUNNER_TEMP/git-crypt.key"
+          git-crypt unlock "$RUNNER_TEMP/git-crypt.key"
+      # Only when @backup-script is not none.
+      - name: The backup
+        run: __BACKUP_SCRIPT__
+      - name: The deploy
+        run: __DEPLOY_SCRIPT__

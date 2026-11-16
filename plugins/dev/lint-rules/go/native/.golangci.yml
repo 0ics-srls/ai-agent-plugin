@@ -1,0 +1,66 @@
+# The lint pack for Go, beside go.mod: the linters listed here and only them. Each one finds a defect —
+# an error nobody checks, a resource nobody closes, a wrong use of the context, a security hole — and
+# was chosen for that. The linters of style, of naming, of order, of whitespace and of counts are not
+# here, and the gate checks no formatting: they find no defect, and on code that exists they only make
+# it be rewritten. A linter joins or leaves the list by the project owner's decision, with its reason.
+version: "2"
+linters:
+  default: none
+  enable:
+    # An error nobody checks; an error returned as nil, or compared in a way that wrapping breaks.
+    - errcheck
+    - errchkjson
+    - errorlint
+    - nilerr
+    - nilnesserr
+    # The compiler's vet, staticcheck's bug rules, an assignment whose value nobody reads.
+    - govet
+    - staticcheck
+    - ineffassign
+    - gocritic
+    # A response body, the rows of a query, a statement nobody closes; rows whose error nobody reads.
+    - bodyclose
+    - sqlclosecheck
+    - rowserrcheck
+    # The context: a call without it, one that does not inherit it, one piled up in a loop.
+    - noctx
+    - contextcheck
+    - fatcontext
+    # A type assertion that panics, a switch that does not cover its cases.
+    - forcetypeassert
+    - exhaustive
+    - gochecksumtype
+    # Two durations multiplied, a slice made with a length and then appended to, []any passed as any.
+    - durationcheck
+    - makezero
+    - asasalint
+    # A package variable of another package reassigned; a compiler directive misspelt.
+    - reassign
+    - gocheckcompilerdirectives
+    # Security: gosec, Unicode characters that reorder the text, a host and port joined by hand.
+    - gosec
+    - bidichk
+    - nosprintfhostport
+    # Logging and tracing used wrongly: a key without its value, an event never sent, a span never ended.
+    - loggercheck
+    - zerologlint
+    - spancheck
+    # A silenced linter names the linter and says why.
+    - nolintlint
+  settings:
+    errcheck:
+      check-blank: true
+    govet:
+      enable-all: true
+      disable:
+        # Memory layout, not correctness: the fields keep the order that reads best.
+        - fieldalignment
+    staticcheck:
+      # The bug rules only: the style (ST), simplification (S) and quick-fix (QF) rules are not defects.
+      checks: ["SA*"]
+    gocritic:
+      # The diagnostics only: its style and performance checks are not defects.
+      disabled-tags: [style, performance, experimental, opinionated]
+    nolintlint:
+      require-explanation: true
+      require-specific: true

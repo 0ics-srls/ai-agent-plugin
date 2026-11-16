@@ -1,0 +1,62 @@
+# The lint pack for Python: of ruff, the rules listed here and only them. Each one finds a defect — a
+# name that does not exist, an error swallowed, a call that blocks, a check of the type checker
+# silenced, a security hole — and was chosen for that, family by family. The rules of style, of naming,
+# of order, of documentation and of modernization are not here, and the gate checks no formatting: they
+# find no defect, and on code that exists they only make it be rewritten. A rule joins or leaves the
+# list by the project owner's decision, with its reason.
+[lint]
+select = [
+  # Pyflakes: undefined names, wrong format strings, redefinitions, code that cannot run.
+  "F",
+  # Syntax and I/O errors; a bare `except:`; an invalid escape in a string.
+  "E9", "E722", "W605",
+  # flake8-bugbear: mutable default arguments, a loop variable captured by a closure, an exception
+  # raised without its cause, an assertion that cannot fail.
+  "B",
+  # Pylint's errors and warnings: an exception created and not raised, a comparison with itself or
+  # with NaN, a subprocess whose failure nobody checks, a file opened with the platform's encoding.
+  "PLE", "PLW",
+  # flake8-bandit: security — an error swallowed with `pass`, a request with no timeout, pickle, SQL
+  # built by hand, a weak hash, a hard-coded password.
+  "S",
+  # flake8-async: a blocking call inside async code, a wait with no timeout.
+  "ASYNC",
+  # flake8-datetimez: a date without its time zone.
+  "DTZ",
+  # A debugger left in the code; the console written directly (code principles 4.9).
+  "T10", "T20",
+  # Logging: the message is a constant template with its values as arguments (code principles 4.9);
+  # an exception logged without its traceback.
+  "G", "LOG007", "LOG014", "TRY400",
+  # A check silenced without saying which: `# type: ignore`, `# noqa`; `typing.cast` (TID251, below).
+  "PGH003", "PGH004", "TID251",
+  # A mock assertion that is not one (`assert_called` misspelt asserts nothing).
+  "PGH005",
+  # Tests: `pytest.raises` with no exception, with several statements, an assert inside `except`.
+  "PT010", "PT012", "PT017",
+  # A class field or an enum value written twice; a comma missing between two strings of a list.
+  "PIE794", "PIE796", "ISC004",
+  # Ruff's own: a task nobody keeps, mutable defaults of classes and dataclasses, an Optional not
+  # declared, an index of the wrong type, an assignment inside `assert`.
+  "RUF006", "RUF008", "RUF009", "RUF012", "RUF013", "RUF016", "RUF018", "RUF026", "RUF040",
+  # sys.version compared as text; a path parameter of FastAPI nobody reads; an f-string translated.
+  "YTT", "FAST003", "INT",
+]
+ignore = [
+  # An import or a variable never used is cleaning, not a defect.
+  "F401", "F841",
+  # zip() without strict: usually meant. A loop variable never used: cleaning.
+  "B905", "B007",
+  # Style inside the families above: a lambda, `global`, a loop variable reassigned, nested min/max.
+  "PLW0108", "PLW0602", "PLW0603", "PLW2901", "PLW3301",
+  # `assert` in the code, a non-cryptographic random, importing or calling subprocess: not holes.
+  "S101", "S311", "S404", "S603", "S606", "S607",
+]
+
+[lint.per-file-ignores]
+"tests/**" = ["TID251"]
+
+# What silences the type checker is banned in the code; the tests assert what their own setup
+# guarantees (code principles 3.3).
+[lint.flake8-tidy-imports.banned-api]
+"typing.cast".msg = "cast() silences the type checker: validate the value into its type, narrow it with a check, or fail where it is known (raise with why it cannot be missing)."

@@ -1,0 +1,5 @@
+<!-- The code under externals/ is not this project's sources: its central package management stops
+     here, and a submodule that writes the versions in its own .csproj builds as it is. A submodule
+     with a Directory.Packages.props of its own uses that one, which is nearer. -->
+<Project>
+</Project>

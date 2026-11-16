@@ -1,0 +1,12 @@
+id: no-pragma-warning-disable
+language: csharp
+severity: error
+message: "A warning is fixed in the code that raises it, not disabled (principles 6.1): a rule is relaxed only by the project owner, in the pack's .editorconfig, with its reason."
+# Every file, tests included: zero warnings holds for them too. Generated code is out of scope.
+ignores:
+  - "**/Migrations/**"
+  - "**/*.Designer.cs"
+  - "**/*.g.cs"
+rule:
+  kind: preproc_pragma
+  regex: "warning\\s+disable"

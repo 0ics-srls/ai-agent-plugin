@@ -1,0 +1,11 @@
+id: no-sql-string-concat-python
+language: python
+severity: error
+message: "No SQL built by string concatenation; use parameterized queries (placeholders + bound params)."
+rule:
+  kind: binary_operator
+  pattern: $SQL + $VAR
+constraints:
+  SQL:
+    kind: string
+    regex: "(?i)(select|insert|update|delete)\\b"

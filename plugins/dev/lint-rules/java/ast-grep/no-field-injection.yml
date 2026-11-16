@@ -1,0 +1,7 @@
+id: no-field-injection
+language: java
+severity: error
+message: "Use constructor injection, never field @Autowired."
+rule:
+  kind: field_declaration
+  regex: "@Autowired"

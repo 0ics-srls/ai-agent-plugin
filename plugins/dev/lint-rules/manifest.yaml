@@ -1,0 +1,162 @@
+# Lint rule-pack manifest — what each language ships and runs. It declares only the languages
+# whose pack is present in this folder; a language joins with its pack.
+# Each language declares: native_lint (layer-1 gate), ast_grep (layer-2 rules, true when the
+# language has ast-grep rules — in an ast-grep folder of its own or in _shared), and config_files
+# (native configuration templates, paths relative to this folder).
+version: 1
+languages:
+  csharp:
+    # build: the compiler and the analyzer rules the pack lists, each because it finds a defect; no
+    # format check. App is the project's name: the solution is named, because its unit filter
+    # (App.Unit.slnf) sits beside it. The gate checks the project's own sources: the warnings are errors
+    # through Directory.Build.props, which stops at externals/ (-warnaserror would reach the code there too).
+    native_lint: "dotnet build App.slnx"
+    ast_grep: true
+    config_files:
+      - csharp/native/Directory.Build.props
+      - csharp/native/.editorconfig
+      - csharp/native/externals/Directory.Build.props
+      - csharp/native/externals/Directory.Packages.props
+      - csharp/native/externals/.editorconfig
+  typescript:
+    # The project's check script: the compiler with the checks that find a defect (tsc, or the framework's own — vue-tsc,
+    # each tsconfig of Angular) and eslint with the rules the pack lists, each because it finds a defect;
+    # no formatter.
+    native_lint: "npm run check"
+    # ast-grep: the _shared rules (secrets, SQL built by concatenation, TODO without an issue); the rest
+    # is ESLint's.
+    ast_grep: true
+    config_files:
+      - typescript/native/eslint.pack.js
+      - typescript/native/eslint.config.js
+      - typescript/native/eslint.e2e.js
+      - typescript/native/tsconfig.json
+  python:
+    # ruff with the rules that find a defect (ruff.toml lists them, family by family), mypy strict. No
+    # format check. Run from the folder of pyproject.toml.
+    native_lint: "uv run ruff check . && uv run mypy ."
+    # ast-grep: the _shared rules (secrets, SQL built by concatenation, TODO without an issue); the rest
+    # is ruff's.
+    ast_grep: true
+    config_files:
+      - python/native/ruff.toml
+      - python/native/mypy.ini
+      - python/native/pytest.ini
+  gdscript:
+    # The engine is the compiler: --import writes the cache of the global classes, then --check-only
+    # on every script outside addons/ and .godot/ fails on a warning at error (the pack's project.godot
+    # raises the ones that find a defect); gdlint, with its two rules that find one, skips addons/ and
+    # .godot/ (gdlintrc). No format check. Run from the folder of project.godot.
+    native_lint: "godot --headless --import --quit && find . -name '*.gd' -not -path './addons/*' -not -path './.godot/*' -print0 | xargs -0 -r -n1 godot --headless --check-only --script && gdlint ."
+    # ast-grep has no GDScript grammar: the engine's warnings and gdlint are the gate.
+    ast_grep: false
+    config_files:
+      - gdscript/native/project.godot
+      - gdscript/native/gdlintrc
+  cpp:
+    # The build is the gate: cmake/lint-gate.cmake turns the warnings that find a defect into errors and
+    # runs clang-tidy on each target of the project (its .clang-tidy: the checks that find one), the
+    # dependencies being SYSTEM. No format check. Run from the folder of CMakeLists.txt and
+    # CMakePresets.json.
+    native_lint: "cmake --preset debug && cmake --build --preset debug"
+    # ast-grep: the console written directly (clang-tidy has no check for it), and the _shared
+    # rules (secrets, SQL built by concatenation, TODO without an issue).
+    ast_grep: true
+    config_files:
+      - cpp/native/.clang-tidy
+      - cpp/native/CMakePresets.json
+      - cpp/native/cmake/lint-gate.cmake
+  c:
+    # The same gate as C++, in C: the warnings that find a defect at error and clang-tidy (with the
+    # static analyzer) on each target through cmake/lint-gate.cmake. No format check. Run from the
+    # folder of CMakeLists.txt and CMakePresets.json.
+    native_lint: "cmake --preset debug && cmake --build --preset debug"
+    # ast-grep: the console written directly, and the _shared rules (secrets, SQL formatted into
+    # the text, TODO without an issue).
+    ast_grep: true
+    config_files:
+      - c/native/.clang-tidy
+      - c/native/CMakePresets.json
+      - c/native/cmake/lint-gate.cmake
+  kotlin:
+    # The build is the gate: build-logic's kmp.quality puts every compiler warning at error. No format
+    # check. Run from the root of the Gradle build, on a Mac when the app has an iOS target.
+    native_lint: "./gradlew assemble"
+    # ast-grep: the console written directly (println, System.out), a platform's import in commonMain,
+    # runBlocking in a test, and the _shared rules (secrets,
+    # SQL built by concatenation, TODO without an issue).
+    ast_grep: true
+    config_files:
+      - kotlin/native/build-logic/convention/src/main/kotlin/kmp.quality.gradle.kts
+  swift:
+    # The build is the gate: every warning is an error in every target (.treatAllWarnings). No
+    # swift-format: its lint always checks the layout too, which finds no defect. Run from the folder of
+    # Package.swift; an app adds its xcodebuild build.
+    native_lint: "swift build"
+    # ast-grep: a forced unwrap, a forced try, an implicitly unwrapped optional, the console written
+    # directly (print, debugPrint, dump, NSLog), and the _shared rules.
+    ast_grep: true
+    config_files: []
+  rust:
+    # Clippy with the lints that find a defect at error (Cargo.lints.toml lists them). No format check.
+    # Run from the folder of the root Cargo.toml.
+    native_lint: "cargo clippy --workspace --all-targets -- -D warnings"
+    # ast-grep: the _shared rules (secrets, SQL built by concatenation, TODO without an issue); the rest
+    # is Clippy's.
+    ast_grep: true
+    config_files:
+      - rust/native/Cargo.lints.toml
+      - rust/native/clippy.toml
+  java:
+    # The build is the gate: the compiler's lint categories that find a defect at error and Error Prone
+    # in the compiler, three Checkstyle checks and SpotBugs' bug categories on verify. Run from the
+    # folder of the root pom.xml.
+    native_lint: "./mvnw -q -DskipTests verify"
+    # ast-grep: the console, field injection, blocking on a future, JUnit's assertions, and the _shared rules.
+    ast_grep: true
+    config_files:
+      - java/native/pom-plugins.xml
+      - java/native/checkstyle.xml
+      - java/native/spotbugs-exclude.xml
+      - java/native/.mvn/jvm.config
+  go:
+    # golangci-lint with the linters that find a defect, listed in .golangci.yml. No format check. Run
+    # from the folder of go.mod.
+    native_lint: "golangci-lint run ./..."
+    # ast-grep: panic, and http.Get with no timeout, and the _shared rules.
+    ast_grep: true
+    config_files:
+      - go/native/.golangci.yml
+  php:
+    # PHPStan at its highest level with the strict rules that find a defect. No format check. Run from the
+    # folder of composer.json.
+    native_lint: "vendor/bin/phpstan analyse"
+    # ast-grep: debug output, SQL built by interpolation, weak password hashes, and the _shared rules.
+    ast_grep: true
+    config_files:
+      - php/native/phpstan.neon
+      - php/native/phpunit.xml
+  dart:
+    # The analyzer with its strict type checks and the lints that find a defect, each an error. No format
+    # check. Run from the folder of pubspec.yaml.
+    native_lint: "dart analyze"
+    # ast-grep has no Dart grammar: the analyzer is the gate.
+    ast_grep: false
+    config_files:
+      - dart/native/analysis_options.yaml
+  perl:
+    # Perl::Critic with its most severe policies and the ones the pack raises because they find a defect.
+    # No format check. Run from the folder of cpanfile.
+    native_lint: "perlcritic lib t"
+    # ast-grep has no Perl grammar: Perl::Critic is the gate.
+    ast_grep: false
+    config_files:
+      - perl/native/.perlcriticrc
+  shell:
+    # shellcheck on the project's scripts; PowerShell is linted by PSScriptAnalyzer on Windows (shell/NATIVE-PS1.md).
+    native_lint: "git ls-files -z '*.sh' | xargs -0 -r shellcheck --severity=warning"
+    # ast-grep: backticks, rm -rf on an unquoted variable, a download piped into a shell.
+    ast_grep: true
+    config_files:
+      - shell/native/.shellcheckrc
+      - shell/native/PSScriptAnalyzerSettings.psd1

@@ -1,0 +1,27 @@
+# The CI and the CD of the project: a merge request to the production branch runs the final gate,
+# what reaches that branch is deployed. j-ci-setup fills it and writes it as .gitlab-ci.yml.
+stages: [gate, deploy]
+image: __IMAGE__
+.secrets: &secrets
+  # Only when the project has .00-secrets/: the key of git-crypt, a variable of the project.
+  - apt-get update && apt-get install -y git-crypt
+  - printf '%s' "$GIT_CRYPT_KEY" | base64 -d > /tmp/git-crypt.key
+  - git-crypt unlock /tmp/git-crypt.key
+gate:
+  stage: gate
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "__PRODUCTION_BRANCH__"
+  script:
+    - *secrets
+    - __GATE_FINAL__
+deploy:
+  stage: deploy
+  resource_group: deploy
+  environment: production
+  rules:
+    - if: $CI_COMMIT_BRANCH == "__PRODUCTION_BRANCH__"
+  script:
+    - *secrets
+    # Only when @backup-script is not none.
+    - __BACKUP_SCRIPT__
+    - __DEPLOY_SCRIPT__

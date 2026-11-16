@@ -1,0 +1,9 @@
+id: no-todo-without-issue-kotlin
+language: kotlin
+severity: error
+message: "Bare TODO without an issue reference; use TODO(#123) linking a tracked issue."
+rule:
+  kind: line_comment
+  regex: "TODO"
+  not:
+    regex: "#[0-9]+"

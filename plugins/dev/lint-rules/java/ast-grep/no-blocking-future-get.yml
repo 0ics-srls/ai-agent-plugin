@@ -1,0 +1,9 @@
+id: no-blocking-future-get
+language: java
+severity: error
+message: "Never block on CompletableFuture with .get(); compose with thenApply/thenCompose. (Only flags receivers whose name suggests a Future; broader type-aware detection is the native linter's job.)"
+rule:
+  pattern: $FUTURE.get()
+constraints:
+  FUTURE:
+    regex: "(?i)future"

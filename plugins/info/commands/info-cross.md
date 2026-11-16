@@ -6,11 +6,11 @@ description: Cross-reference claims against independent sources to build verific
 ## Prerequisites
 - If not read this session: `${CLAUDE_PLUGIN_ROOT}/commands/mind-sets/intelligence-analyst.md`
 - Read the Memory Bank (skip the subdirectories) if not already done this session.
-- Must have run `info-search` first (needs claims.md)
+- Must have run `/info:info-search` first (needs claims.md)
 
 ## What This Command Does
 
-Takes extracted claims from info-search and sends parallel agents to independently verify each claim against new sources. Builds a cross-reference matrix showing which claims are confirmed, unconfirmed, or contradicted.
+Takes extracted claims from /info:info-search and sends parallel agents to independently verify each claim against new sources. Builds a cross-reference matrix showing which claims are confirmed, unconfirmed, or contradicted.
 
 ## Steps
 
@@ -136,7 +136,7 @@ Files:
   research/{topic-slug}/cross-ref.md - Full cross-reference matrix
 
 Next step:
-  info-audit → Deep truth analysis with confidence scoring
+  /info:info-audit → Deep truth analysis with confidence scoring
 ```
 
 ## Rules

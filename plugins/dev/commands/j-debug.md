@@ -1,11 +1,11 @@
 ---
 allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
-description: Debug a problem while looking for it, with Protocol D, explaining each step (junior workflow). It finds and explains the cause and changes no production code — a bug is fixed with j-bug. Full verbose mindset — use when context window is not a concern. For large context sessions use j-debug-mb instead.
+description: Debug a problem while looking for it, with Protocol D, explaining each step (junior workflow). It finds and explains the cause and changes no production code — a bug is fixed with /dev:j-bug. Full verbose mindset — use when context window is not a concern. For large context sessions use /dev:j-debug-mb instead.
 ---
 
 ## Prerequisites
 - Read the Memory Bank (skip the subdirectories) if not already done this session.
-- `j-settings.md` at the repository root (missing → run `/j-setup` first).
+- `j-settings.md` at the repository root (missing → run `/dev:j-setup` first).
 - If not read this session: `${CLAUDE_PLUGIN_ROOT}/commands/mind-sets/junior.md`
 - If not read this session: `${CLAUDE_PLUGIN_ROOT}/commands/mind-sets/debug-protocol-e2e.md` — the method across the
   layers; it includes `debug-protocol.md`, Protocol D itself, which is read with it and not twice.
@@ -18,7 +18,7 @@ description: Debug a problem while looking for it, with Protocol D, explaining e
 Debugging while a problem is being looked for: Protocol D applied step by step, and every step
 explained as it is taken — what is read and why, what it rules out, why the hypothesis follows from the
 evidence — so that the user sees how the problem is debugged. No branch, no folder: it finds and
-explains the cause, and changes no production code. A bug is fixed with `j-bug`, which carries the diagnosis into
+explains the cause, and changes no production code. A bug is fixed with `/dev:j-bug`, which carries the diagnosis into
 its plan; a block of a plan under execution is fixed in that plan's FIX.
 
 Use this when:
@@ -128,7 +128,7 @@ Does this match what you're seeing? Should I investigate further or proceed?
 
 **ONE change at a time** — a diagnostic one: a trace log, a probe, a test that reproduces the problem.
 The fix itself is not made here, and every diagnostic change is removed once the cause is found —
-a test that reproduces the bug too: it is described with the cause, and j-bug's plan writes it as its
+a test that reproduces the bug too: it is described with the cause, and /dev:j-bug's plan writes it as its
 RED.
 
 After change:
@@ -152,8 +152,8 @@ Location: [file:line]
 Cause: [explanation]
 
 Options:
-1. It's a bug → use j-bug: its DIAGNOSE starts from this one
-2. It's actually a feature → use j-new-feature
+1. It's a bug → use /dev:j-bug: its DIAGNOSE starts from this one
+2. It's actually a feature → use /dev:j-new-feature
 3. It's the block of a plan under execution → back to its FIX, with this cause
 4. Need more investigation
 
@@ -175,7 +175,7 @@ Set in `activeContext.md`:
 - **One change at a time** - never multiple changes without verifying
 - **Quote exact errors** - no paraphrasing
 - **Component first** - know WHERE before explaining WHAT
-- **No fix here** - the cause is found and explained; the fix is j-bug's, or the running plan's FIX
+- **No fix here** - the cause is found and explained; the fix is /dev:j-bug's, or the running plan's FIX
 - **Explain each step** - what was read, what it rules out, why the next step follows
 - **Ask if unsure** - use AskUserQuestion to clarify
 

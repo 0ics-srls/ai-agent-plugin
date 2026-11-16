@@ -57,7 +57,7 @@ the mapper of each form, and the hand practice it replaces:
 - the database and the configuration: rows and settings read into classes in one place — not
   `$row->{column}` or `$ENV{X}` where they are used.
 
-## 7. What j-setup and j-new-project read in a Perl project
+## 7. What /dev:j-setup and /dev:j-new-project read in a Perl project
 
 - **Recognized by**: `cpanfile`; its `requires` say the frameworks and the branches.
 - **The files of this overlay, with the branches**:
@@ -68,9 +68,9 @@ the mapper of each form, and the hand practice it replaces:
   | `testing.md` | every Perl project |
   | `tddab.md` | the TDDAB plans, with `tddab-planner.md` |
 
-- **What LISTEN asks** (`j-new-project`): what is built — a library, a command-line tool, a service — and what it talks to.
+- **What LISTEN asks** (`/dev:j-new-project`): what is built — a library, a command-line tool, a service — and what it talks to.
 - **The lint gate**: the manifest's `native_lint`, run from the folder of `cpanfile`; the pack's files go to that folder.
 - **Vendored** (`@vendored-globs`): `local/`, `cover_db/`.
 - **The test levels**: the keys of `tddab.md` §1.
 - **The start command**: `carton exec perl script/<the program>`.
-- **Where its errors show** (`j-debug`): Perl::Critic's output; `perl -c` on the file; the failed test's output with `prove -lv`; the log.
+- **Where its errors show** (`/dev:j-debug`): Perl::Critic's output; `perl -c` on the file; the failed test's output with `prove -lv`; the log.

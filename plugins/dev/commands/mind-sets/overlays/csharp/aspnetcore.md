@@ -123,7 +123,7 @@ endpoint mapping in `App.Api`. Its own rules go in its Domain service (code prin
 - Secrets reach the configuration from `.00-secrets/`, as one more source added after the
   `appsettings` files: `builder.Configuration.AddJsonFile(".00-secrets/appsettings.secrets.json",
   optional: false)`. A clone that is still locked (`git-crypt unlock` not run) stops at startup on that file.
-  A project without `.00-secrets/` has no such source: its first secret comes after `/j-init-secrets`.
+  A project without `.00-secrets/` has no such source: its first secret comes after `/dev:j-init-secrets`.
 - `App.Api` configures Serilog with the console and file sinks from the `Serilog` configuration section,
   plus `UseSerilogRequestLogging()`; the console sink is how logs reach a terminal or a container's
   output.

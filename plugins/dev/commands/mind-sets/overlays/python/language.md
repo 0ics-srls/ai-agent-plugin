@@ -80,7 +80,7 @@ the mapper of each form, and the hand practice it replaces:
 - the database: rows mapped into the model in one place (the ORM, or one mapper per model) — not
   `row["column"]` or `row[2]` where the data is used.
 
-## 7. What j-setup and j-new-project read in a Python project
+## 7. What /dev:j-setup and /dev:j-new-project read in a Python project
 
 - **Recognized by**: `pyproject.toml`; its `dependencies` say the frameworks and the branches.
 - **The files of this overlay, with the branches**:
@@ -91,11 +91,11 @@ the mapper of each form, and the hand practice it replaces:
   | `testing.md` | every Python project |
   | `tddab.md` | the TDDAB plans, with `tddab-planner.md` |
 
-- **What LISTEN asks** (`j-new-project`): what the program is — a library, a command-line tool, a
+- **What LISTEN asks** (`/dev:j-new-project`): what the program is — a library, a command-line tool, a
   service — and what it talks to.
 - **The lint gate**: the manifest's `native_lint`; the pack's `ruff.toml`, `mypy.ini` and `pytest.ini`
   go to the folder of `pyproject.toml`.
 - **Vendored** (`@vendored-globs`): `.venv/`, `.mypy_cache/`, `.ruff_cache/`, `.pytest_cache/`.
 - **The test levels**: the keys of `tddab.md` §1.
 - **The start command**: `uv run <the entry point>`, as `[project.scripts]` declares it.
-- **Where its errors show** (`j-debug`): the traceback in the terminal that started it; the log.
+- **Where its errors show** (`/dev:j-debug`): the traceback in the terminal that started it; the log.

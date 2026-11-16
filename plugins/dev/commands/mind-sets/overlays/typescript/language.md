@@ -72,7 +72,7 @@ How the principles and the code principles are written in TypeScript 6 for a fro
   `eslint.config.js` uses the pack's as they are, and a framework replaces it with its own, which starts
   from the pack's, adds its plugins and ends with `eslint.e2e.js` (the framework's file §1).
 
-## 7. What j-setup and j-new-project read in a TypeScript project
+## 7. What /dev:j-setup and /dev:j-new-project read in a TypeScript project
 
 - **Recognized by**: `package.json`; the framework and the UI library from its `dependencies`, which
   say the frontend branch and the overlay files.
@@ -87,17 +87,17 @@ How the principles and the code principles are written in TypeScript 6 for a fro
   | `angular.md`, `react.md`, `vue.md` | the application's framework |
   | `prime.md` | PrimeNG, PrimeReact or PrimeVue on the load |
   | `devextreme.md` | the DevExtreme UI on the load |
-- **What LISTEN asks** (`j-new-project`), one answer per application: the framework (Angular, React,
+- **What LISTEN asks** (`/dev:j-new-project`), one answer per application: the framework (Angular, React,
   Vue) and the UI library (PrimeNG / PrimeReact / PrimeVue, DevExtreme).
 - **The lint gate**: `npm run check`. A component without a `check` script gets
   `"check": "tsc --noEmit && eslint --max-warnings 0 ."`, asking first; a
   framework's own check is the one its file defines (§1). The pack's configuration files go to the
-  component's root: on an existing component j-setup copies them; on a project to create the block F1 does, after the
+  component's root: on an existing component /dev:j-setup copies them; on a project to create the block F1 does, after the
   scaffold, which refuses a folder that already holds them (`tddab.md` §6).
 - **Vendored** (`@vendored-globs`): `node_modules/`, `dist/`; the generated client (`src/api/`) is
   ignored by the linters and checked by the compiler (§6).
 - **The test levels**: the keys of `tddab.md` §1.
 - **The start command**: `npm start` in the component's folder — the framework's `start` script (Vite's
   `vite`, Angular's `ng serve`).
-- **Where its errors show** (`j-debug`): the browser's console and network requests, through
-  ChromeDevTools (`j-browse`); the `ProblemDetails` of a failed call; the development server's output.
+- **Where its errors show** (`/dev:j-debug`): the browser's console and network requests, through
+  ChromeDevTools (`/dev:j-browse`); the `ProblemDetails` of a failed call; the development server's output.

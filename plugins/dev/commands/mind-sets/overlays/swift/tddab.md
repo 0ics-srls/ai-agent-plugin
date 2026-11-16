@@ -55,7 +55,7 @@ A library or a command-line tool:
 | 3 | the logic of the first entity on the contracts; `TestSupport` with its fakes. RED: on the doubles |
 | 4 | a tool: the command, its arguments validated, its output; the composition root. RED: the command run without its arguments says what is missing |
 
-An app, as the frontend blocks of `j-new-project`:
+An app, as the frontend blocks of `/dev:j-new-project`:
 
 | Block | Swift |
 |---|---|

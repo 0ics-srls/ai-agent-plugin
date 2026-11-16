@@ -108,11 +108,11 @@ func take_damage(amount: int) -> void:
 
 ## 6. The skeleton's blocks
 
-The form in Godot 4.7 of each block of the skeleton `j-new-project` plans for a game:
+The form in Godot 4.7 of each block of the skeleton `/dev:j-new-project` plans for a game:
 
 | Block | Godot 4.7 |
 |---|---|
-| G1 | the project: `project.godot` with the pack's `[debug]` section (as j-setup copied it), `config/features` `4.7`, the Input Map's first actions, `application/config/version`; `gdlintrc`; `.gitignore` with `.godot/`; gdUnit4 at its release in `addons/gdUnit4/`; `src/core/app_log.gd` (`language.md` §4) and the configuration read and validated at startup (`game.cfg`, `language.md` §5); `main.tscn` with `World` and `UI` and `main.gd`, the composition root (`godot.md` §1). RED: the main scene started headless logs `game_started` with the version and exits 0; with an invalid `game.cfg` it exits 1 with `startup aborted` |
+| G1 | the project: `project.godot` with the pack's `[debug]` section (as /dev:j-setup copied it), `config/features` `4.7`, the Input Map's first actions, `application/config/version`; `gdlintrc`; `.gitignore` with `.godot/`; gdUnit4 at its release in `addons/gdUnit4/`; `src/core/app_log.gd` (`language.md` §4) and the configuration read and validated at startup (`game.cfg`, `language.md` §5); `main.tscn` with `World` and `UI` and `main.gd`, the composition root (`godot.md` §1). RED: the main scene started headless logs `game_started` with the version and exits 0; with an invalid `game.cfg` it exits 1 with `startup aborted` |
 | G2 | the first mechanic's rules, chosen in LISTEN, as plain objects in `src/<mechanic>/`, with their state machine when the mechanic has states (game branch 5) — `testing.md`, unit suites |
 | G3 | the first scene that presents them, in `src/world/`: the node, its `setup`, its actions of the Input Map, its signals up (`godot.md` §2-5); its integration suite with `scene_runner`; the root wires it |
 | G4 | the interface: the HUD in `src/ui/`, connected by the root to the rules' signals; its integration suite |

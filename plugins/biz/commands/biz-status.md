@@ -17,7 +17,7 @@ Shows a quick dashboard of all ideas in the registry with their current status i
 
 Read `ideas/registry.md`. If it doesn't exist:
 ```
-No idea registry found. Run `biz-capture` to start capturing ideas.
+No idea registry found. Run `/biz:biz-capture` to start capturing ideas.
 ```
 
 ### 2. Display Dashboard
@@ -48,12 +48,12 @@ Needs Attention:
   {n} ideas evaluated but not researched
 
 Quick Actions:
-  biz-capture   - Add a new idea
-  biz-evaluate  - Score an unevaluated idea
-  biz-research  - Research a promising idea
-  biz-validate  - Validate before building
-  biz-mvp-spec  - Create technical spec
-  biz-review    - Check dev alignment with biz goals
+  /biz:biz-capture   - Add a new idea
+  /biz:biz-evaluate  - Score an unevaluated idea
+  /biz:biz-research  - Research a promising idea
+  /biz:biz-validate  - Validate before building
+  /biz:biz-mvp-spec  - Create technical spec
+  /biz:biz-review    - Check dev alignment with biz goals
 ```
 
 ## Rules

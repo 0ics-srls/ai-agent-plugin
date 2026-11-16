@@ -76,8 +76,8 @@ Captured as IDEA-{NN}: {one-liner}
 Status: captured
 
 Next steps:
-- Run `biz-evaluate` to score this idea (quick, 5 min)
-- Run `biz-capture` again if you have more ideas
+- Run `/biz:biz-evaluate` to score this idea (quick, 5 min)
+- Run `/biz:biz-capture` again if you have more ideas
 - You have {N} total ideas, {M} not yet evaluated
 ```
 
@@ -92,11 +92,11 @@ Nothing gets deleted - files stay forever; the Status field marks where each ide
 
 ## Status Enum (single source of truth - every biz command uses these)
 Pipeline: `captured` → `evaluated` → `researched` → `validated` → `mvp-specced` → `building`
-Terminal:  `parked` (low score / deprioritized - set by biz-evaluate or biz-validate)
-           `killed` (dead end with documented reasons - set by biz-close)
-           `pivoted` (forked into a new idea - set by biz-pivot)
-Who sets what: biz-capture→captured, biz-evaluate→evaluated|parked, biz-research→researched,
-biz-validate→validated|parked, biz-mvp-spec→mvp-specced (then building when dev starts), biz-close→killed, biz-pivot→pivoted
+Terminal:  `parked` (low score / deprioritized - set by /biz:biz-evaluate or /biz:biz-validate)
+           `killed` (dead end with documented reasons - set by /biz:biz-close)
+           `pivoted` (forked into a new idea - set by /biz:biz-pivot)
+Who sets what: /biz:biz-capture→captured, /biz:biz-evaluate→evaluated|parked, /biz:biz-research→researched,
+/biz:biz-validate→validated|parked, /biz:biz-mvp-spec→mvp-specced (then building when dev starts), /biz:biz-close→killed, /biz:biz-pivot→pivoted
 
 ## Active Ideas
 <!-- Ideas currently being explored -->

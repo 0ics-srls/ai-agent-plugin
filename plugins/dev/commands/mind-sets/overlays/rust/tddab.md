@@ -47,12 +47,12 @@ The smallest code that makes the RED pass, through the gate (`language.md` §5).
 
 ## 6. The skeleton's blocks
 
-The form in Rust of each block of the skeleton `j-new-project` plans. A library or a command-line tool is one
+The form in Rust of each block of the skeleton `/dev:j-new-project` plans. A library or a command-line tool is one
 package, and stops at the blocks it has; a service is the workspace of `service.md` §1.
 
 | Block | Rust |
 |---|---|
-| 1 | `cargo init` or the workspace; the pack's files as j-setup placed them; the contracts (`trait`s) and the errors (`language.md` §1, §3). RED: the first contract's test |
+| 1 | `cargo init` or the workspace; the pack's files as /dev:j-setup placed them; the contracts (`trait`s) and the errors (`language.md` §1, §3). RED: the first contract's test |
 | 2 | the storage, when there is one: the first entity, the implementation of its contract written once, its tests in `tests/` on the real store (`service.md` §3) |
 | 3 | the logic of the first entity on the contracts; the `test-support` crate and the tests on its fakes |
 | 4 | the transport: a tool's command and its arguments, or a service's routes (`service.md` §2); validation at the boundary, the errors mapped once, serialization as is (`language.md` §6) |

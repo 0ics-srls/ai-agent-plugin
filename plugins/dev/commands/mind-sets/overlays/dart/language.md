@@ -62,7 +62,7 @@ the mapper of each form, and the hand practice it replaces:
   a `TypeError` at run time, nor a map passed on;
 - the local settings and storage: one typed wrapper — not values read by key where they are used.
 
-## 7. What j-setup and j-new-project read in a Dart project
+## 7. What /dev:j-setup and /dev:j-new-project read in a Dart project
 
 - **Recognized by**: `pubspec.yaml`.
 - **The files of this overlay, with the branches**:
@@ -73,9 +73,9 @@ the mapper of each form, and the hand practice it replaces:
   | `testing.md` | every Dart project |
   | `tddab.md` | the TDDAB plans, with `tddab-planner.md` |
 
-- **What LISTEN asks** (`j-new-project`): what is built, and what it talks to.
+- **What LISTEN asks** (`/dev:j-new-project`): what is built, and what it talks to.
 - **The lint gate**: the manifest's `native_lint`, run from the folder of `pubspec.yaml`; §5 says what the pack's file needs.
 - **Vendored** (`@vendored-globs`): `.dart_tool/`, `build/`, `*.g.dart`, `*.freezed.dart`.
 - **The test levels**: the keys of `tddab.md` §1.
 - **The start command**: `dart run`; a Flutter app, `flutter run`.
-- **Where its errors show** (`j-debug`): the analyzer's output; the failed test's output; the log.
+- **Where its errors show** (`/dev:j-debug`): the analyzer's output; the failed test's output; the log.

@@ -5,7 +5,7 @@ description: Run the manual E2E checklist in the browser with ChromeDevTools (ju
 
 ## Prerequisites
 - Read the Memory Bank (skip the subdirectories) if not already done this session.
-- `j-settings.md` at the repository root (missing → run `/j-setup` first).
+- `j-settings.md` at the repository root (missing → run `/dev:j-setup` first).
 - If not read this session: `${CLAUDE_PLUGIN_ROOT}/commands/mind-sets/junior.md`
 
 ## Steps
@@ -16,7 +16,7 @@ If the ChromeDevTools MCP server does not answer (`mcp__chrome-devtools__*` tool
 ChromeDevTools MCP is not configured.
 It is required to run the checklist in the browser.
 
-Run /j-mcp-setup to install ChromeDevTools MCP, then retry.
+Run /dev:j-mcp-setup to install ChromeDevTools MCP, then retry.
 ```
 STOP.
 
@@ -24,10 +24,10 @@ STOP.
 `tests/e2e-manual/template.md`; missing or outdated →
 ```
 No checklist found for this project.
-Run `j-e2e-generate` to create one from the use cases.
+Run `/dev:j-e2e-generate` to create one from the use cases.
 ```
 STOP. Its header gives the frontend URL, the backend's health check, the login and the accounts.
-`$ARGUMENTS` may carry a URL — `j-deploy` passes `@domain` after a deploy: the run goes there instead of
+`$ARGUMENTS` may carry a URL — `/dev:j-deploy` passes `@domain` after a deploy: the run goes there instead of
 the header's frontend URL, and the backend's health check is the one that application answers.
 
 ### 2. Check Services Running
@@ -99,7 +99,7 @@ ISSUES FOUND:
 
 Full report: tests/e2e-manual/results/YYYY-MM-DD.md
 
-A failed case is a bug: /j-bug, with what this run found.
+A failed case is a bug: /dev:j-bug, with what this run found.
 ```
 
 ## Test Execution Order
@@ -117,4 +117,4 @@ Follow the order in template:
 - Check console for errors after each page load
 - If test fails, document WHY before moving on
 - Save screenshots of failed tests to `problem-chrome-dt/e2e-{testname}.webp`; an agent reads them, never the main conversation
-- A failed case is fixed with `j-bug`, not here
+- A failed case is fixed with `/dev:j-bug`, not here

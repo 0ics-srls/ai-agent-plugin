@@ -26,7 +26,7 @@ part; the overlay says how both are written in the language.
 
 The overlay of a language is its folder, `overlays/<language>/`: how both levels above are written in
 that language. Its `language.md` §7 says how the language is recognized, which of its files go with
-which branch, and what `j-setup` and `j-new-project` read from it. A language with no folder under
+which branch, and what `/dev:j-setup` and `/dev:j-new-project` read from it. A language with no folder under
 `overlays/` has no overlay yet: its projects follow levels 1 and 2 alone.
 
 ## 4. The process and the plans
@@ -41,4 +41,4 @@ which branch, and what `j-setup` and `j-new-project` read from it. A language wi
 - `bbc.md` — the method of the black boxes, for a project too large for one context window; read by
   the `bbc-*` commands.
 - `audit.md` — the cards of the code audit: what is verified by reading the code, and how it is
-  decided; read by `x-audit-code`.
+  decided; read by `/dev:x-audit-code`.

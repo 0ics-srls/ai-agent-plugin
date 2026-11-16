@@ -1,6 +1,6 @@
 ---
 allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
-description: "The cards of the code audit — one per rule of the mindsets that is verified by reading the code: the rule it quotes, the defect, where the tool points, how it is found on a project of thousands of files, the questions, what is not a violation, the confirmation and the gravity. Read by x-audit-code: the agent reads the map against them, and confirms by reading only where it points."
+description: "The cards of the code audit — one per rule of the mindsets that is verified by reading the code: the rule it quotes, the defect, where the tool points, how it is found on a project of thousands of files, the questions, what is not a violation, the confirmation and the gravity. Read by /dev:x-audit-code: the agent reads the map against them, and confirms by reading only where it points."
 ---
 
 # The code audit — the cards
@@ -27,7 +27,7 @@ does not enter the report.
 
 **A project not made with the set.** The rules of the mindsets are the measure; the structure they
 measure is the project's own. The map derives the architecture the project gave itself from its
-structure, its documents and the Memory Bank's `systemPatterns.md` (which `j-new-project` writes for an
+structure, its documents and the Memory Bank's `systemPatterns.md` (which `/dev:j-new-project` writes for an
 existing project too). The code says the real one, and the problem is where the two do not match: the
 method of reflexion models. The layers of `service-layers.md` are the guide for the projects made with
 the set, not a name demanded of somebody else's project.

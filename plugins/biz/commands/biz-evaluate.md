@@ -8,7 +8,7 @@ description: Score and evaluate a captured idea against startup criteria (6 dime
 - Read the Memory Bank (skip the subdirectories) if not already done this session.
 - `ideas/registry.md` must exist. If it doesn't:
   ```
-  No idea registry found. Run `biz-capture` to start capturing ideas.
+  No idea registry found. Run `/biz:biz-capture` to start capturing ideas.
   ```
   STOP.
 
@@ -62,8 +62,8 @@ Total: {sum}/60
 
 Recommendation (>= 25 is research-eligible — consistent with biz-help):
 - Below 25: Park it. Not worth the time right now. (status → `parked`)
-- 25-35: Borderline. Research-eligible (`biz-techscape` then `biz-research`) ONLY if you're passionate — otherwise park it.
-- 35-45: Worth researching. Run `biz-techscape` then `biz-research` next.
+- 25-35: Borderline. Research-eligible (`/biz:biz-techscape` then `/biz:biz-research`) ONLY if you're passionate — otherwise park it.
+- 35-45: Worth researching. Run `/biz:biz-techscape` then `/biz:biz-research` next.
 - 45+: Strong candidate. Definitely research this.
 ```
 
@@ -113,7 +113,7 @@ Update the idea's entry in `ideas/registry.md`:
 IDEA-{NN} scored {total}/60 → {recommendation}
 
 {If research recommended}:
-Run `biz-techscape` (what exists, the cheap scan), then `biz-research` for the deep market analysis.
+Run `/biz:biz-techscape` (what exists, the cheap scan), then `/biz:biz-research` for the deep market analysis.
 
 {If parked}:
 Parked - it's still in the registry if you want to revisit.

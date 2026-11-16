@@ -74,7 +74,7 @@ the mapper of each form, and the hand practice it replaces:
   not `rows.Scan` by position where the data is used;
 - performance, only on the user's request: a streaming `json.Decoder` walked by tokens, in one reader.
 
-## 7. What j-setup and j-new-project read in a Go project
+## 7. What /dev:j-setup and /dev:j-new-project read in a Go project
 
 - **Recognized by**: `go.mod`; its `require` says the frameworks and the branches.
 - **The files of this overlay, with the branches**:
@@ -85,12 +85,12 @@ the mapper of each form, and the hand practice it replaces:
   | `testing.md` | every Go project |
   | `tddab.md` | the TDDAB plans, with `tddab-planner.md` |
 
-- **What LISTEN asks** (`j-new-project`): what is built — a library, a command-line tool, a service — and what it talks to.
+- **What LISTEN asks** (`/dev:j-new-project`): what is built — a library, a command-line tool, a service — and what it talks to.
 - **The lint gate**: the manifest's `native_lint`, run from the folder of `go.mod`; the pack's `.golangci.yml` goes to that folder.
 - **Vendored** (`@vendored-globs`): `vendor/`, `bin/`.
 - **The test levels**: the keys of `tddab.md` §1.
 - **The start command**: `go run ./cmd/<the binary>`.
-- **Where its errors show** (`j-debug`): the compiler's and the linters' output; the race detector's report; a panic's
+- **Where its errors show** (`/dev:j-debug`): the compiler's and the linters' output; the race detector's report; a panic's
   goroutine trace; the log.
 - **Code navigation**: what `go:generate` produces exists only after `go generate`: run it before calling a symbol absent
   (`code-navigation.md`).

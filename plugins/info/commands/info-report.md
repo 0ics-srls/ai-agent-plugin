@@ -6,7 +6,7 @@ description: Generate final verified intelligence report with traffic-light conf
 ## Prerequisites
 - If not read this session: `${CLAUDE_PLUGIN_ROOT}/commands/mind-sets/intelligence-analyst.md`
 - Read the Memory Bank (skip the subdirectories) if not already done this session.
-- Should have run `info-search` + `info-audit` (ideally also `info-cross`)
+- Should have run `/info:info-search` + `/info:info-audit` (ideally also `/info:info-cross`)
 
 ## What This Command Does
 
@@ -22,7 +22,7 @@ If several topics exist in `research/`, ask the user which one. Read ALL files i
 If `audit.md` doesn't exist:
 ```
 No audit data found. The report will have limited confidence assessment.
-Strongly recommend running info-audit first.
+Strongly recommend running /info:info-audit first.
 Generate report anyway? (y/n)
 ```
 
@@ -136,10 +136,10 @@ Create `research/{topic-slug}/report.md`:
 
 | Step | Date | Command | Result |
 |------|------|---------|--------|
-| Initial search | {date} | info-search | {n} sources, {n} claims |
-| Cross-reference | {date} | info-cross | {n} verified, {n} contested |
-| Audit | {date} | info-audit | Overall: {confidence} |
-| Report | {today} | info-report | This document |
+| Initial search | {date} | /info:info-search | {n} sources, {n} claims |
+| Cross-reference | {date} | /info:info-cross | {n} verified, {n} contested |
+| Audit | {date} | /info:info-audit | Overall: {confidence} |
+| Report | {today} | /info:info-report | This document |
 
 **Full research data**: `research/{topic-slug}/`
 ```

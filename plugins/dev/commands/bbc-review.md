@@ -1,22 +1,22 @@
 ---
 allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
-description: "BBC — review the analysis: the black-box map against the requirements and the method — the boundaries, the contracts, the connections, the logic of the flows, the requirements and the decisions — with no code read; write what is wrong with where and why, and send it back to bbc-analyze, until the user approves the map; then propose the roadmap of the development — the Core of the contracts, the BBs (in parallel when the user wants), the integrations, the flows, the audit of the code — approved by the user and written in the map. Use after bbc-analyze, before working on the BBs, or when the user says bbc review, controlla la mappa, roadmap dei BB."
+description: "BBC — review the analysis: the black-box map against the requirements and the method — the boundaries, the contracts, the connections, the logic of the flows, the requirements and the decisions — with no code read; write what is wrong with where and why, and send it back to /dev:bbc-analyze, until the user approves the map; then propose the roadmap of the development — the Core of the contracts, the BBs (in parallel when the user wants), the integrations, the flows, the audit of the code — approved by the user and written in the map. Use after /dev:bbc-analyze, before working on the BBs, or when the user says bbc review, controlla la mappa, roadmap dei BB."
 ---
 
 ## Prerequisites
 - Read the Memory Bank (skip the subdirectories) if not already done this session; its
   `productContext.md` says what the project around the map is.
-- `j-settings.md` at the repository root (missing → run `/j-setup` first).
+- `j-settings.md` at the repository root (missing → run `/dev:j-setup` first).
 - If not read this session: `${CLAUDE_PLUGIN_ROOT}/commands/mind-sets/bbc.md`.
-- The map: `{@tasks}/bbc/BBC-MAP.md` and `{@tasks}/bbc/bb/` (missing → `/bbc-analyze` first). Its
-  `## Requirements` holds the requirements the map is reviewed against, written by `/bbc-analyze`.
+- The map: `{@tasks}/bbc/BBC-MAP.md` and `{@tasks}/bbc/bb/` (missing → `/dev:bbc-analyze` first). Its
+  `## Requirements` holds the requirements the map is reviewed against, written by `/dev:bbc-analyze`.
 
 ## Steps
 
 ### 1. Read the map
 First the requirements: `## Requirements` of `BBC-MAP.md` (`bbc.md` §2), and `productContext.md` for
 the project around them. A map without `## Requirements` → the first finding, critical: the analysis is
-reviewed against requirements, and there are none written; `/bbc-analyze` writes them.
+reviewed against requirements, and there are none written; `/dev:bbc-analyze` writes them.
 
 Then `BBC-MAP.md` with its `## Decisions`, every `bb/BB<N>-<name>.md`, every `diagrams/*.mmd`. No code
 is read: the analysis is reviewed as an analysis (`bbc.md`, the steps of the method).
@@ -68,21 +68,21 @@ check, where (the map's line, the requirement), the evidence, what corrects it.
 
 ### 4. Each finding goes back to the analysis
 Nothing stays open. Ask with AskUserQuestion, one finding at a time, critical first: corrected by
-`/bbc-analyze` (the default), or kept as it is, with the user's reason. The answer is written beside the
-finding. When findings go to `/bbc-analyze`, the report says so and STOPS after the commit: the map is
+`/dev:bbc-analyze` (the default), or kept as it is, with the user's reason. The answer is written beside the
+finding. When findings go to `/dev:bbc-analyze`, the report says so and STOPS after the commit: the map is
 corrected there, and this review runs again on it.
 
 ### 5. The roadmap — once the user approves the map
 When no finding is left to correct, propose the order of the development (`bbc.md`, the steps of the
 method):
 1. the Core of the contracts — every contract of the map in the Core, with its fake and its contract
-   tests — `/bbc-core`;
+   tests — `/dev:bbc-core`;
 2. every BB to build or to complete: with the Core in place each depends only on contracts, so all of
-   them can go at the same time — `/bbc-work` per BB, each in its own worktree, or `/bbc-plan` one at a
+   them can go at the same time — `/dev:bbc-work` per BB, each in its own worktree, or `/dev:bbc-plan` one at a
    time;
-3. the integrations, in the order of the dependency graph — `/bbc-integrate` with the BBs that meet;
-4. the flows — `/bbc-e2e`;
-5. the code against the analysis — `/bbc-audit`.
+3. the integrations, in the order of the dependency graph — `/dev:bbc-integrate` with the BBs that meet;
+4. the flows — `/dev:bbc-e2e`;
+5. the code against the analysis — `/dev:bbc-audit`.
 Show it with AskUserQuestion: approved, or what to change. The approved roadmap goes in `BBC-MAP.md`,
 `## Roadmap`, each step with the BBs (or the flows) it covers, each with its own status (`bbc.md` §2). A map that already has
 one: the steps already done stay, the rest is proposed again.
@@ -93,7 +93,7 @@ git add {@tasks}/bbc/
 git commit -m "docs(bbc): review and roadmap YYYY-MM-DD"
 ```
 Only these files; other pending changes stay as they are, and the report names them. As for
-`/bbc-analyze`, the map reaches the base before `/bbc-work` delegates a BB from it.
+`/dev:bbc-analyze`, the map reaches the base before `/dev:bbc-work` delegates a BB from it.
 
 ## Rules
 - **Against the requirements and the method**: no code is read; a finding cites the map's line and the

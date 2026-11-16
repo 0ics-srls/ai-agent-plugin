@@ -1,6 +1,6 @@
 ---
 allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
-description: "Step Plan methodology - action-based sequential plans (removals, migrations, refactors) for work that is not test-first. The alternative to tddab-planner; j-review-plan validates both."
+description: "Step Plan methodology - action-based sequential plans (removals, migrations, refactors) for work that is not test-first. The alternative to tddab-planner; /dev:j-review-plan validates both."
 ---
 
 # Step Planner Mindset
@@ -163,7 +163,7 @@ Each step must be:
 
 ### 5. No Mixing
 A plan is EITHER tddab (`- test:`) OR step (`- action:`), never both. The parser does not refuse a
-mixed plan — it reads it as TDDAB and gives its action blocks a RED — so `j-review-plan` does.
+mixed plan — it reads it as TDDAB and gives its action blocks a RED — so `/dev:j-review-plan` does.
 
 ### 6. The Approved Organization Applies Here Too
 An action plan executes the organization already approved — where the task has one, a feature
@@ -299,7 +299,7 @@ block title is the commit message. Whoever executes a block has not seen the oth
 format's demands come from — self-sufficient blocks, preconditions stated in the intro, no dependency
 on a later block, the mission as the only briefing.
 
-Before the user sees the plan, it goes through `/j-review-plan`: the issues the review reports are
+Before the user sees the plan, it goes through `/dev:j-review-plan`: the issues the review reports are
 fixed in the plan and the plan is reviewed again, until the review approves it. Only then is it shown,
 with the review's verdict.
 

@@ -1,11 +1,11 @@
 ---
 allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
-description: "BBC — design the black boxes of a new project, or of a new part of one, from the requirements, with the user, before any code ({@tasks}/bbc/): the black boxes by responsibility, their contracts, dependencies and flows, the decisions of the architecture. No code is read. The diagram is approved before the details; then bbc-review, and back here with its findings until the user approves the map. Use when a project, or a part of it, too large for one context window is to be built as black boxes, or the user says bbc analyze, mappa BBC, black box map, scomponi in BB, progetta a black box."
+description: "BBC — design the black boxes of a new project, or of a new part of one, from the requirements, with the user, before any code ({@tasks}/bbc/): the black boxes by responsibility, their contracts, dependencies and flows, the decisions of the architecture. No code is read. The diagram is approved before the details; then /dev:bbc-review, and back here with its findings until the user approves the map. Use when a project, or a part of it, too large for one context window is to be built as black boxes, or the user says bbc analyze, mappa BBC, black box map, scomponi in BB, progetta a black box."
 ---
 
 ## Prerequisites
 - Read the Memory Bank (skip the subdirectories) if not already done this session.
-- `j-settings.md` at the repository root (missing → run `/j-setup` first).
+- `j-settings.md` at the repository root (missing → run `/dev:j-setup` first).
 - If not read this session: `${CLAUDE_PLUGIN_ROOT}/commands/mind-sets/bbc.md` — the method, and the map's structure
   (§2).
 - The last `{@tasks}/bbc/BBC-REVIEW-YYYY-MM-DD.md`, when it exists: the findings it sent here are what
@@ -16,11 +16,11 @@ description: "BBC — design the black boxes of a new project, or of a new part 
 ### 1. The project
 From the Memory Bank (`productContext.md`) and the user: what the project — or the new part — must do,
 and its components. No code is read: the map is designed from the requirements (`bbc.md` §2). The
-layers are not asked here: they are named with the language, which `/bbc-core` asks.
+layers are not asked here: they are named with the language, which `/dev:bbc-core` asks.
 
 What the user says the project, or the new part, must do is written in `{@tasks}/bbc/BBC-MAP.md`
 `## Requirements` (`bbc.md` §2), as the user says it, one requirement per line — now, before step 2
-splits it: `/bbc-review` runs in another session and reads the requirements there.
+splits it: `/dev:bbc-review` runs in another session and reads the requirements there.
 
 A new part of an existing project: the existing code it uses is described by the user — what it does,
 and its contract as it is today — and goes on the map as an external system.
@@ -69,11 +69,11 @@ git add {@tasks}/bbc/
 git commit -m "docs(bbc): black-box map"
 ```
 Only these files; other pending changes stay as they are, and the report names them. The commit lands
-on the branch this ran on: `/bbc-work` opens its worktrees from the base, so the map reaches the base
+on the branch this ran on: `/dev:bbc-work` opens its worktrees from the base, so the map reaches the base
 before any BB is delegated — the report says so when this branch is not the base.
 
 ### 7. Report
-The BBs with their responsibilities, the graph, the decisions, the flows. Next: `/bbc-review` to review
+The BBs with their responsibilities, the graph, the decisions, the flows. Next: `/dev:bbc-review` to review
 the analysis; its findings come back here, until the review has none the user wants corrected.
 
 ## Rules

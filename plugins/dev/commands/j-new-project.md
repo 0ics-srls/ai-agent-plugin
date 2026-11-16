@@ -1,6 +1,6 @@
 ---
 allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
-description: Start a project with the junior workflow (junior workflow). A project to create goes through the phases of development-workflow.md up to PLAN — what the project is, the mindsets that apply, what already exists, the structure — has j-setup record the profile and wire the lint gate, writes the TDDAB plan of the skeleton and the Memory Bank, then STOPS; the user triggers j-cvm-exec-plan. A project that already has code is wired, described and given its Memory Bank, without a plan. Use when starting a brand new project from scratch, or bringing an existing one into the workflow — nuovo progetto, novy projekt.
+description: Start a project with the junior workflow (junior workflow). A project to create goes through the phases of development-workflow.md up to PLAN — what the project is, the mindsets that apply, what already exists, the structure — has /dev:j-setup record the profile and wire the lint gate, writes the TDDAB plan of the skeleton and the Memory Bank, then STOPS; the user triggers /dev:j-cvm-exec-plan. A project that already has code is wired, described and given its Memory Bank, without a plan. Use when starting a brand new project from scratch, or bringing an existing one into the workflow — nuovo progetto, novy projekt.
 ---
 
 ## Prerequisites
@@ -8,26 +8,26 @@ description: Start a project with the junior workflow (junior workflow). A proje
   `${CLAUDE_PLUGIN_ROOT}/commands/mind-sets/development-workflow.md` — the phases this command goes through, with
   what each one leaves in `notes.md`.
 - Read the Memory Bank (skip the subdirectories) if not already done.
-- `j-settings.md` at the repository root: the base settings `j-setup` writes for a project to create,
-  the full settings for an existing one. Missing → run `/j-setup` first, then come back.
+- `j-settings.md` at the repository root: the base settings `/dev:j-setup` writes for a project to create,
+  the full settings for an existing one. Missing → run `/dev:j-setup` first, then come back.
 
 ## Purpose
 The project is born in the root of the current repository — the one already wired to ai-agent
 (`.ai-agent` submodule, `.claude/`). This command decides what the skeleton is, and writes the plan
 that builds it with every foundation in place from day one. **It writes no project code:
-`j-cvm-exec-plan` executes the plan.** The task's file is `{@tasks}/01-scaffold/notes.md`, on the
-branch `feature/01-scaffold`, which `j-close` merges like any feature.
+`/dev:j-cvm-exec-plan` executes the plan.** The task's file is `{@tasks}/01-scaffold/notes.md`, on the
+branch `feature/01-scaffold`, which `/dev:j-close` merges like any feature.
 
 **A project designed as black boxes** — `{@tasks}/bbc/BBC-MAP.md` exists — is not started here:
-`/bbc-core` starts it, from the map's decisions (`bbc.md`, the steps of the method). STOP and say so.
+`/dev:bbc-core` starts it, from the map's decisions (`bbc.md`, the steps of the method). STOP and say so.
 
-**A repository that already has a project's code** — the build files `j-setup` step 2 looks for — is
+**A repository that already has a project's code** — the build files `/dev:j-setup` step 2 looks for — is
 not scaffolded: it goes to **EXISTING PROJECT** below. Everything else follows the steps here.
 
 ## Steps
 
 ### 0. Branch and folder
-`{@tasks}/bbc/BBC-MAP.md` exists → STOP: the project is designed as black boxes, and `/bbc-core` starts
+`{@tasks}/bbc/BBC-MAP.md` exists → STOP: the project is designed as black boxes, and `/dev:bbc-core` starts
 it.
 
 The base branch follows `@merge-strategy` (`gitflow` or `gitflow-simple` → `{@dev-branch}`; otherwise
@@ -97,15 +97,15 @@ Show the inventory, and write under `## Code Organization`:
 
 Ask: **is this organization right?** Wait for the answer; change and show again until it is.
 
-### 5. SETTINGS — j-setup records the profile and wires the lint gate
+### 5. SETTINGS — /dev:j-setup records the profile and wires the lint gate
 **The base library**, when the project uses one as a git submodule, comes in now, before the plan:
 `git submodule add <its repository> externals/<name>`. Its code is then in the repository: the plan's
-blocks use its types, and `/j-review-plan` finds them there. A base library that is a package is
+blocks use its types, and `/dev:j-review-plan` finds them there. A base library that is a package is
 added by block 1, which creates the project it goes in; the review checks its types with
 `@code-nav-external`.
 
-Run `/j-setup` with the profile decided in steps 1-4 (its PROFILE GIVEN mode): the project's name,
-language, kind, the mindsets branches and overlay files, the base library, the exposure. j-setup
+Run `/dev:j-setup` with the profile decided in steps 1-4 (its PROFILE GIVEN mode): the project's name,
+language, kind, the mindsets branches and overlay files, the base library, the exposure. /dev:j-setup
 completes `j-settings.md` and copies the lint pack into the repository root — with the pack's
 `externals/` files when the base library is a submodule — so the first block of the plan already builds
 under the gate. A frontend's pack comes with its block F1, after the scaffold (its overlay's `language.md` §7). A language whose pack is not in `${CLAUDE_PLUGIN_ROOT}/lint-rules/manifest.yaml` has none yet: the
@@ -140,8 +140,8 @@ creates, the overlay section it applies — is `overlays/<language>/tddab.md` §
 blocks"; every block names that section, so the executor builds it with the language's own mechanisms.
 
 Whether the project has `.00-secrets/` is read before the plan (`.git/git-crypt`). Without it, because the user
-declined `/j-init-secrets`, no block creates that folder and none writes a secret's value anywhere: a secret the
-skeleton needs is asked with AskUserQuestion — `/j-init-secrets` now, or the part that needs it left out — and a
+declined `/dev:j-init-secrets`, no block creates that folder and none writes a secret's value anywhere: a secret the
+skeleton needs is asked with AskUserQuestion — `/dev:j-init-secrets` now, or the part that needs it left out — and a
 skeleton with no secret reads no such source.
 
 With the security branch, a block between 4 and 5 sets the authentication and the authorization
@@ -167,9 +167,9 @@ overlay's `tddab.md` §6:
 | F5 | end to end |
 
 Every block carries its commands as `tddab-planner.md` ("The commands, by level") states them, from the
-`## Tests — by level` keys j-setup wrote in step 5.
+`## Tests — by level` keys /dev:j-setup wrote in step 5.
 
-Then `/j-review-plan`, as the planner requires: the plan is shown only once the review approves it.
+Then `/dev:j-review-plan`, as the planner requires: the plan is shown only once the review approves it.
 
 ### 7. MEMORY BANK — the project's memory
 Read `memory-bank/README.md` (the setup created the folder and linked it) and write, in MBEL, the
@@ -187,7 +187,7 @@ A file that already exists is completed, not overwritten.
 
 ### 8. Commit the phase's product
 ```bash
-git add j-settings.md .claude/settings.json <sgconfig.yml and .ast-grep/, when j-setup wrote them> <the lint files j-setup created> .gitmodules externals/ {@tasks}/01-scaffold/notes.md {@tasks}/01-scaffold/plan.md <any plan sub-files> memory-bank/
+git add j-settings.md .claude/settings.json <sgconfig.yml and .ast-grep/, when /dev:j-setup wrote them> <the lint files /dev:j-setup created> .gitmodules externals/ {@tasks}/01-scaffold/notes.md {@tasks}/01-scaffold/plan.md <any plan sub-files> memory-bank/
 git commit -m "docs(01-scaffold): project settings, scaffolding plan (TDDAB, N blocks) and Memory Bank"
 git push origin feature/01-scaffold
 ```
@@ -198,9 +198,9 @@ Only these files; other pending changes stay as they are, and the report names t
 ```
 ✅ Scaffolding plan created and reviewed: {@tasks}/01-scaffold/plan.md ({N} TDDAB blocks)
 
-Next: /j-cvm-exec-plan {@tasks}/01-scaffold/plan.md, then /j-close to merge.
+Next: /dev:j-cvm-exec-plan {@tasks}/01-scaffold/plan.md, then /dev:j-close to merge.
 ```
-**Start no code. The user triggers `j-cvm-exec-plan`.**
+**Start no code. The user triggers `/dev:j-cvm-exec-plan`.**
 
 ---
 
@@ -218,10 +218,10 @@ what it does; **who uses it**; **what success is** for it; **what comes next** �
 expects to do with it.
 
 ### E2. SETTINGS — the project wired
-`j-settings.md` missing → run `/j-setup`: its EXISTING PROJECT mode scans the project, asks what it
+`j-settings.md` missing → run `/dev:j-setup`: its EXISTING PROJECT mode scans the project, asks what it
 cannot establish, writes the settings and wires the lint gate. `j-settings.md` with only the base
-settings (header `# Base settings — j-new-project completes them`) → run `/j-setup`: its VALIDATE MODE
-completes it as an EXISTING PROJECT (step 20). Full settings with a key missing → `/j-setup` VALIDATE
+settings (header `# Base settings — /dev:j-new-project completes them`) → run `/dev:j-setup`: its VALIDATE MODE
+completes it as an EXISTING PROJECT (step 20). Full settings with a key missing → `/dev:j-setup` VALIDATE
 adds the missing keys, as its step 20 says.
 
 ### E3. ANALYZE — what exists, described
@@ -245,7 +245,7 @@ E3 and `j-settings.md`; `activeContext.md` with `@state::IDLE` and no task; `pro
 
 ### E5. Commit
 ```bash
-git add memory-bank/ j-settings.md .claude/settings.json <sgconfig.yml and .ast-grep/, when j-setup wrote them> <the lint files j-setup created>
+git add memory-bank/ j-settings.md .claude/settings.json <sgconfig.yml and .ast-grep/, when /dev:j-setup wrote them> <the lint files /dev:j-setup created>
 git commit -m "docs: Memory Bank of the existing project"
 ```
 Only these files; other pending changes stay as they are, and the report names them.
@@ -254,7 +254,7 @@ Only these files; other pending changes stay as they are, and the report names t
 ```
 ✅ Project wired and described: memory-bank/ (productContext, systemPatterns, techContext)
 
-Next: /j-new-feature to build something, /j-bug to fix something.
+Next: /dev:j-new-feature to build something, /dev:j-bug to fix something.
 ```
 
 ## Rules

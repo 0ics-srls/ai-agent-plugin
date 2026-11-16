@@ -5,7 +5,7 @@ description: Create proof of concept for unknown/complex features (junior workfl
 
 ## Prerequisites
 - Read the Memory Bank (skip the subdirectories) if not already done this session.
-- `j-settings.md` at the repository root (missing → run `/j-setup` first).
+- `j-settings.md` at the repository root (missing → run `/dev:j-setup` first).
 - If not read this session: `${CLAUDE_PLUGIN_ROOT}/commands/mind-sets/junior.md`
 
 ## When to Use
@@ -96,7 +96,7 @@ CONCLUSION:
 [Can we use this? Yes/No/With modifications]
 
 NEXT:
-- If YES → ready to implement in real code with j-new-feature
+- If YES → ready to implement in real code with /dev:j-new-feature
 - If NO → need alternative approach
 ```
 
@@ -118,6 +118,6 @@ git push -u origin poc/NN-description
 - Commit only the POC folder — `git add .` is forbidden here
 - Keep POC minimal - just enough to answer questions
 - Document everything you learn
-- If POC successful → start real feature with `j-new-feature`
+- If POC successful → start real feature with `/dev:j-new-feature`
 - If POC fails → discuss alternatives before proceeding
 - POC doesn't follow full workflow - no MB state tracking needed

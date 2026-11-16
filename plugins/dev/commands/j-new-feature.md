@@ -1,6 +1,6 @@
 ---
 allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
-description: Start a new feature (junior workflow). Creates the feature branch and task folder and goes through the phases of development-workflow.md up to PLAN — what the user needs, the code and the mindsets that apply, what already exists, the structure — writes the plan, reviews it, then STOPS. The user triggers j-cvm-exec-plan to execute it. Use when the user wants to add something new, implement a feature, aggiungere funzionalita, or pridat novu feature.
+description: Start a new feature (junior workflow). Creates the feature branch and task folder and goes through the phases of development-workflow.md up to PLAN — what the user needs, the code and the mindsets that apply, what already exists, the structure — writes the plan, reviews it, then STOPS. The user triggers /dev:j-cvm-exec-plan to execute it. Use when the user wants to add something new, implement a feature, aggiungere funzionalita, or pridat novu feature.
 ---
 
 ## Prerequisites
@@ -9,7 +9,7 @@ LISTEN can run for days, and what was loaded at the opening is out of context, o
 the time the analysis arrives.
 
 1. Read the Memory Bank (skip the subdirectories) if not already done this session.
-2. `j-settings.md` at the repository root (missing → run `/j-setup` first).
+2. `j-settings.md` at the repository root (missing → run `/dev:j-setup` first).
 3. If not read this session: `${CLAUDE_PLUGIN_ROOT}/commands/mind-sets/junior.md` and
    `${CLAUDE_PLUGIN_ROOT}/commands/mind-sets/development-workflow.md` — the phases this command goes through, with
    what each one leaves in `notes.md`.
@@ -17,7 +17,7 @@ the time the analysis arrives.
 ## Purpose
 A feature goes LISTEN → ANALYZE → INVENTORY → PROPOSE → PLAN → DEVELOP → CLOSE
 (`development-workflow.md`). This command runs the phases up to PLAN on the feature's own branch and
-task folder. **It writes no code: `j-cvm-exec-plan` executes the plan.** The task's file is
+task folder. **It writes no code: `/dev:j-cvm-exec-plan` executes the plan.** The task's file is
 `{@tasks}/NN-<feature>/notes.md`.
 
 ## Steps
@@ -83,8 +83,8 @@ Create `{@tasks}/NN-feature-name/notes.md`:
 - [ ] Inventory done
 - [ ] Organization approved
 - [ ] Plan reviewed
-- [ ] Development done (j-cvm-exec-plan)
-- [ ] Closed (j-close)
+- [ ] Development done (/dev:j-cvm-exec-plan)
+- [ ] Closed (/dev:j-close)
 ```
 
 ### 5. LISTEN
@@ -136,7 +136,7 @@ black boxes (`${CLAUDE_PLUGIN_ROOT}/commands/mind-sets/bbc.md`): read its `## De
 (`{@tasks}/bbc/bb/BB<N>-<name>.md`) of every BB the work touches, and write them under `## Analysis`.
 The code of this feature goes in its BB's namespace and reaches another BB through the Core's contract,
 never its implementation. A change of a contract, of a boundary or of a decision is not made here:
-STOP, `/bbc-refactor`.
+STOP, `/dev:bbc-refactor`.
 
 Then:
 1. **Context**: the Memory Bank's activeContext and progress; `git log --oneline -10` (the patterns
@@ -177,7 +177,7 @@ exists it costs a block, and once the code exists there are two implementations 
 repairs them. The worst copy is the one written during a clean-up of duplicates.
 
 PROPOSE presents this section together with `## Code Organization` and asks, in so many words:
-is this what we reuse? The plan then executes it without re-deciding it, and j-review-plan
+is this what we reuse? The plan then executes it without re-deciding it, and /dev:j-review-plan
 refuses a plan whose block rewrites a capability this section had already located.
 ```
 A capability the framework or a library already provides is a capability the project already depends
@@ -249,7 +249,7 @@ wins.
 - **c. Only now** write `{@tasks}/NN-feature-name/plan.md` in the structure that file defines, and its
   path in the Memory Bank: `@plan::{@tasks}/NN-feature-name/plan.md`.
 
-Then `/j-review-plan`, as the planner requires: the plan is shown only once the review approves it.
+Then `/dev:j-review-plan`, as the planner requires: the plan is shown only once the review approves it.
 
 ### 10. Commit the phase's product
 **notes.md:** "Plan reviewed" done — before the commit, so the commit carries it.
@@ -264,9 +264,9 @@ Only these files; other pending changes stay as they are, and the report names t
 ```
 ✅ Plan created and reviewed: {@tasks}/NN-feature-name/plan.md ({N} blocks)
 
-Next: /j-cvm-exec-plan {@tasks}/NN-feature-name/plan.md, then /j-close to merge.
+Next: /dev:j-cvm-exec-plan {@tasks}/NN-feature-name/plan.md, then /dev:j-close to merge.
 ```
-**Start no code. The user triggers `j-cvm-exec-plan`.**
+**Start no code. The user triggers `/dev:j-cvm-exec-plan`.**
 
 ## Rules
 - **LISTEN → ANALYZE → INVENTORY → PROPOSE → PLAN → STOP**, in this order.

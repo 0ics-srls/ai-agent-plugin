@@ -5,7 +5,7 @@ description: Review a plan — TDDAB or Step — against its methodology, the pr
 
 ## Prerequisites
 - Read the Memory Bank (skip the subdirectories) if not already done this session.
-- `j-settings.md` at the repository root (missing → run `/j-setup` first).
+- `j-settings.md` at the repository root (missing → run `/dev:j-setup` first).
 - `${CLAUDE_PLUGIN_ROOT}/commands/mind-sets/code-navigation.md`, followed for every lookup of step 5: print its
   CODE-NAV PREFLIGHT block before the cross-check, and give no "does not exist" verdict without a
   quoted result of a ready tool (or a declared text-search fallback, flagged as lower confidence).
@@ -70,7 +70,7 @@ Print the CODE-NAV PREFLIGHT block first, then, with `@code-nav-local`:
 - **A. Existence** — every type, function or method the plan uses, calls, extends or injects and does
   not create: found, with the signature the plan expects (parameters, return type, namespace). Not
   found → **dependency error**, with the block id and the symbol. A base library that is a submodule
-  is searched in its path (`@base-library`, part of `@own-code-roots`): `j-new-project` brings it in
+  is searched in its path (`@base-library`, part of `@own-code-roots`): `/dev:j-new-project` brings it in
   before the plan; one that is a package, with `@code-nav-external` — and when that is `none`, against
   the base library's README and sample application, read now, the review saying so.
 - **B. Paths** — every file the plan edits or extends exists at that path. Missing → reported: the
@@ -144,7 +144,7 @@ PLAN REVIEW — ISSUES FOUND
 SUGGESTED FIXES:
 1. …
 
-Fix these before executing the plan with /j-cvm-exec-plan.
+Fix these before executing the plan with /dev:j-cvm-exec-plan.
 ```
 
 ```
@@ -156,7 +156,7 @@ PLAN REVIEW — APPROVED ✅
 ✓ Rules: the mindsets of j-settings.md
 ✓ CVM parsePlan: valid
 
-Ready: /j-cvm-exec-plan
+Ready: /dev:j-cvm-exec-plan
 ```
 
 ### 8. Fixing the plan

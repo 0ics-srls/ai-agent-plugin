@@ -3,7 +3,7 @@ allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
 description: 'Initialize a project''s secret management with git-crypt (a .00-secrets/ folder transparently encrypted in git). Run in the EARLY phase of a project. Installs git-crypt, configures .gitattributes/.gitignore, generates the key and tells the user to save it in a password manager, writes a runbook + security guide. SAFE/idempotent: if git-crypt is already initialized it does NOT re-init (reuses the key); if a secrets dir already has content it stops and destroys nothing. Use when "init secrets", "setup git-crypt", "secret management", new project.'
 ---
 
-# /j-init-secrets — secret setup with git-crypt (.00-secrets/)
+# /dev:j-init-secrets — secret setup with git-crypt (.00-secrets/)
 
 > ⚠️ ASSUME THE EXECUTOR KNOWS NOTHING ABOUT THE PROJECT. Follow the steps literally.
 > Generic command — works for ANY project and ANY developer. Do NOT add project-specific content.

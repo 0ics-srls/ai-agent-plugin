@@ -1,6 +1,6 @@
 ---
 allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
-description: Fix a bug (junior workflow). Goes through the bug path of development-workflow.md — LISTEN, DIAGNOSE with Protocol D, PLAN — on its own branch and task folder, then STOPS; the user triggers j-cvm-exec-plan to execute the fix. Use when the user reports a bug, something is broken, non funziona, nefunguje, or needs to fix an error.
+description: Fix a bug (junior workflow). Goes through the bug path of development-workflow.md — LISTEN, DIAGNOSE with Protocol D, PLAN — on its own branch and task folder, then STOPS; the user triggers /dev:j-cvm-exec-plan to execute the fix. Use when the user reports a bug, something is broken, non funziona, nefunguje, or needs to fix an error.
 ---
 
 ## Prerequisites
@@ -9,7 +9,7 @@ description: Fix a bug (junior workflow). Goes through the bug path of developme
 - If not read this session: `${CLAUDE_PLUGIN_ROOT}/commands/mind-sets/debug-protocol.md` (Protocol D — systematic
   debugging).
 - Read the Memory Bank (skip the subdirectories) if not already done this session.
-- `j-settings.md` at the repository root (missing → run `/j-setup` first).
+- `j-settings.md` at the repository root (missing → run `/dev:j-setup` first).
 - `${CLAUDE_PLUGIN_ROOT}/commands/mind-sets/code-navigation.md`, followed for tracing the bug and every symbol
   lookup (the tools of `@code-nav-local` and `@code-nav-external`; a text search is the declared
   fallback when the tool is absent or not ready).
@@ -17,7 +17,7 @@ description: Fix a bug (junior workflow). Goes through the bug path of developme
 ## Purpose
 A bug goes LISTEN → DIAGNOSE → PLAN → DEVELOP → CLOSE (`development-workflow.md`). This command runs
 the first three on the bug's own branch and task folder: it finds the cause with Protocol D and writes
-the plan that fixes it. **It writes no fix: `j-cvm-exec-plan` executes the plan.** The task's files are
+the plan that fixes it. **It writes no fix: `/dev:j-cvm-exec-plan` executes the plan.** The task's files are
 `{@tasks}/NN-<bug>/bug-notes.md` (the diagnosis) and `plan.md` (the fix).
 
 ## Steps
@@ -76,8 +76,8 @@ Create `{@tasks}/NN-bug-description/bug-notes.md`:
 - [ ] Bug reproduced
 - [ ] Cause found, hypothesis approved
 - [ ] Fix plan reviewed (plan.md)
-- [ ] Fixed (j-cvm-exec-plan)
-- [ ] Closed (j-close)
+- [ ] Fixed (/dev:j-cvm-exec-plan)
+- [ ] Closed (/dev:j-close)
 ```
 
 ### 5. LISTEN
@@ -102,15 +102,15 @@ Write what the user says under `## Problem`.
 ### 6. DIAGNOSE — Protocol D, up to the hypothesis
 **Update MB:** `@state::DIAGNOSE`
 
-A `j-debug` session that found this problem (`@lastDebug`, `@debugResult::wasBug`) is where the
+A `/dev:j-debug` session that found this problem (`@lastDebug`, `@debugResult::wasBug`) is where the
 diagnosis starts: its steps are checked against the code and written under `## Diagnosis`, not
 redone from nothing.
 
 **A project with a black-box map.** `{@tasks}/bbc/BBC-MAP.md` exists → ISOLATE follows the map, as
 `${CLAUDE_PLUGIN_ROOT}/commands/bbc-debug.md` step 6 orders it (the BBs the failure crosses, their tests leaves
 first, then the integration points), and `bug-notes.md` carries the line
-`Flow: bbc-debug, ISOLATE on {@tasks}/bbc/BBC-MAP.md` under its title. The fix stays in the BB that
-owns the cause; a fix that changes a contract → STOP, `/bbc-refactor`.
+`Flow: /dev:bbc-debug, ISOLATE on {@tasks}/bbc/BBC-MAP.md` under its title. The fix stays in the BB that
+owns the cause; a fix that changes a contract → STOP, `/dev:bbc-refactor`.
 
 Apply Protocol D (`debug-protocol.md`), writing each step under `## Diagnosis`:
 1. **READ** — the exact error or behaviour, quoted.
@@ -118,7 +118,7 @@ Apply Protocol D (`debug-protocol.md`), writing each step under `## Diagnosis`:
 3. **DOCS** — the framework's documentation, when the error is the framework's.
 4. **HYPOTHESIZE** — the cause, the reasoning, the prediction of what the fix changes.
 
-Tools: the browser through ChromeDevTools (`/j-browse`) when the bug shows in the UI, or the user's screenshots;
+Tools: the browser through ChromeDevTools (`/dev:j-browse`) when the bug shows in the UI, or the user's screenshots;
 code navigation for the code; the logs where the logger's configuration writes them
 (`branches/operations.md` 1); the services started with `@start-<component>`. The bug is reproduced on
 command before the hypothesis: a fix that cannot be shown to work is not a fix.
@@ -150,7 +150,7 @@ The mission can be brief for a bugfix. The prediction of HYPOTHESIZE is a criter
 it is what Protocol D's VERIFY checks. Every block carries the Protocol D line and its commands, as the
 planner states them.
 
-Then `/j-review-plan`, as the planner requires: the plan is shown only once the review approves it.
+Then `/dev:j-review-plan`, as the planner requires: the plan is shown only once the review approves it.
 
 ### 8. Commit the phase's product
 ```bash
@@ -164,10 +164,10 @@ Only these files; other pending changes stay as they are, and the report names t
 ```
 ✅ Bug diagnosed and fix plan reviewed: {@tasks}/NN-bug-description/plan.md ({N} blocks)
 
-Next: /j-cvm-exec-plan {@tasks}/NN-bug-description/plan.md, then /j-close to merge.
+Next: /dev:j-cvm-exec-plan {@tasks}/NN-bug-description/plan.md, then /dev:j-close to merge.
 ```
-**Start no fix. The user triggers `j-cvm-exec-plan`.** `@bug` and `@branch` stay in the Memory Bank
-until j-close.
+**Start no fix. The user triggers `/dev:j-cvm-exec-plan`.** `@bug` and `@branch` stay in the Memory Bank
+until /dev:j-close.
 
 ## Rules
 - **Protocol D always** — READ the exact error, ISOLATE precisely, HYPOTHESIZE before fixing, VERIFY
@@ -177,5 +177,5 @@ until j-close.
 - **ZERO warnings** — the gate of every block is green.
 - NEVER delete branches (the user needs them for review and control).
 - ALWAYS push the branch.
-- If the "bug" is actually a feature → `j-new-feature`.
+- If the "bug" is actually a feature → `/dev:j-new-feature`.
 - **Ask with AskUserQuestion** whatever is not decided.

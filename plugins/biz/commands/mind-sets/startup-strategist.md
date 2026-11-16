@@ -42,12 +42,12 @@ flowchart LR
 
 | Stage | Purpose | Output | Command |
 |-------|---------|--------|---------|
-| Capture | Record raw idea, problem, insight | Registry entry | `biz-capture` |
-| Evaluate | Quick scoring against criteria | Score + recommendation | `biz-evaluate` |
-| Techscape | Existing tools, OSS, vendors, licenses: the cheap scan first | Techscape report | `biz-techscape` |
-| Research | Deep market/competitor analysis | Research report | `biz-research` |
-| Validate | Test assumptions, find evidence | Validation report | `biz-validate` |
-| MVP Spec | Technical spec for minimum product | Tech spec document | `biz-mvp-spec` |
+| Capture | Record raw idea, problem, insight | Registry entry | `/biz:biz-capture` |
+| Evaluate | Quick scoring against criteria | Score + recommendation | `/biz:biz-evaluate` |
+| Techscape | Existing tools, OSS, vendors, licenses: the cheap scan first | Techscape report | `/biz:biz-techscape` |
+| Research | Deep market/competitor analysis | Research report | `/biz:biz-research` |
+| Validate | Test assumptions, find evidence | Validation report | `/biz:biz-validate` |
+| MVP Spec | Technical spec for minimum product | Tech spec document | `/biz:biz-mvp-spec` |
 
 ---
 
@@ -101,13 +101,13 @@ The ideas repo follows a **standalone → submodule** lifecycle:
 ```
 PHASE 1: IDEATION (standalone repo)
   my-ideas/
-  ├── ideas/           ← biz-capture through biz-mvp-spec work here
+  ├── ideas/           ← /biz:biz-capture through /biz:biz-mvp-spec work here
   ├── memory-bank/     ← MB for business context
   └── .ai-agent/       ← ai-agent submodule (.claude/ links to it)
 
 PHASE 2: DEVELOPMENT (ideas repo becomes submodule of dev project)
   my-project/
-  ├── src/             ← actual code (j-new-project, j-cvm-exec-plan, etc.)
+  ├── src/             ← actual code (/dev:j-new-project, /dev:j-cvm-exec-plan, etc.)
   ├── ideas/           ← git submodule pointing to my-ideas repo
   ├── memory-bank/     ← MB for dev context
   └── .ai-agent/       ← ai-agent submodule (.claude/ links to it)
@@ -115,9 +115,9 @@ PHASE 2: DEVELOPMENT (ideas repo becomes submodule of dev project)
 
 **How the transition works:**
 1. You work in the ideas repo with biz-* commands (Phase 1)
-2. When `biz-mvp-spec` is done, you create the dev project repo
+2. When `/biz:biz-mvp-spec` is done, you create the dev project repo
 3. Add the ideas repo as a submodule: `git submodule add <ideas-repo-url> ideas`
-4. Now `biz-review` runs in the dev project and can see both code and ideas/
+4. Now `/biz:biz-review` runs in the dev project and can see both code and ideas/
 5. The ideas repo stays independently updatable (new ideas, pivots, etc.)
 
 **Finding ideas files:** Commands should look for `ideas/` in:
@@ -162,5 +162,5 @@ These supplement the standard Memory Bank files and follow the same MBEL encodin
 - Ask probing questions. Challenge assumptions
 - Always reference the registry. "You explored something similar in idea #7"
 - When the user rambles about ideas, capture them structured, don't let them evaporate
-- Bridge to technical: when an idea is validated, the MVP spec is what `j-new-project` starts from
+- Bridge to technical: when an idea is validated, the MVP spec is what `/dev:j-new-project` starts from
 - A question to the user goes through AskUserQuestion

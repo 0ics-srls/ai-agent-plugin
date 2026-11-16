@@ -12,7 +12,7 @@ and drives it: it takes a task, does it, reports the outcome.
 ## Prerequisites
 
 - The CVM MCP server answers (`mcp__cvm__parsePlan` is available). When it is not: run
-  `/j-mcp-setup`, choose CVM, come back. STOP.
+  `/dev:j-mcp-setup`, choose CVM, come back. STOP.
 
 ## Steps
 
@@ -48,5 +48,5 @@ The planexecutor loads the plan when it starts and hands out every block from th
 plan file, or running `parsePlan` again, changes nothing it hands out: the execution and the file
 stop agreeing. A FIX fixes the code. When the plan itself is wrong — a command that cannot run, a name
 the gate refuses, a step that cannot be done as written — stop and tell the user what and why. The
-plan is corrected and reviewed (`/j-review-plan`), then this command runs again: `parsePlan`, start,
+plan is corrected and reviewed (`/dev:j-review-plan`), then this command runs again: `parsePlan`, start,
 and the blocks already completed are skipped.

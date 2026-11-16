@@ -48,11 +48,11 @@ The smallest code that makes the RED pass, through the gate (`language.md` §5).
 
 ## 6. The skeleton's blocks
 
-The form in C of each block of the skeleton `j-new-project` plans for a library or a command-line tool
+The form in C of each block of the skeleton `/dev:j-new-project` plans for a library or a command-line tool
 (a library drops block 3):
 
 | Block | C |
 |---|---|
-| 1 | the project: `CMakeLists.txt`, the pack's files as j-setup copied them, `cmake/dependencies.cmake`; Core — the data, the contracts, the error codes; the first entity's service. RED: the service's unit tests on its doubles |
+| 1 | the project: `CMakeLists.txt`, the pack's files as /dev:j-setup copied them, `cmake/dependencies.cmake`; Core — the data, the contracts, the error codes; the first entity's service. RED: the service's unit tests on its doubles |
 | 2 | the adapter of the first entity, its serialization as is (`language.md` §6). RED: on the real file or engine |
 | 3 | the application — the settings read and checked at startup, the logger, the version logged at startup, `main` the composition root. RED: the program started without its settings stops and names the missing one |

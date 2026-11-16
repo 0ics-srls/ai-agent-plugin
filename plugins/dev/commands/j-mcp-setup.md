@@ -4,7 +4,7 @@ description: Install and configure MCP servers for the project. Universal — wo
 ---
 
 ## Prerequisites
-- The project's language, which decides the framework servers the catalog offers: from `j-setup`
+- The project's language, which decides the framework servers the catalog offers: from `/dev:j-setup`
   when it runs this command, otherwise from `@language` in `j-settings.md` (in a monorepo, each
   `@language-<component>`), otherwise asked with AskUserQuestion.
 
@@ -344,7 +344,7 @@ What this command owns is knowing WHICH directory each MCP creates:
 |---|---|
 | cvm | `.cvm/` (file storage, `CVM_DATA_DIR`) — in the base list |
 | lsai | `.lsai/` (index) — in the base list |
-| chrome-devtools | `problem-chrome-dt/` (the screenshots `j-browse` and `j-e2e` save) — in the base list |
+| chrome-devtools | `problem-chrome-dt/` (the screenshots `/dev:j-browse` and `/dev:j-e2e` save) — in the base list |
 | every other one | if it writes inside the project, its directory is ignored the same way |
 
 So: for each MCP you configured, check that its working directory is ignored. If it is in the
@@ -355,7 +355,7 @@ duplicated — and report it under what you DID, not under advice.
 ## Step 6: Update j-settings.md — Code Navigation
 
 If `j-settings.md` exists, update `@code-nav-local` and `@code-nav-external` in its
-`## Code Navigation` with the rule of `j-setup` step 9 (the one owner of that rule), reading both
+`## Code Navigation` with the rule of `/dev:j-setup` step 9 (the one owner of that rule), reading both
 config files of the host.
 
 ## Step 7: Update GUIDE_FILE — Code Navigation section

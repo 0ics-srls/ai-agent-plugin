@@ -109,7 +109,7 @@ How the principles and the code principles are written in C# 14 on .NET 10.
 
 - Solution file `.slnx`, created with `dotnet new sln --format slnx`.
 - `Directory.Build.props` at the folder of the solution is the pack's,
-  `${CLAUDE_PLUGIN_ROOT}/lint-rules/csharp/native/Directory.Build.props`, which j-setup copies: `net10.0`, the latest
+  `${CLAUDE_PLUGIN_ROOT}/lint-rules/csharp/native/Directory.Build.props`, which /dev:j-setup copies: `net10.0`, the latest
   language, nullable references and implicit usings, every warning an error, the
   artifacts output, the NuGet audit of every transitive package.
 - Central Package Management: `Directory.Packages.props` at the folder of the solution, with
@@ -125,14 +125,14 @@ How the principles and the code principles are written in C# 14 on .NET 10.
   be rewritten. It names the solution: the unit filter `App.Unit.slnf` sits beside it.
 - The gate checks the project's own sources. The code under `externals/` — the base library, another
   submodule — builds in the solution with its own settings: the pack's `externals/Directory.Build.props`,
-  `externals/Directory.Packages.props` and `externals/.editorconfig`, which j-setup copies, stop the
+  `externals/Directory.Packages.props` and `externals/.editorconfig`, which /dev:j-setup copies, stop the
   project's build settings, its central package management and its style there (a submodule's own
   files, nearer, win); the build takes no `-warnaserror`, which would turn the submodule's warnings into
   errors.
 - Every warning is fixed in the code that raises it. A rule joins or leaves the pack's list only by
   the project owner's decision, one rule at a time, with its reason.
 - `.editorconfig` at the folder of the solution is the pack's, `${CLAUDE_PLUGIN_ROOT}/lint-rules/csharp/native/.editorconfig`,
-  which j-setup copies: the rules of the gate, each with what it finds, the migrations as generated
+  which /dev:j-setup copies: the rules of the gate, each with what it finds, the migrations as generated
   code, and the two rules about releasing resources off in the test projects.
 - A library shared by several applications, UI applications included, turns CA2007 on in its own
   `.editorconfig` (`dotnet_diagnostic.CA2007.severity = warning`): there every `await` carries
@@ -182,7 +182,7 @@ How the principles and the code principles are written in C# 14 on .NET 10.
   interval and deadline from Options, which completes a `TaskCompletionSource` or writes to a
   `Channel<T>` that the rest of the code awaits.
 
-## 7. What j-setup and j-new-project read in a C# project
+## 7. What /dev:j-setup and /dev:j-new-project read in a C# project
 
 - **Recognized by**: `*.slnx`, `*.sln`, `*.csproj`; the stack from `TargetFramework` and the
   `PackageReference`s (ASP.NET Core, EF Core and its provider, HttpClient, messaging), which say the
@@ -201,15 +201,15 @@ How the principles and the code principles are written in C# 14 on .NET 10.
 
   A backend service with a database reads all of them; a command-line tool reads `language.md` and
   `testing.md`, plus the branches it has.
-- **What LISTEN asks** (`j-new-project`): for a service, the database engine (EF Core's provider);
+- **What LISTEN asks** (`/dev:j-new-project`): for a service, the database engine (EF Core's provider);
   ASP.NET Core is the transport, not a question. A desktop client: the backend whose OpenAPI document its client is generated from.
-- **What j-setup asks on an existing project**: tests on xUnit v2 — `xunit` among the
+- **What /dev:j-setup asks on an existing project**: tests on xUnit v2 — `xunit` among the
   `PackageReference`s, not `xunit.v3` — → ask with AskUserQuestion, once: migrate the tests to xUnit v3,
   or stay on v2? It is the owner's decision, and staying is a full answer. *Stay*: the gate turns the
   v3 rule off — `@lint-astgrep: ast-grep scan --globs '!externals/**' --off=no-xunit-abstractions` —
   the test levels are the commands the project already runs, on VSTest, and `global.json` gets no
   `test` key; `testing.md` §1 says how its tests are written. *Migrate*: nothing changes here — the
-  migration is a work of its own, `/j-new-feature`, and until it closes the project is on v2, set up as
+  migration is a work of its own, `/dev:j-new-feature`, and until it closes the project is on v2, set up as
   *Stay*. Nothing is asked about the mock library: the project keeps the one it has — Moq,
   NSubstitute — (`testing.md` §1).
 - **The lint gate**: the manifest's `native_lint`, `App` the solution's name; its configuration files go
@@ -221,7 +221,7 @@ How the principles and the code principles are written in C# 14 on .NET 10.
   Only that key is added: the SDK of an existing `global.json` stays.
 - **The start command**: `dotnet run --project src/App.Api`, the project that hosts the API
   (`aspnetcore.md` §1).
-- **Where its errors show** (`j-debug`): the Serilog files and console of the running service
+- **Where its errors show** (`/dev:j-debug`): the Serilog files and console of the running service
   (`aspnetcore.md` §6), the `ProblemDetails` the API answers with its `Code`, the build's and the tests'
   output.
 - `App` in the overlays stands for the project's name.

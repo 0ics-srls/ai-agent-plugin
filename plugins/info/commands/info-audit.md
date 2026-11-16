@@ -6,7 +6,7 @@ description: Deep truth audit - evaluate reliability, bias, contradictions, conf
 ## Prerequisites
 - If not read this session: `${CLAUDE_PLUGIN_ROOT}/commands/mind-sets/intelligence-analyst.md`
 - Read the Memory Bank (skip the subdirectories) if not already done this session.
-- Should have run `info-search` and ideally `info-cross` first
+- Should have run `/info:info-search` and ideally `/info:info-cross` first
 
 ## What This Command Does
 
@@ -24,7 +24,7 @@ If several topics exist in `research/`, ask the user which one. Read ALL files i
 If cross-ref doesn't exist, warn:
 ```
 No cross-reference data found. Running audit on uncross-referenced claims
-reduces confidence. Consider running info-cross first.
+reduces confidence. Consider running /info:info-cross first.
 Proceed anyway? (y/n)
 ```
 
@@ -224,7 +224,7 @@ After presenting the audit, ask:
 ```
 Do you want me to:
 1. Investigate specific doubts further (I'll send targeted agents)
-2. Generate the final report (info-report)
+2. Generate the final report (/info:info-report)
 3. Something else?
 ```
 

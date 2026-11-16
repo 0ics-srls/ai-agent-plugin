@@ -10,7 +10,7 @@ A skill that trusts a nav tool WITHOUT proving it is present + ready + queried
 correctly will silently fall back to grep, or read an empty answer as "0 found"
 -- a false negative. Every search and every review follows it (`junior.md`,
 `development-workflow.md`). Settings (which tool, scoping paths) come from
-`j-settings.md`; repairing stale settings is `/j-setup`'s job, not this rule.
+`j-settings.md`; repairing stale settings is `/dev:j-setup`'s job, not this rule.
 
 ## GATE -- print this PREFLIGHT block before the first code-nav lookup
 

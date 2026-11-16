@@ -68,7 +68,7 @@ struct reads its fields from the parsed tree (`cJSON_GetObjectItemCaseSensitive`
 `cJSON_IsString`…), fails on a field missing or of another type, and frees the tree; nothing else
 sees a `cJSON *`.
 
-## 7. What j-setup and j-new-project read in a C project
+## 7. What /dev:j-setup and /dev:j-new-project read in a C project
 
 - **Recognized by**: `CMakeLists.txt` whose `project()` names `C` (not `CXX`), with `*.c`/`*.h`
   sources. A project that names both `C` and `CXX` reads both overlays, each on its own sources.
@@ -80,7 +80,7 @@ sees a `cJSON *`.
   | `testing.md` | every C project |
   | `tddab.md` | the TDDAB plans, with `tddab-planner.md` |
 
-- **What LISTEN asks** (`j-new-project`): what is built — a library or a command-line tool; whether it
+- **What LISTEN asks** (`/dev:j-new-project`): what is built — a library or a command-line tool; whether it
   is a POSIX program.
 - **The lint gate**: the manifest's `native_lint`, run from the folder of `CMakeLists.txt`; the pack's
   `.clang-tidy`, `CMakePresets.json` and `cmake/lint-gate.cmake` go to that folder.
@@ -88,5 +88,5 @@ sees a `cJSON *`.
 - **The test levels**: the keys of `tddab.md` §1.
 - **The start command**: `cmake --build --preset debug` and the program from `build/debug/`; a library
   has none.
-- **Where its errors show** (`j-debug`): the build's output (compiler, clang-tidy, analyzer); the
+- **Where its errors show** (`/dev:j-debug`): the build's output (compiler, clang-tidy, analyzer); the
   failed test's report; the sanitizers' report of the `asan` run; the program's log.

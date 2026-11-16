@@ -5,13 +5,13 @@ description: Deploy to production (junior workflow). The DEPLOY phase of develop
 
 ## Prerequisites
 - Read the Memory Bank (skip the subdirectories) if not already done this session.
-- `j-settings.md` at the repository root (missing → run `/j-setup` first): its `## Deploy` section.
+- `j-settings.md` at the repository root (missing → run `/dev:j-setup` first): its `## Deploy` section.
 - If not read this session: `${CLAUDE_PLUGIN_ROOT}/commands/mind-sets/junior.md`
 
 ## When to Use
 - **Standalone:** Deploy anytime you're on the right branch and code is ready (e.g., after manual merge, hotfix, or CI)
-- **From j-close:** j-close step 8 delegates here (follows steps 3-6 of this file) — this file is the single source of truth for deploy logic
-- **With `@production-branch` set:** the deploy is the CD's, through `/j-release`. Running it here is an exception, on the user's explicit word, and it is said first; step 5's restore holds for a failed CD too
+- **From /dev:j-close:** /dev:j-close step 8 delegates here (follows steps 3-6 of this file) — this file is the single source of truth for deploy logic
+- **With `@production-branch` set:** the deploy is the CD's, through `/dev:j-release`. Running it here is an exception, on the user's explicit word, and it is said first; step 5's restore holds for a failed CD too
 
 ## Pre-check
 - No uncommitted changes
@@ -26,7 +26,7 @@ git status
 ```
 - Show current branch (so user knows what will be deployed)
 - If uncommitted changes → "Commit first"
-- `@deploy-script` is "none" → "No deploy script configured. Nothing to deploy. (To configure: j-setup
+- `@deploy-script` is "none" → "No deploy script configured. Nothing to deploy. (To configure: /dev:j-setup
   → edit @deploy-script)" — STOP. Nothing runs before this check.
 - **Update MB:** `@state::DEPLOY`
 
@@ -59,7 +59,7 @@ Fix the backup issue before retrying.
 **If @backup-script is "none":**
 ```
 No backup script configured. Proceeding with deploy.
-   (To configure: j-setup → edit @backup-script)
+   (To configure: /dev:j-setup → edit @backup-script)
 ```
 
 ### 4. Execute Deploy
@@ -114,7 +114,7 @@ What do you want to do?
 Restore completed. Environment rolled back to before the deploy.
 
 The code is still in the branch, you can retry anytime.
-Use j-deploy to retry after fixing the issue.
+Use /dev:j-deploy to retry after fixing the issue.
 ```
 - If restore fails:
 ```
@@ -133,7 +133,7 @@ Continue debugging with user, with Protocol D (`${CLAUDE_PLUGIN_ROOT}/commands/m
 ```
 Deploy completed!
 
-Verify at: {@domain} (from j-settings.md) — `/j-e2e {@domain}` runs the end-to-end checklist there
+Verify at: {@domain} (from j-settings.md) — `/dev:j-e2e {@domain}` runs the end-to-end checklist there
 
 If something doesn't work online, check:
 - Application logs
@@ -146,7 +146,7 @@ If a feature/bug is active in MB (`@feature` or `@bug`), update:
 - `progress.md` → mark feature/bug as deployed
 
 Then `@state` goes back to IDLE when no feature or bug is open, and to the task's phase otherwise
-(from j-close: its step 9 sets it).
+(from /dev:j-close: its step 9 sets it).
 
 This ensures standalone deploys don't leave stale state in MB.
 

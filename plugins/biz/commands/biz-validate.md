@@ -1,12 +1,12 @@
 ---
 allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
-description: Validate key assumptions with evidence before committing to MVP development. Use when user says validate, valida le ipotesi, test assumptions, overit predpoklady - the gate before biz-mvp-spec.
+description: Validate key assumptions with evidence before committing to MVP development. Use when user says validate, valida le ipotesi, test assumptions, overit predpoklady - the gate before /biz:biz-mvp-spec.
 ---
 
 ## Prerequisites
 - If not read this session: `${CLAUDE_PLUGIN_ROOT}/commands/mind-sets/startup-strategist.md`
 - Read the Memory Bank (skip the subdirectories) if not already done this session.
-- Idea should be researched first (run `biz-research`)
+- Idea should be researched first (run `/biz:biz-research`)
 
 ## What This Command Does
 
@@ -121,8 +121,8 @@ Create `ideas/validations/{idea-slug}.md`:
 
 {PROCEED TO MVP / PIVOT / PARK}
 
-**If PROCEED**: Key constraint for MVP is {X}. Run `biz-mvp-spec`.
-**If PIVOT**: The problem is real but solution needs rethinking. Specifically: {what to change}. Run `biz-pivot`.
+**If PROCEED**: Key constraint for MVP is {X}. Run `/biz:biz-mvp-spec`.
+**If PIVOT**: The problem is real but solution needs rethinking. Specifically: {what to change}. Run `/biz:biz-pivot`.
 **If PARK**: {why and what would need to change to revisit}
 ```
 
@@ -146,7 +146,7 @@ Assumptions tested: {N}
 
 Decision: {PROCEED / PIVOT / PARK}
 
-{If PROCEED}: Run `biz-mvp-spec` to create the technical specification.
+{If PROCEED}: Run `/biz:biz-mvp-spec` to create the technical specification.
 ```
 
 ## Rules

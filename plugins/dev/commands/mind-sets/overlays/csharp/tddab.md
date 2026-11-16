@@ -143,11 +143,11 @@ test projects in its `.csproj` (`<InternalsVisibleTo Include="App.Domain.Tests" 
 
 ## 6. The skeleton's blocks
 
-The form in C# / .NET 10 of each block of the skeleton `j-new-project` plans:
+The form in C# / .NET 10 of each block of the skeleton `/dev:j-new-project` plans:
 
 | Block | C# / .NET 10 |
 |---|---|
-| 1 | `dotnet new sln --format slnx`, `dotnet new globaljson`; `Directory.Build.props` and `.editorconfig` as j-setup copied them from the pack; `Directory.Packages.props` with Central Package Management; the base library, when there is one, already under `externals/` (j-new-project brought it in before the plan) with its projects added to the solution and the pack's `externals/` files beside it (`language.md` §5); the development files — `.gitignore` (`dotnet new gitignore`), `compose.yaml` for the local database, the README with the commands — `language.md` §5; `App.Core` — `aspnetcore.md` §1; `App.Layers.Tests` with the rule of Core and `App.Unit.slnf` listing it — `testing.md` §2. RED: Core uses no storage type |
+| 1 | `dotnet new sln --format slnx`, `dotnet new globaljson`; `Directory.Build.props` and `.editorconfig` as /dev:j-setup copied them from the pack; `Directory.Packages.props` with Central Package Management; the base library, when there is one, already under `externals/` (/dev:j-new-project brought it in before the plan) with its projects added to the solution and the pack's `externals/` files beside it (`language.md` §5); the development files — `.gitignore` (`dotnet new gitignore`), `compose.yaml` for the local database, the README with the commands — `language.md` §5; `App.Core` — `aspnetcore.md` §1; `App.Layers.Tests` with the rule of Core and `App.Unit.slnf` listing it — `testing.md` §2. RED: Core uses no storage type |
 | 2 | `App.Db`, EF Core, `dotnet ef migrations add Initial`, enums as names, migrations as generated code — `efcore.md`; `App.Db.Tests` on the real engine with Testcontainers, the database fixture in `App.Testing` — `testing.md` §1 |
 | 3 | `App.Domain` — `aspnetcore.md` §1-2; `App.Domain.Tests` with the fakes of the Core contracts and the builders in `App.Testing`, added to `App.Unit.slnf`; the rule of Domain in `App.Layers.Tests` — `testing.md` §1-2 |
 | 4 | `App.Api`, `AddValidation`, ProblemDetails, JSON options with naming policy null, the one load endpoint of every entity on the DevExtreme load options, OpenAPI (`AddOpenApi`) with the base's transformers — operation names, `LoadResultOf<Entity>`, every answer, the schemas of our converters — the Scalar UI (`Scalar.AspNetCore`, `MapScalarApiReference()`) — `aspnetcore.md` §3, `language.md` §6; `App.Api.Tests` on `WebApplicationFactory<Program>` and the database fixture, with the test that keeps `openapi/<Api project>.json` equal to the served document; the rule of Api in `App.Layers.Tests` — `testing.md` §1-2 |
@@ -156,7 +156,7 @@ The form in C# / .NET 10 of each block of the skeleton `j-new-project` plans:
 With the security branch, the block between 4 and 5 is `aspnetcore.md` §7: the authentication and the
 fallback policy.
 
-A desktop client on Avalonia, as the frontend blocks of `j-new-project`:
+A desktop client on Avalonia, as the frontend blocks of `/dev:j-new-project`:
 
 | Block | Avalonia |
 |---|---|

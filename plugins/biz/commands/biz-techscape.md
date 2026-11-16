@@ -1,6 +1,6 @@
 ---
 allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
-description: Analyze existing software landscape - tools, OSS, vendors, APIs, licenses - for reuse, build-vs-buy and differentiation. Use when user says techscape, cosa esiste gia, build vs buy, license check, che tool ci sono. Runs AFTER biz-evaluate and BEFORE biz-research.
+description: Analyze existing software landscape - tools, OSS, vendors, APIs, licenses - for reuse, build-vs-buy and differentiation. Use when user says techscape, cosa esiste gia, build vs buy, license check, che tool ci sono. Runs AFTER /biz:biz-evaluate and BEFORE /biz:biz-research.
 ---
 
 ## Prerequisites
@@ -263,13 +263,13 @@ Techscape {created/updated} for: {domain}
 - License status: {safe / flagged}
 - Recommendation: {build/buy/integrate}
 
-Run `biz-techscape` again anytime you find something new to evaluate.
+Run `/biz:biz-techscape` again anytime you find something new to evaluate.
 ```
 
 ## When to Run This
 
-- **After `biz-evaluate`**: Before deep market research, understand the tech landscape
-- **After `biz-mvp-spec`**: Before starting development, know what to reuse
+- **After `/biz:biz-evaluate`**: Before deep market research, understand the tech landscape
+- **After `/biz:biz-mvp-spec`**: Before starting development, know what to reuse
 - **During dev**: When deciding whether to build a component or use existing
 - **Before choosing a library**: License check before adding a dependency
 - **When you discover something**: "I found this cool library" -> add it to techscape

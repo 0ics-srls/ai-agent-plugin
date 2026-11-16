@@ -1,13 +1,13 @@
 ---
 allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
-description: "BBC — plan the Core of the contracts, the first step of the roadmap; on a project with no code yet it is the project's start — the profile, the skeleton, then the Core. Every contract of the map written in the project's Core — the abstract concepts of the whole system, each BB's interfaces and the types they exchange under the BB's namespace — with its fake and its contract tests, so that every BB can then be developed in parallel against it. A TDDAB plan, reviewed, then it STOPS and the user triggers j-cvm-exec-plan. Use when the roadmap's first step is due, or the user says bbc core, scrivi il core, le interfacce dei BB."
+description: "BBC — plan the Core of the contracts, the first step of the roadmap; on a project with no code yet it is the project's start — the profile, the skeleton, then the Core. Every contract of the map written in the project's Core — the abstract concepts of the whole system, each BB's interfaces and the types they exchange under the BB's namespace — with its fake and its contract tests, so that every BB can then be developed in parallel against it. A TDDAB plan, reviewed, then it STOPS and the user triggers /dev:j-cvm-exec-plan. Use when the roadmap's first step is due, or the user says bbc core, scrivi il core, le interfacce dei BB."
 ---
 
 ## Prerequisites
 - `${CLAUDE_PLUGIN_ROOT}/commands/bbc-plan.md`, read in full — this command follows its steps by number — and,
   through it, `j-new-feature.md`.
-- As `/bbc-plan`: the Memory Bank, `j-settings.md`, `junior.md`, `development-workflow.md`, `bbc.md`,
-  `testing-principles.md`; the map, with its roadmap (missing → `/bbc-review` first).
+- As `/dev:bbc-plan`: the Memory Bank, `j-settings.md`, `junior.md`, `development-workflow.md`, `bbc.md`,
+  `testing-principles.md`; the map, with its roadmap (missing → `/dev:bbc-review` first).
 - The project's Core: what the skeleton's first block made (`overlays/<language>/tddab.md` §6). A
   project with no code yet is started here — step 1b gives it its profile, and this plan's first blocks
   are its skeleton. A new part of a project that has no Core gets its own, as
@@ -28,13 +28,13 @@ they are; nothing the map decided is decided again.
 Beside it, in the support the tests share (`testing-principles.md` 4.2, 5.1), each contract has its
 fake — the double the other BBs' tests use, with behaviour — and its **contract tests**: what every
 implementation of the contract must do, case by case, written once and run against any implementation.
-Here they run against the fake; the BB's `/bbc-plan` runs them against the real one, so the fake and
-the BB cannot drift apart. **It writes no code: `j-cvm-exec-plan` executes the plan.**
+Here they run against the fake; the BB's `/dev:bbc-plan` runs them against the real one, so the fake and
+the BB cannot drift apart. **It writes no code: `/dev:j-cvm-exec-plan` executes the plan.**
 
 ## Steps
 
 ### 1. The task
-`/bbc-plan` steps 1-4, the name `core`, the line `Flow: bbc-core`. `## BB scope`:
+`/dev:bbc-plan` steps 1-4, the name `core`, the line `Flow: /dev:bbc-core`. `## BB scope`:
 `- BB: Core — the contracts of every BB of the map`, its files the project's Core and the tests'
 shared support.
 
@@ -48,23 +48,23 @@ A project that has code → step 2.
    its `language.md` §7 lists under «What LISTEN asks»; the storage; the base library and how it comes
    in — a git submodule or a package.
 3. A base library that is a git submodule is added now, as `j-new-project.md` step 5 says it.
-4. Run `/j-setup` with that profile (its PROFILE GIVEN mode, `j-setup.md` step 18): it completes
+4. Run `/dev:j-setup` with that profile (its PROFILE GIVEN mode, `j-setup.md` step 18): it completes
    `j-settings.md` and copies the lint pack. What it wrote is committed with the plan, in step 5.
 
 ### 2. LISTEN
-**Update MB** as `/j-new-feature` step 5 says: `@state::LISTEN`, `@feature::NN-core`,
+**Update MB** as `/dev:j-new-feature` step 5 says: `@state::LISTEN`, `@feature::NN-core`,
 `@branch::feature/NN-core`. `## Requirements` is written from the map and shown: for each BB its
 contract — every member with its inputs, its results, its errors — its events, the types it exchanges,
 and the cases each member promises (`testing-principles.md` 2.2). Then it asks what to add, and the
 user's words are added. No code is read and nothing is proposed.
 
 ### 3. ANALYZE, INVENTORY, PROPOSE
-`/bbc-plan` steps 6-8. ANALYZE reads the Core the project has. PROPOSE names, for each contract of the
+`/dev:bbc-plan` steps 6-8. ANALYZE reads the Core the project has. PROPOSE names, for each contract of the
 map, its place in the Core — the BB's namespace. An external system's contract, described by the user
 on the map (`bbc.md` §2), is not the Core's: the BB that uses it depends on it through its own contract.
 
 ### 4. PLAN — TDDAB
-`/bbc-plan` step 9, the scope being the Core and the tests' shared support.
+`/dev:bbc-plan` step 9, the scope being the Core and the tests' shared support.
 
 On a project with no code yet (step 1b), the plan's first blocks are the skeleton's, as
 `overlays/<language>/tddab.md` §6 gives them — each layer's project with its test project, the shared
@@ -83,8 +83,8 @@ its contract tests with the command that runs them; and in `BBC-MAP.md` a contra
 PROPOSE.
 
 ### 5. Commit, STOP
-`/bbc-plan` steps 10-11. Next: `/j-cvm-exec-plan`, then `/j-close`; then the BBs — `/bbc-work` for
-each BB, each in its own worktree, or `/bbc-plan` one at a time.
+`/dev:bbc-plan` steps 10-11. Next: `/dev:j-cvm-exec-plan`, then `/dev:j-close`; then the BBs — `/dev:bbc-work` for
+each BB, each in its own worktree, or `/dev:bbc-plan` one at a time.
 
 ## Rules
 - **The Core holds contracts only**: no implementation, no helper — a capability shared by several BBs

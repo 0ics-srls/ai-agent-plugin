@@ -77,7 +77,7 @@ the mapper of each form, and the hand practice it replaces:
   `rs.getString("column")` where the data is used;
 - performance, only on the user's request: Jackson's streaming `JsonParser` by hand, in one reader.
 
-## 7. What j-setup and j-new-project read in a Java project
+## 7. What /dev:j-setup and /dev:j-new-project read in a Java project
 
 - **Recognized by**: `pom.xml`; its `<dependencies>` say the frameworks and the branches.
 - **The files of this overlay, with the branches**:
@@ -88,11 +88,11 @@ the mapper of each form, and the hand practice it replaces:
   | `testing.md` | every Java project |
   | `tddab.md` | the TDDAB plans, with `tddab-planner.md` |
 
-- **What LISTEN asks** (`j-new-project`): what is built — a library, a command-line tool, a service — and what it
+- **What LISTEN asks** (`/dev:j-new-project`): what is built — a library, a command-line tool, a service — and what it
   talks to.
 - **The lint gate**: the manifest's `native_lint`, run from the folder of the root `pom.xml`; §5 says where the
   pack's files go.
 - **Vendored** (`@vendored-globs`): `target/`.
 - **The test levels**: the keys of `tddab.md` §1.
 - **The start command**: `java -jar target/<artifact>.jar`.
-- **Where its errors show** (`j-debug`): the build's output; the failed test's output; the log.
+- **Where its errors show** (`/dev:j-debug`): the build's output; the failed test's output; the log.

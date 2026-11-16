@@ -10,7 +10,7 @@ Validate a plan file with the CVM `parsePlan` tool, the same parser the planexec
 ## Prerequisites
 
 The CVM MCP server answers: the tool `mcp__cvm__parsePlan` is available. When it is not, the CVM
-server is not configured: run `/j-mcp-setup` and choose CVM, then come back. STOP.
+server is not configured: run `/dev:j-mcp-setup` and choose CVM, then come back. STOP.
 
 ## Steps
 
@@ -19,7 +19,7 @@ server is not configured: run `/j-mcp-setup` and choose CVM, then come back. STO
 2. **Parse it**: `mcp__cvm__parsePlan` with `filePath`, the path — not while an execution of the plan is in
    progress (`mcp__cvm__list_executions`): the parser rewrites `.cvm/uplan.json`, which the execution
    loaded, and the report says so. The parser decides the type from the blocks — `- test:` lines make a
-   TDDAB plan, only `- action:` lines a Step plan (a mixed plan is read as TDDAB: `j-review-plan`
+   TDDAB plan, only `- action:` lines a Step plan (a mixed plan is read as TDDAB: `/dev:j-review-plan`
    refuses it) — and refuses a line it cannot read with its line number.
 3. **Report**:
    - valid → the type, the number of blocks, their ids, and the `.cvm/uplan.json` written;
@@ -45,4 +45,4 @@ Plan INVALID ✗
 - `parsePlan` writes `.cvm/uplan.json` on every valid parse (the previous one is kept as `.bak`); the
   progress file is not touched.
 - The structure of a plan — tags, line prefixes, phase names — is the planners' (`tddab-planner.md`,
-  `step-planner.md`); this command checks it, `/j-review-plan` checks its content.
+  `step-planner.md`); this command checks it, `/dev:j-review-plan` checks its content.

@@ -45,7 +45,7 @@ The smallest code that makes the RED pass, through the gate (`language.md` §5).
 
 ## 6. The skeleton's blocks
 
-The form in Go of each block of the skeleton `j-new-project` plans; the frameworks are the project's, chosen in LISTEN.
+The form in Go of each block of the skeleton `/dev:j-new-project` plans; the frameworks are the project's, chosen in LISTEN.
 
 | Block | Go |
 |---|---|

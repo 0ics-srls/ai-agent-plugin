@@ -1,6 +1,6 @@
 ---
 allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
-description: "Audit the code of a project against the cards of mind-sets/audit.md, in one command, to the report — the folders to audit said by the user once (the product, not the proofs of concept or the base library), the map and the algorithmic facts computed on them, the description of every module, then the agent reads the map against the cards, writes the candidates, confirms or withdraws each one by reading only its places, and writes the report of the confirmed problems. On a project too large for one session it writes its own Step plans and executes them itself; run again after an interruption, it resumes. Works on a project not made with the set too, after /j-setup. Use when the user says audit the code, controlla il codice, audit del design, code audit."
+description: "Audit the code of a project against the cards of mind-sets/audit.md, in one command, to the report — the folders to audit said by the user once (the product, not the proofs of concept or the base library), the map and the algorithmic facts computed on them, the description of every module, then the agent reads the map against the cards, writes the candidates, confirms or withdraws each one by reading only its places, and writes the report of the confirmed problems. On a project too large for one session it writes its own Step plans and executes them itself; run again after an interruption, it resumes. Works on a project not made with the set too, after /dev:j-setup. Use when the user says audit the code, controlla il codice, audit del design, code audit."
 ---
 
 ## Rules — obeyed at every step
@@ -24,13 +24,13 @@ description: "Audit the code of a project against the cards of mind-sets/audit.m
 
 ## Prerequisites
 - Read the Memory Bank (skip the subdirectories) if not already done this session.
-- `j-settings.md` at the repository root (missing → run `/j-setup` first: a project not made with the
+- `j-settings.md` at the repository root (missing → run `/dev:j-setup` first: a project not made with the
   set is wired by it the same way).
 - `@code-nav-local` is `lsai` or `vs-mcp`, and it answers: one outline or info query on a file of the
   project, its result quoted. Anything else — `grep`, absent, not ready — STOP: the audit confirms every
-  claim through the navigation tool; propose `/j-mcp-setup`.
+  claim through the navigation tool; propose `/dev:j-mcp-setup`.
 - The CVM answers (`mcp__cvm__parsePlan` is available) — it runs the plans of a large project;
-  otherwise propose `/j-mcp-setup`, CVM. STOP.
+  otherwise propose `/dev:j-mcp-setup`, CVM. STOP.
 - `${CLAUDE_PLUGIN_ROOT}/commands/j-cvm-exec-plan.md`, read in full: its steps 1-5 are how a plan of this command is
   executed, here, by this command.
 - Read in full, if not read this session: `${CLAUDE_PLUGIN_ROOT}/commands/mind-sets/audit.md` (the cards) and
@@ -183,7 +183,7 @@ Written here, by this command, when no candidate is `to verify`: `audit/REPORT.m
 - `## The project`: the components and the architecture the project gave itself, the capabilities,
   the mechanisms;
 - `## Problems`: every finding, the grave ones first, per family or module, each with its rule, where,
-  the evidence and the command that takes it — `/j-bug` for a grave one, `/j-new-feature` otherwise;
+  the evidence and the command that takes it — `/dev:j-bug` for a grave one, `/dev:j-new-feature` otherwise;
 - `## Not examined`: what `coverage.md` lists as not examined or not computed, with why, and the
   modules whose description was taken back (step 4, point 4b).
 

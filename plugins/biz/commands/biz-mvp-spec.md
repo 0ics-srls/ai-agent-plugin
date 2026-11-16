@@ -6,11 +6,11 @@ description: Generate technical MVP specification from a validated idea (bridge 
 ## Prerequisites
 - If not read this session: `${CLAUDE_PLUGIN_ROOT}/commands/mind-sets/startup-strategist.md`
 - Read the Memory Bank (skip the subdirectories) if not already done this session.
-- Idea should be validated (run `biz-validate`). Starting from an idea only researched is the user's decision, and the spec says so
+- Idea should be validated (run `/biz:biz-validate`). Starting from an idea only researched is the user's decision, and the spec says so
 
 ## What This Command Does
 
-Translates a validated business idea into a concrete technical MVP specification. This is the **bridge from business to development** - the output feeds directly into dev workflows (`j-new-project`).
+Translates a validated business idea into a concrete technical MVP specification. This is the **bridge from business to development** - the output feeds directly into dev workflows (`/dev:j-new-project`).
 
 ## Steps
 
@@ -156,7 +156,7 @@ Create `ideas/mvp-specs/{idea-slug}.md`:
 {screens or endpoints}
 
 ## Development Approach
-**Recommended workflow**: j-new-project, j-cvm-exec-plan, j-close; bbc-analyze to design the project as black boxes before its code, when it is too large for one context window
+**Recommended workflow**: /dev:j-new-project, /dev:j-cvm-exec-plan, /dev:j-close; /dev:bbc-analyze to design the project as black boxes before its code, when it is too large for one context window
 **Estimated effort**: {S/M/L}
 
 ## Launch Checklist
@@ -171,7 +171,7 @@ Create `ideas/mvp-specs/{idea-slug}.md`:
 
 Update `ideas/registry.md`:
 - Set **Status** to `mvp-specced`
-- When development actually starts (j-new-project/j-cvm-exec-plan kicked off), set **Status** to `building` — this is the ONLY transition into `building` (biz-status/biz-pivot/biz-review read it)
+- When development actually starts (/dev:j-new-project/j-cvm-exec-plan kicked off), set **Status** to `building` — this is the ONLY transition into `building` (/biz:biz-status/biz-pivot/biz-review read it)
 - Add MVP spec file to **Files**
 
 ### 9. Bridge to Dev
@@ -184,14 +184,14 @@ NEXT STEPS - Setting up the development project:
 1. Create a new repo for the project
 2. Add this ideas repo as a submodule:
      git submodule add <this-ideas-repo-url> ideas
-3. Inside the new repo, run: `j-new-project`
+3. Inside the new repo, run: `/dev:j-new-project`
    (use the MVP spec at ideas/mvp-specs/{idea-slug}.md as input)
-4. `j-cvm-exec-plan` executes the plan it wrote, `j-close` merges it
-5. `bbc-analyze` to design the project as black boxes before its code, when it is too large for one context window
+4. `/dev:j-cvm-exec-plan` executes the plan it wrote, `/dev:j-close` merges it
+5. `/dev:bbc-analyze` to design the project as black boxes before its code, when it is too large for one context window
 
 This way:
   - ideas/ stays a separate repo (you can keep capturing new ideas)
-  - biz-review works in the dev project (sees both code and ideas/)
+  - /biz:biz-review works in the dev project (sees both code and ideas/)
   - Business context and dev context stay cleanly separated
 ```
 

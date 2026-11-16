@@ -1,6 +1,6 @@
 ---
 allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
-description: INTERACTIVE browsing - user guides, the agent clicks. Browse and interact with any web page via ChromeDevTools MCP, token-efficient (text snapshots; a screenshot only when text is not enough, read by an agent). Use when user says browse, naviga, open page, apri questa pagina, click on, fill the form, or to reproduce a bug in the UI. To run the project's end-to-end checklist use j-e2e instead.
+description: INTERACTIVE browsing - user guides, the agent clicks. Browse and interact with any web page via ChromeDevTools MCP, token-efficient (text snapshots; a screenshot only when text is not enough, read by an agent). Use when user says browse, naviga, open page, apri questa pagina, click on, fill the form, or to reproduce a bug in the UI. To run the project's end-to-end checklist use /dev:j-e2e instead.
 ---
 
 # Browser Navigation — Token-Efficient
@@ -9,7 +9,7 @@ Interactive browsing of any web page. The user guides what to do, you execute vi
 
 ## Prerequisites
 - The ChromeDevTools MCP server answers (`mcp__chrome-devtools__*` tools). When it does not: run
-  `/j-mcp-setup` and choose chrome-devtools, then come back. STOP.
+  `/dev:j-mcp-setup` and choose chrome-devtools, then come back. STOP.
 
 ## Arguments
 

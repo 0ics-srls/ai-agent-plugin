@@ -13,33 +13,33 @@ THE PIPELINE:
 COMMANDS:
 
   RESEARCH:
-    info-search    → Multi-agent parallel search (agents gather, the orchestrator synthesises)
-    info-cross     → Cross-reference each claim against independent sources
+    /info:info-search    → Multi-agent parallel search (agents gather, the orchestrator synthesises)
+    /info:info-cross     → Cross-reference each claim against independent sources
 
   VERIFICATION:
-    info-audit     → Deep truth audit (reads everything, can spawn investigators)
-    info-report    → Final report with traffic-light confidence (🟢🟡🔴)
+    /info:info-audit     → Deep truth audit (reads everything, can spawn investigators)
+    /info:info-report    → Final report with traffic-light confidence (🟢🟡🔴)
 
   UTILITIES:
-    info-help      → This help screen
+    /info:info-help      → This help screen
 
 === HOW IT WORKS ===
 
-1. info-search "{topic}"
+1. /info:info-search "{topic}"
    The orchestrator breaks the topic into 3-5 angles, launching agents in parallel.
    Each agent searches independently. Results merged into sources + claims.
 
-2. info-cross
+2. /info:info-cross
    For each claim, agents search for INDEPENDENT confirmation or denial.
    Builds verification matrix: confirmed / partially supported / contested / unverified / contradicted.
 
-3. info-audit
+3. /info:info-audit
    It reads EVERYTHING. Evaluates source reliability (Tier 1-5), detects
    bias, checks logical consistency. If doubts arise, spawns new agents to
    investigate. Assigns confidence scores (1-5) per claim:
    5=VERIFIED, 4=LIKELY TRUE, 3=PLAUSIBLE, 2=DOUBTFUL, 1=UNRELIABLE.
 
-4. info-report
+4. /info:info-report
    Clean, shareable report with traffic lights:
      🟢 HIGH CONFIDENCE - multiple independent sources confirm
      🟡 MODERATE - some verification, minor gaps
@@ -65,6 +65,6 @@ research/{topic-slug}/
 
 === QUICK START ===
 
-Just run: info-search "your question here"
+Just run: /info:info-search "your question here"
 It handles everything from there.
 ```

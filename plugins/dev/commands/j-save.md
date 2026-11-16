@@ -5,7 +5,7 @@ description: Save and leave (junior workflow). Commits WIP, updates Memory Bank,
 
 ## Prerequisites
 - Read the Memory Bank (skip the subdirectories) if not already done this session.
-- `j-settings.md` at the repository root (missing → run `/j-setup` first).
+- `j-settings.md` at the repository root (missing → run `/dev:j-setup` first).
 - If not read this session: `${CLAUDE_PLUGIN_ROOT}/commands/mind-sets/junior.md`
 
 ## Steps
@@ -64,7 +64,7 @@ WHERE WE WERE:
 [brief summary]
 
 NEXT TIME:
-Use j-continue to resume from here.
+Use /dev:j-continue to resume from here.
 
 Bye!
 ```

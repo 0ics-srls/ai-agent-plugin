@@ -17,29 +17,29 @@ map, and works on one at a time. It designs first because an agent that starts f
 concrete views from it — the calls, the files, the runtime — not abstractions: the abstractions are
 designed first, with the user, and the code follows them.
 
-The steps of the method, each with the command that takes it. Before them, `j-setup` writes
+The steps of the method, each with the command that takes it. Before them, `/dev:j-setup` writes
 `j-settings.md`, the settings every command reads: a project designed as black boxes starts with
-`j-setup`, then these steps in order.
+`/dev:j-setup`, then these steps in order.
 1. **The analysis**: the BBs by responsibility, their contracts, their dependencies, the flows and the
    decisions of the architecture, from the requirements, with the user; no code is read —
-   `bbc-analyze`.
+   `/dev:bbc-analyze`.
 2. **The review of the analysis**, against the requirements and the method; no code is read. Its
-   findings go back to step 1, until the user approves the map; then the roadmap — `bbc-review`.
+   findings go back to step 1, until the user approves the map; then the roadmap — `/dev:bbc-review`.
 3. **The Core**: every contract of the map written in the Core (§1.6) — the interfaces, the
-   abstractions, the types they exchange — each with its fake and its contract tests — `bbc-core`. On a
-   project with no code yet, `bbc-core` is the project's start: it takes the map's decisions, asks the
-   language and what the code needs, and plans the skeleton and then the Core. `j-new-project` is for a
+   abstractions, the types they exchange — each with its fake and its contract tests — `/dev:bbc-core`. On a
+   project with no code yet, `/dev:bbc-core` is the project's start: it takes the map's decisions, asks the
+   language and what the code needs, and plans the skeleton and then the Core. `/dev:j-new-project` is for a
    project that is not designed as black boxes.
 4. **Every BB developed alone**: it depends only on the other BBs' contracts, so with the Core in place
-   every BB can be built at the same time as the others, in parallel when the user wants — `bbc-plan`,
-   one at a time, or `bbc-work`, one worktree per BB.
-5. **Composed**: real BB with real BB, in the order of the dependency graph — `bbc-integrate`.
-6. **The flows**, end to end through the real transport and storage — `bbc-e2e`.
+   every BB can be built at the same time as the others, in parallel when the user wants — `/dev:bbc-plan`,
+   one at a time, or `/dev:bbc-work`, one worktree per BB.
+5. **Composed**: real BB with real BB, in the order of the dependency graph — `/dev:bbc-integrate`.
+6. **The flows**, end to end through the real transport and storage — `/dev:bbc-e2e`.
 7. **The code checked against the analysis**: a report, and a feature that fixes what it found —
-   `bbc-audit`.
+   `/dev:bbc-audit`.
 8. **A change of the map, then of the code**: a BB's responsibility, its contract, a split or a merge, a
-   decision — changed in the map with the user, and the code brought to it — `bbc-refactor`.
-9. **A failure isolated** BB by BB, leaves first — `bbc-debug`.
+   decision — changed in the map with the user, and the code brought to it — `/dev:bbc-refactor`.
+9. **A failure isolated** BB by BB, leaves first — `/dev:bbc-debug`.
 
 ---
 
@@ -64,7 +64,7 @@ The steps of the method, each with the command that takes it. Before them, `j-se
    interfaces, the types they exchange, its errors, its events — each under its BB's namespace, and
    nothing that implements them. Whoever uses a BB references the Core, never the BB; dependency
    injection gives the implementation. The Core is the project's own (the skeleton's first block,
-   `overlays/<language>/tddab.md` §6); `bbc-core` writes the map's contracts in it, each with its fake
+   `overlays/<language>/tddab.md` §6); `/dev:bbc-core` writes the map's contracts in it, each with its fake
    and its contract tests.
 
 ## 2. The map
@@ -73,7 +73,7 @@ The map lives in `{@tasks}/bbc/` and is committed with the code:
 
 | File | Holds |
 |---|---|
-| `BBC-MAP.md` | `## Requirements` — what the project, or the new part, must do, as the user said it, written by `bbc-analyze` and read by `bbc-review`; the project in one page; the BB index (id, name, responsibility, status); the dependency graph (Mermaid); the layer-to-BB matrix; the flows (sequence diagrams of the 2-3 scenarios that cross most BBs); the integration points (caller, callee, contract, the test that proves it); the change history |
+| `BBC-MAP.md` | `## Requirements` — what the project, or the new part, must do, as the user said it, written by `/dev:bbc-analyze` and read by `/dev:bbc-review`; the project in one page; the BB index (id, name, responsibility, status); the dependency graph (Mermaid); the layer-to-BB matrix; the flows (sequence diagrams of the 2-3 scenarios that cross most BBs); the integration points (caller, callee, contract, the test that proves it); the change history |
 | `bb/BB<N>-<name>.md` | one BB: its responsibility, and what it is NOT responsible for; its files; its contract, written out; its dependencies; its tests and the command that runs them |
 | `diagrams/*.mmd` | the dependency graph and the flows, as Mermaid sources |
 | `BBC-REVIEW-YYYY-MM-DD.md` | the review of the analysis: each finding, and the answer written beside it |
@@ -94,10 +94,10 @@ develops it writes its files in its definition.
 
 **The roadmap**, `## Roadmap` in `BBC-MAP.md`: its steps in order — the Core of the contracts, the BBs,
 the integrations, the flows, and last the audit of the code against the map — each with the BBs (or the
-flows) it covers, each of them with its own status. `bbc-review` proposes it and the user approves it.
-Who marks a step done: `j-close` marks the Core, a BB, an integration, a flow, by the `Flow:` line of
+flows) it covers, each of them with its own status. `/dev:bbc-review` proposes it and the user approves it.
+Who marks a step done: `/dev:j-close` marks the Core, a BB, an integration, a flow, by the `Flow:` line of
 the work it closes — a step whose BBs go in parallel closes BB by BB, and is done when all of its are;
-`bbc-audit` marks the audit step, when its report has no finding.
+`/dev:bbc-audit` marks the audit step, when its report has no finding.
 
 The map is written from the requirements and the user's approvals, never from code. A BB's files are
 written in its definition by the plan that builds it. The existing code a new part uses is an external
@@ -115,7 +115,7 @@ BBs that can already be seen, then the rest — and shown as a diagram before th
    through that BB's contract, or moved to the BB that owns it — never copied into this one.
 3. **A contract changes only on purpose** (`principles.md` 3.4). A change of a BB's contract — a
    signature, a result, an error, a removed member — is named before it is made, with the BBs that use
-   it, and decided by the user. After it, those BBs are integrated again (`/bbc-integrate`).
+   it, and decided by the user. After it, those BBs are integrated again (`/dev:bbc-integrate`).
 4. **The definition follows the code.** A change of a BB's files, contract or tests is written in its
    `bb/BB<N>-<name>.md` and, when the contract or the dependencies change, in `BBC-MAP.md`.
 5. **In parallel.** Each BB worked on at the same time as others has its own git worktree, its own
@@ -124,7 +124,7 @@ BBs that can already be seen, then the rest — and shown as a diagram before th
    session would overwrite each other's. A work may stay open there for days. The base branch is
    brought into a worktree when the user decides. A contract an open work uses changes only as point 3
    says, named together with that work. What composes the BBs is not delegated: the integration and
-   the flows (`bbc-integrate`, `bbc-e2e`) run in the main folder, once the BBs they compose are merged
+   the flows (`/dev:bbc-integrate`, `/dev:bbc-e2e`) run in the main folder, once the BBs they compose are merged
    into the base.
 
 ## 4. The tests, in three steps
@@ -135,7 +135,7 @@ BBs that can already be seen, then the rest — and shown as a diagram before th
    that it keeps its contract as its fake does.
 2. **The BBs together.** Two or more real BBs wired as the composition root wires them; doubles only
    at the boundary of the system. The composition root is shared by every BB, so the development of
-   a BB does not touch it: `bbc-integrate` registers there the BBs it composes. A test here asserts what the integration produces — the state, the
+   a BB does not touch it: `/dev:bbc-integrate` registers there the BBs it composes. A test here asserts what the integration produces — the state, the
    answer, the error that crosses the boundary — not that a call was made.
 3. **The flows.** The scenarios of the map, end to end through the real transport and the real
    storage (`testing-principles.md` 3.3), at the level the project has: the API, the user interface.

@@ -5,22 +5,22 @@ description: "BBC — check whether the code reflects the analysis: each black b
 
 ## Prerequisites
 - Read the Memory Bank (skip the subdirectories) if not already done this session.
-- `j-settings.md` at the repository root (missing → run `/j-setup` first); its own code roots
+- `j-settings.md` at the repository root (missing → run `/dev:j-setup` first); its own code roots
   (`@own-code-roots`).
 - If not read this session: `${CLAUDE_PLUGIN_ROOT}/commands/mind-sets/bbc.md` — the method, the map (§2).
 - `${CLAUDE_PLUGIN_ROOT}/commands/mind-sets/code-navigation.md`, followed for every lookup: print its CODE-NAV
   PREFLIGHT block before the first one. `@code-nav-local` answers: one outline or info query on a file of
-  the project, its result quoted — otherwise STOP and propose `/j-mcp-setup`, as `x-audit-code.md`
+  the project, its result quoted — otherwise STOP and propose `/dev:j-mcp-setup`, as `x-audit-code.md`
   Prerequisites say: the audit confirms every claim through the navigation tool.
-- The map: `{@tasks}/bbc/BBC-MAP.md` and `{@tasks}/bbc/bb/` (missing → `/bbc-analyze` first).
+- The map: `{@tasks}/bbc/BBC-MAP.md` and `{@tasks}/bbc/bb/` (missing → `/dev:bbc-analyze` first).
 - When step 4 writes a plan: the CVM answers (`mcp__cvm__parsePlan` is available); otherwise propose
-  `/j-mcp-setup`, CVM. STOP. And `${CLAUDE_PLUGIN_ROOT}/commands/j-cvm-exec-plan.md`, read in full: its steps 1-5 are
+  `/dev:j-mcp-setup`, CVM. STOP. And `${CLAUDE_PLUGIN_ROOT}/commands/j-cvm-exec-plan.md`, read in full: its steps 1-5 are
   how that plan is executed here.
 
 ## Purpose
 The map is the design the code follows (`bbc.md`): it was approved before the code existed. This command
 reads the code and says where it does not follow the map — nothing else. The rules of the set on how
-code is written are `/x-audit-code`'s; this one checks only what the map promises. **It fixes nothing:**
+code is written are `/dev:x-audit-code`'s; this one checks only what the map promises. **It fixes nothing:**
 its findings make a report, and one feature fixes them.
 
 ## Steps
@@ -82,12 +82,12 @@ git commit -m "docs(bbc): audit of the code against the map YYYY-MM-DD"
 Only these files; other pending changes stay as they are, and the report names them.
 
 ### 7. STOP
-The findings are fixed by one feature: `/j-new-feature`, its requirements the report; it reads the map in
+The findings are fixed by one feature: `/dev:j-new-feature`, its requirements the report; it reads the map in
 its ANALYZE (`j-new-feature.md` step 6). A finding the user
-decides belongs to the map — the design must change, not the code — goes to `/bbc-refactor` instead.
+decides belongs to the map — the design must change, not the code — goes to `/dev:bbc-refactor` instead.
 
 ## Rules
-- **Only what the map promises**: the set's rules on code are `/x-audit-code`'s.
+- **Only what the map promises**: the set's rules on code are `/dev:x-audit-code`'s.
 - **By reading the code, and with deterministic tools** (`principles.md` 7.1-7.3): the navigation tool and
   the graph of `audit.py`; no grep presented as a finding, no number.
 - **A finding without its evidence is not a finding.**

@@ -1,9 +1,9 @@
 ---
 allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
-description: Debug any problem with Protocol D - MBEL compact version (junior workflow). Uses ~70% fewer tokens than j-debug — prefer this in large context sessions. Same methodology, compressed mindset.
+description: Debug any problem with Protocol D - MBEL compact version (junior workflow). Uses ~70% fewer tokens than /dev:j-debug — prefer this in large context sessions. Same methodology, compressed mindset.
 ---
 
-# j-debug-mb (compact variant of j-debug)
+# /dev:j-debug-mb (compact variant of /dev:j-debug)
 
 This command is identical to **j-debug** — the ONLY difference is the mindset file: it loads the MBEL-compact `debug-protocol-mb.md` (~70% fewer tokens) instead of the verbose `debug-protocol.md`.
 

@@ -130,12 +130,12 @@ internal class CustomerService(
 
 ## 6. The skeleton's blocks
 
-A Kotlin Multiplatform app is the frontend of a backend: `j-new-project` plans its blocks F1-F5, after
+A Kotlin Multiplatform app is the frontend of a backend: `/dev:j-new-project` plans its blocks F1-F5, after
 the backend's. Their form in Kotlin:
 
 | Block | Kotlin (KMP) |
 |---|---|
-| F1 | the Gradle build: `settings.gradle.kts`, `gradle/libs.versions.toml`, `gradle.properties` (`language.md` §5), `build-logic/` with the conventions and the pack's `kmp.quality` and `.editorconfig` as j-setup copied them; `core` (`AppResult`, `AppError`, `ErrorCode`), `api-contract`, `test-support`, `architecture` (`testing.md` §5). RED: the Konsist rules on the first module |
+| F1 | the Gradle build: `settings.gradle.kts`, `gradle/libs.versions.toml`, `gradle.properties` (`language.md` §5), `build-logic/` with the conventions and the pack's `kmp.quality` and `.editorconfig` as /dev:j-setup copied them; `core` (`AppResult`, `AppError`, `ErrorCode`), `api-contract`, `test-support`, `architecture` (`testing.md` §5). RED: the Konsist rules on the first module |
 | F2 | the generated client: `openapi/<project>.json`, `kmp.openapi`, the models in `core`, `api-client`, `sharedLogic`'s `ShopApi` and the engine of each target (`client.md` §1-2). RED: `ShopApiTest` on `MockEngine` |
 | F3 | the domain: the first entity's contracts, its service, the adapter over sharedLogic, the Koin module (`app.md` §4); the fakes in `test-support`. RED: the service's suite (`testing.md` §3) |
 | F4 | the first entity's screens: the feature (ViewModel, screen, module), `ui-kit`, `sharedUI` with the `NavDisplay` and the composition root, the four entry points and their settings (`app.md` §2-5). RED: the ViewModel's suite, the screen's UI test, the Koin graph test |

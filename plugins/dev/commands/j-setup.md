@@ -1,6 +1,6 @@
 ---
 allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
-description: Setup/validate Junior workflow settings for this project. On an existing project it wires ai-agent in — detects language, stack, commands, ports, the mindsets profile and the lint gate, and writes j-settings.md. On a project not created yet it writes the base j-settings.md and leaves the rest to j-new-project. MUST run first before any other j-* command.
+description: Setup/validate Junior workflow settings for this project. On an existing project it wires ai-agent in — detects language, stack, commands, ports, the mindsets profile and the lint gate, and writes j-settings.md. On a project not created yet it writes the base j-settings.md and leaves the rest to /dev:j-new-project. MUST run first before any other j-* command.
 ---
 
 ## Purpose
@@ -14,18 +14,18 @@ never "not known".
 ## Steps
 
 ### 0. Secrets and MCP servers: asked here, run from here
-j-setup is the entry point: it asks about the two commands that come with it — fundamental, neither
-required — and runs the ones the user wants. Called by `j-new-project` or `bbc-core` with a profile, this step is
+/dev:j-setup is the entry point: it asks about the two commands that come with it — fundamental, neither
+required — and runs the ones the user wants. Called by `/dev:j-new-project` or `/dev:bbc-core` with a profile, this step is
 skipped: the questions were asked when its base settings were written.
 ```bash
 [ -e .git/git-crypt ] && echo "SECRETS_READY"
-cat .mcp.json opencode.jsonc 2>/dev/null   # the project's servers, for either host: j-mcp-setup's PROJECT_CFG
+cat .mcp.json opencode.jsonc 2>/dev/null   # the project's servers, for either host: /dev:j-mcp-setup's PROJECT_CFG
 python3 -c "
 import json, os
 for path, key in (('~/.claude.json', 'mcpServers'), ('~/.config/opencode/opencode.json', 'mcp')):
     try: print(path, sorted(json.load(open(os.path.expanduser(path))).get(key, {})))
     except (OSError, ValueError): pass
-"   # the user-wide ones, by name: j-mcp-setup's PROFILE_CFG
+"   # the user-wide ones, by name: /dev:j-mcp-setup's PROFILE_CFG
 for tool in npx uvx bunx ast-grep; do command -v "$tool" >/dev/null 2>&1 && echo "$tool: ok" || echo "$tool: missing"; done
 ```
 These are the minimum development tools: the MCP servers start through the runners (`npx` for
@@ -33,15 +33,15 @@ cvm, chrome-devtools and the framework servers, `uvx` for ui-ticket-mcp, `bunx` 
 the lint gate runs `ast-grep` (step 7 installs it).
 Ask with AskUserQuestion, one question each, only for what is missing:
 - **Secrets** (no git-crypt yet): set up `.00-secrets/`, encrypted in git? Yes → run
-  `/j-init-secrets` now, to its end, then come back here.
+  `/dev:j-init-secrets` now, to its end, then come back here.
 - **MCP servers** (no CVM, or no code-navigation server, or a runner missing): configure them, with
-  the missing runners? Yes → `/j-mcp-setup` installs the runners and the servers; it runs
+  the missing runners? Yes → `/dev:j-mcp-setup` installs the runners and the servers; it runs
   after step 3, once the language is known, so its catalog offers the servers of that language; on a
   project to create it runs during step 15, before code navigation is detected, with the language the
   user gives.
 
 - **CI/CD** (no `@production-branch` yet, a remote `origin`): a `production` branch, a pull request to it that runs the
-  final gate, a deploy when it is merged? Yes → `/j-ci-setup` runs after step 12, once `@gate-final` exists; on a project to
+  final gate, a deploy when it is merged? Yes → `/dev:j-ci-setup` runs after step 12, once `@gate-final` exists; on a project to
   create it runs after the first plan, and step 17 names it.
 
 What the user declines is named in the report.
@@ -103,7 +103,7 @@ lint configuration files to the plugin's pack.
 ```bash
 ls -la j-settings.md 2>/dev/null
 ```
-**Called by `j-new-project` or `bbc-core` with a profile → PROFILE GIVEN (step 18).** Otherwise, **j-settings.md
+**Called by `/dev:j-new-project` or `/dev:bbc-core` with a profile → PROFILE GIVEN (step 18).** Otherwise, **j-settings.md
 exists → VALIDATE MODE (step 20)**; neither → continue.
 
 ### 2. Existing project or project to create
@@ -132,7 +132,7 @@ A monorepo has one language per component — the backend, each frontend — and
 own keys (`@lint-<component>`, `@test-focused-<component>`, `@test-block-<component>`).
 
 ### 3b. MCP servers, when the user asked for them in step 0
-Run `/j-mcp-setup` with the language from step 3. Its configuration is read again in step 9.
+Run `/dev:j-mcp-setup` with the language from step 3. Its configuration is read again in step 9.
 
 ### 4. Folders
 ```bash
@@ -183,7 +183,7 @@ no `@lint-<component>`, no configuration files, no `sgconfig.yml` line; the repo
    written as the overlay says, asking first when it changes a file of the project.
 5. When a component has `ast_grep: true`, `ast-grep` must answer `ast-grep --version`; when it does
    not, install it with `npm i -g @ast-grep/cli` and check it again; without `npm`, Node.js is installed
-   first, as `j-mcp-setup` installs its runners. The gate `@lint-astgrep` runs it by name, without `externals/`:
+   first, as `/dev:j-mcp-setup` installs its runners. The gate `@lint-astgrep` runs it by name, without `externals/`:
    `ast-grep scan --globs '!externals/**'`.
 
 6. The project's own scripts, tracked `*.sh` or `*.ps1` files (`git ls-files`), are a component of their own, with no
@@ -203,13 +203,13 @@ each such language's `${CLAUDE_PLUGIN_ROOT}/lint-rules/<language>/ast-grep/` →
 ### 8. Test levels
 The keys of `## Tests — by level` in step 11, in the forms the language's overlay gives
 (`overlays/<language>/tddab.md` §1) on the solution or the package the scan found (`language.md` §7). `@test-e2e` is the end-to-end run where the project has one — it starts by itself what it needs,
-the backend and its storage, so `j-close`, `j-deploy` and the pipeline run it as it is — `@bench` the run of
+the backend and its storage, so `/dev:j-close`, `/dev:j-deploy` and the pipeline run it as it is — `@bench` the run of
 a benchmarks project where there is one; otherwise `none`. `@gate-final` writes out, in order, each
 component's lint, `@lint-astgrep`, `@test-slow`, each frontend's build, `@test-e2e` and `@bench`,
 leaving out the ones that are `none`.
 
 The command that starts each component, `@start-<component>` in `## Run`, in the form the language's
-overlay gives (`language.md` §7): `j-debug` starts the services with it. A component nothing starts, a
+overlay gives (`language.md` §7): `/dev:j-debug` starts the services with it. A component nothing starts, a
 library, has `@start-<component>: none`: decided, there is none.
 
 What a test level's command needs in the project, when the language's §7 names it under **The test
@@ -225,9 +225,9 @@ ls -la tools/deploy* scripts/deploy* deploy* Dockerfile compose.yaml docker-comp
 ls -la .github/workflows/ .gitlab-ci.yml Jenkinsfile 2>/dev/null
 ls -la tools/backup* scripts/backup* tools/restore* scripts/restore* 2>/dev/null
 ```
-Code navigation — the one rule for `@code-nav-local` and `@code-nav-external` (`j-mcp-setup` applies
+Code navigation — the one rule for `@code-nav-local` and `@code-nav-external` (`/dev:j-mcp-setup` applies
 the same): from the servers configured in the project and for the user — step 0 lists them, from
-`j-mcp-setup`'s PROJECT_CFG and PROFILE_CFG of the host in use — lsai → `lsai`, else vs-mcp → `vs-mcp`, else `grep`; xmp4 → `xmp4`, else
+`/dev:j-mcp-setup`'s PROJECT_CFG and PROFILE_CFG of the host in use — lsai → `lsai`, else vs-mcp → `vs-mcp`, else `grep`; xmp4 → `xmp4`, else
 `none`. The search scope for `code-navigation.md`: `@own-code-roots` = the project's source and test
 folders plus the base library's path when it is a submodule (its capabilities are searched before
 writing; a package is searched with `@code-nav-external`), and
@@ -269,7 +269,7 @@ the scan or the answers, the unknown ones left out.
 
 ```markdown
 # Junior Workflow Settings
-# Generated by j-setup on YYYY-MM-DD — run j-setup again to update
+# Generated by /dev:j-setup on YYYY-MM-DD — run /dev:j-setup again to update
 
 ## Project
 @language: {the overlay folder's name, or the language the user named}   # one key per component in a monorepo: @language-backend, @language-frontend
@@ -321,7 +321,7 @@ the scan or the answers, the unknown ones left out.
 @restore-script: {path|none}
 
 ## CI/CD
-@production-branch: {production | none} # /j-ci-setup writes this section
+@production-branch: {production | none} # /dev:j-ci-setup writes this section
 @ci-merge: {auto|manual}
 @ci-platform: {github|gitlab}
 
@@ -346,7 +346,7 @@ Other pending changes stay as they are, and the report names them.
 ### 13. Report
 What was detected, what the user provided, the mindsets profile with the files it loads, the base
 library, the lint gate, what was left out and why, and what the user declined in step 0 — secrets
-(`/j-init-secrets`), MCP servers and ChromeDevTools (`/j-mcp-setup`). After `/j-mcp-setup` the agent
+(`/dev:j-init-secrets`), MCP servers and ChromeDevTools (`/dev:j-mcp-setup`). After `/dev:j-mcp-setup` the agent
 is restarted to load the new servers. Then: the next command of the work (`junior.md`).
 
 ---
@@ -360,37 +360,37 @@ Only what holds before any code exists:
 - folders: `@tasks: tasks/`;
 - methodology: `@backend-method` (asked: TDDAB by default);
 - base library: asked — is there a library the new project will build on? → `@base-library`;
-- code navigation, detected as in step 9 — after `/j-mcp-setup`, when the user asked for it in step 0
+- code navigation, detected as in step 9 — after `/dev:j-mcp-setup`, when the user asked for it in step 0
   (it asks the language the project will have).
 
 Language, mindsets branches and overlay, lint, test levels, deploy are left out:
-`j-new-project` decides them while it designs the project and writes them into this file, lint gate
+`/dev:j-new-project` decides them while it designs the project and writes them into this file, lint gate
 included.
 
 ### 16. Write and commit
 `j-settings.md` with the sections above that have values, and the header line
-`# Base settings — j-new-project completes them`. Commit it alone:
+`# Base settings — /dev:j-new-project completes them`. Commit it alone:
 `git add j-settings.md .claude/settings.json <what step 0b wrote> && git commit -m "chore(j-setup): base settings"`.
 
 ### 17. Report
-The base settings, the keys left for `j-new-project`, what the user declined in step 0, and the next
-command: `j-new-project` — or `/bbc-analyze`, for a project designed as black boxes; with the CI/CD asked for in step 0, `/j-ci-setup` after its first plan.
+The base settings, the keys left for `/dev:j-new-project`, what the user declined in step 0, and the next
+command: `/dev:j-new-project` — or `/dev:bbc-analyze`, for a project designed as black boxes; with the CI/CD asked for in step 0, `/dev:j-ci-setup` after its first plan.
 
 ---
 
-## PROFILE GIVEN (called by j-new-project or bbc-core)
+## PROFILE GIVEN (called by /dev:j-new-project or /dev:bbc-core)
 
 ### 18. Complete the settings from the profile
-`j-new-project` — or `bbc-core`, for a project designed as black boxes — hands over what it decided with the user: the project's name, language, kind, the
+`/dev:j-new-project` — or `/dev:bbc-core`, for a project designed as black boxes — hands over what it decided with the user: the project's name, language, kind, the
 mindsets branches and overlay files, the base library, the exposure. Nothing is scanned and nothing is asked again:
 1. Write the keys of step 11 from the profile into `j-settings.md` — the test levels in the forms of
    the language's overlay (step 8) — keeping the base settings already there; the header line
-   `# Base settings — j-new-project completes them` goes.
+   `# Base settings — /dev:j-new-project completes them` goes.
 2. Wire the lint gate with step 7 for each component's language — the native configuration files go
    where its §7 says, in the repository of the project to come, except for a component its §7 says gets them
    after its scaffold: there the keys are written now, and the files come with its first block — and
    `ast-grep` is installed when missing.
-3. Report what was written. The command that called — `j-new-project` or `bbc-core` — commits it with its plan.
+3. Report what was written. The command that called — `/dev:j-new-project` or `/dev:bbc-core` — commits it with its plan.
 
 ---
 
@@ -446,4 +446,4 @@ scratch (delete `j-settings.md` and go to step 2). Kept → what the repairs cha
 - **Propose, then confirm** before writing.
 - **Keep the user's edits** in validate mode.
 - It writes `j-settings.md`, `sgconfig.yml`, the lint configuration files and what the test levels need
-  (step 8), and commits exactly those — in PROFILE GIVEN the command that called (`j-new-project`, `bbc-core`) commits them with its plan.
+  (step 8), and commits exactly those — in PROFILE GIVEN the command that called (`/dev:j-new-project`, `/dev:bbc-core`) commits them with its plan.

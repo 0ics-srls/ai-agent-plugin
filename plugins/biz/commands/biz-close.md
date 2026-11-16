@@ -47,9 +47,9 @@ Then classify into one of these categories:
 | **Timing** | Too early, too late, or market conditions changed |
 | **Resources** | Can't commit the time/money/team needed |
 | **Passion** | Lost interest, not excited enough to push through hard times |
-| **Pivot** | Idea evolved into something else (suggest `biz-pivot` instead) |
+| **Pivot** | Idea evolved into something else (suggest `/biz:biz-pivot` instead) |
 
-If the user says "pivot" - suggest using `biz-pivot` instead and stop.
+If the user says "pivot" - suggest using `/biz:biz-pivot` instead and stop.
 
 ### 4. Capture Lessons Learned
 
@@ -110,7 +110,7 @@ Update activeContext.md with closure activity. If this was the current focus ide
 ## Rules
 - NEVER delete any files. Closing preserves everything - it just marks the idea as done.
 - Be respectful. Killing an idea isn't failure - it's good judgment.
-- If user seems to be closing out of frustration rather than reason, gently ask if they want to `biz-pivot` or just take a break instead.
+- If user seems to be closing out of frustration rather than reason, gently ask if they want to `/biz:biz-pivot` or just take a break instead.
 - Connect lessons learned to other active ideas when relevant.
-- If closing the last/only active idea, encourage `biz-capture` for new ideas rather than leaving on a negative note.
+- If closing the last/only active idea, encourage `/biz:biz-capture` for new ideas rather than leaving on a negative note.
 - Update Memory Bank with closure activity

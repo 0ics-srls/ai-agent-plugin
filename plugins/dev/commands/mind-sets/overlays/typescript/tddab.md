@@ -110,7 +110,7 @@ test("a page of rows from the server, the largest amounts first when sorted down
 
 ## 6. The skeleton's blocks
 
-The form in TypeScript of each frontend block of the skeleton `j-new-project` plans, one set per
+The form in TypeScript of each frontend block of the skeleton `/dev:j-new-project` plans, one set per
 application:
 
 | Block | TypeScript |

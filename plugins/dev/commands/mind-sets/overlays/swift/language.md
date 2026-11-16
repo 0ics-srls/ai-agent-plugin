@@ -79,7 +79,7 @@ the mapper of each form, and the hand practice it replaces:
   where the value is used;
 - the database: SwiftData's models — not rows or dictionaries read by key.
 
-## 7. What j-setup and j-new-project read in a Swift project
+## 7. What /dev:j-setup and /dev:j-new-project read in a Swift project
 
 - **Recognized by**: `Package.swift`; an app by its `.xcodeproj` (or a project generator's file) with a
   SwiftUI `App`.
@@ -92,7 +92,7 @@ the mapper of each form, and the hand practice it replaces:
   | `tddab.md` | the TDDAB plans, with `tddab-planner.md` |
   | `app.md` | `branches/frontend.md`, `branches/data.md`, `branches/security.md`: an app |
 
-- **What LISTEN asks** (`j-new-project`): what is built — an iOS app, a macOS app, a library, a
+- **What LISTEN asks** (`/dev:j-new-project`): what is built — an iOS app, a macOS app, a library, a
   command-line tool; for an app, the backend whose OpenAPI document the client is generated from, and
   whether it keeps data on the device.
 - **The lint gate**: the manifest's `native_lint`, run from the folder of `Package.swift`; the pack
@@ -101,5 +101,5 @@ the mapper of each form, and the hand practice it replaces:
 - **The test levels**: the keys of `tddab.md` §1.
 - **The start command**: a tool `swift run <product>`; an app from Xcode, or `xcodebuild` and the
   simulator.
-- **Where its errors show** (`j-debug`): the build's output; the failed test's output; the unified log
+- **Where its errors show** (`/dev:j-debug`): the build's output; the failed test's output; the unified log
   (`log stream --predicate 'subsystem == "<subsystem>"'`, Console.app); for an app, Xcode's console.

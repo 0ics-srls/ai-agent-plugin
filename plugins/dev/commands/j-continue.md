@@ -5,7 +5,7 @@ description: Continue existing work (junior workflow). Resumes a feature or a bu
 
 ## Prerequisites
 - Read the Memory Bank (skip the subdirectories) if not already done this session.
-- `j-settings.md` at the repository root (missing → run `/j-setup` first).
+- `j-settings.md` at the repository root (missing → run `/dev:j-setup` first).
 - If not read this session: `${CLAUDE_PLUGIN_ROOT}/commands/mind-sets/junior.md` and
   `${CLAUDE_PLUGIN_ROOT}/commands/mind-sets/development-workflow.md` — the phases, and what each one leaves.
 
@@ -20,7 +20,7 @@ Not on a `feature/*` or `bugfix/*` branch → ask with AskUserQuestion which wor
 ### 2. State from the Memory Bank
 From `activeContext.md`:
 - `@state` — the phase: LISTEN, ANALYZE, INVENTORY, PROPOSE, PLAN, DIAGNOSE, DEVELOP, CLOSE, DEPLOY, or
-  IDLE — no work in progress: say so, and name `j-new-feature`, `j-bug`, `j-poc`; STOP;
+  IDLE — no work in progress: say so, and name `/dev:j-new-feature`, `/dev:j-bug`, `/dev:j-poc`; STOP;
 - `@feature` or `@bug` — the task, whichever exists;
 - `@branch`.
 
@@ -31,7 +31,7 @@ From `activeContext.md`:
 - Nothing exists:
   ```
   Invalid state in Memory Bank.
-  Use j-status to see what's there, or j-new-feature to start fresh.
+  Use /dev:j-status to see what's there, or /dev:j-new-feature to start fresh.
   ```
   STOP.
 
@@ -67,11 +67,11 @@ Want to continue from here or do you have updates?
 
 ### 6. Resume
 Updates from the user → listen. Confirmed → resume the phase, as the command that owns it says
-(`j-new-project` for `01-scaffold`, `j-new-feature` for a feature, `j-bug` for a bug; CLOSE is
-`j-close`'s, DEPLOY `j-deploy`'s). A task whose `notes.md` has `## BB scope` is a black-box work: its
-phases are resumed as the command of its `Flow:` line says (`bbc-core`, `bbc-plan`, `bbc-refactor`,
-`bbc-integrate`, `bbc-e2e`; `bbc-plan` when the line is missing), with the BB's scope (`bbc.md` §3); a bug whose `bug-notes.md`
-says `Flow: bbc-debug` keeps its ISOLATE on the map (`bbc-debug` step 6). Resuming is entering the phase: whatever was in context when the work
+(`/dev:j-new-project` for `01-scaffold`, `/dev:j-new-feature` for a feature, `/dev:j-bug` for a bug; CLOSE is
+`/dev:j-close`'s, DEPLOY `/dev:j-deploy`'s). A task whose `notes.md` has `## BB scope` is a black-box work: its
+phases are resumed as the command of its `Flow:` line says (`/dev:bbc-core`, `/dev:bbc-plan`, `/dev:bbc-refactor`,
+`/dev:bbc-integrate`, `/dev:bbc-e2e`; `/dev:bbc-plan` when the line is missing), with the BB's scope (`bbc.md` §3); a bug whose `bug-notes.md`
+says `Flow: /dev:bbc-debug` keeps its ISOLATE on the map (`/dev:bbc-debug` step 6). Resuming is entering the phase: whatever was in context when the work
 stopped is gone.
 
 **LISTEN** — show what `## Requirements` (or `## Problem`) already holds, and go on listening until the
@@ -126,7 +126,7 @@ exists it costs a block, and once the code exists there are two implementations 
 repairs them. The worst copy is the one written during a clean-up of duplicates.
 
 PROPOSE presents this section together with `## Code Organization` and asks, in so many words:
-is this what we reuse? The plan then executes it without re-deciding it, and j-review-plan
+is this what we reuse? The plan then executes it without re-deciding it, and /dev:j-review-plan
 refuses a plan whose block rewrites a capability this section had already located.
 ```
 ```
@@ -161,11 +161,11 @@ planner of the plan's type, in full (`tddab-planner.md` with the language's `tdd
 **DIAGNOSE** — re-read `mind-sets/debug-protocol.md` and continue Protocol D from the last step written
 in `bug-notes.md`.
 
-**DEVELOP** — `/j-cvm-exec-plan`: it resumes the execution from the blocks already completed.
+**DEVELOP** — `/dev:j-cvm-exec-plan`: it resumes the execution from the blocks already completed.
 
-**CLOSE** — `/j-close`, from its step 1: it checks again what is done. **DEPLOY** — `/j-deploy`.
+**CLOSE** — `/dev:j-close`, from its step 1: it checks again what is done. **DEPLOY** — `/dev:j-deploy`.
 
 ## Rules
 - Always read `j-settings.md` and the Memory Bank before anything.
 - Never assume — if unclear, ask with AskUserQuestion.
-- Remind the user to save (`j-save`) before leaving.
+- Remind the user to save (`/dev:j-save`) before leaving.

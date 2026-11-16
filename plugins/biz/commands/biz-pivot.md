@@ -74,7 +74,7 @@ Determine what from the original idea still applies:
 If enough carries over to skip a stage, suggest it:
 ```
 The market research from IDEA-{parent} still applies to this pivot.
-I suggest we start from `biz-validate` instead of `biz-research`.
+I suggest we start from `/biz:biz-validate` instead of `/biz:biz-research`.
 ```
 
 ### 6. Update Registry
@@ -131,6 +131,6 @@ Update activeContext.md with pivot activity. Update productContext.md if this ch
 ## Rules
 - NEVER delete the original idea's files - they're history
 - Be honest about what carries over and what doesn't. A customer pivot invalidates most market research. A solution pivot might keep it all.
-- If the pivot is so radical that nothing carries over, say so - it might be better to just `biz-capture` a new idea
+- If the pivot is so radical that nothing carries over, say so - it might be better to just `/biz:biz-capture` a new idea
 - Don't let the user pivot to avoid killing a bad idea. If the core problem is weak, pivoting the solution won't fix it.
 - Update Memory Bank with pivot activity

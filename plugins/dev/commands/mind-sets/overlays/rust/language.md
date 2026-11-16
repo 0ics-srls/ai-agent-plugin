@@ -89,7 +89,7 @@ the mapper of each form, and the hand practice it replaces:
 - performance, only on the user's request: a borrowed `Value` or a streaming reader by hand, in one
   reader.
 
-## 7. What j-setup and j-new-project read in a Rust project
+## 7. What /dev:j-setup and /dev:j-new-project read in a Rust project
 
 - **Recognized by**: `Cargo.toml`; its `[dependencies]` say the frameworks and the branches.
 - **The files of this overlay, with the branches**:
@@ -101,14 +101,14 @@ the mapper of each form, and the hand practice it replaces:
   | `tddab.md` | the TDDAB plans, with `tddab-planner.md` |
   | `service.md` | `branches/service-layers.md`, `branches/api.md`, `branches/data.md`, `branches/resilience.md`, `branches/operations.md`, `branches/security.md`: a service |
 
-- **What LISTEN asks** (`j-new-project`): what is built — a library, a command-line tool, a service — and what
+- **What LISTEN asks** (`/dev:j-new-project`): what is built — a library, a command-line tool, a service — and what
   it talks to.
 - **The lint gate**: the manifest's `native_lint`, run from the folder of the root `Cargo.toml`; §5 says where
   the pack's files go.
 - **Vendored** (`@vendored-globs`): `target/`.
 - **The test levels**: the keys of `tddab.md` §1.
 - **The start command**: `cargo run -p <the binary's package>`.
-- **Where its errors show** (`j-debug`): the compiler's and Clippy's output; a panic's backtrace with
+- **Where its errors show** (`/dev:j-debug`): the compiler's and Clippy's output; a panic's backtrace with
   `RUST_BACKTRACE=1`; the log, its level set by `RUST_LOG`.
 - **Code navigation**: what a `derive` or a procedural macro generates may be missing from the index: confirm it
   in the source or with `cargo expand` before calling it absent (`code-navigation.md`).

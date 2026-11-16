@@ -143,7 +143,7 @@ func _write(level: Level, event: String, context: Dictionary[String, Variant]) -
 ## 5. Project and build
 
 - `project.godot` is the pack's for its `[debug]` section (`${CLAUDE_PLUGIN_ROOT}/lint-rules/gdscript/native/project.godot`,
-  which j-setup copies or merges): the GDScript warnings that find a defect at error, the others off —
+  which /dev:j-setup copies or merges): the GDScript warnings that find a defect at error, the others off —
   unused names and style find none; `directory_rules` keeps the engine's
   default, which silences `res://addons`. The Godot version is the project's feature tag
   (`config/features=PackedStringArray("4.7")`); every developer and the CI run the same 4.7.x binary.
@@ -222,7 +222,7 @@ func player_health() -> int:
   `config.get_value(section, key, default)` where the value is used, where a key mistyped yields the
   default in silence.
 
-## 7. What j-setup and j-new-project read in a Godot project
+## 7. What /dev:j-setup and /dev:j-new-project read in a Godot project
 
 - **Recognized by**: `project.godot`. The branches: `game` always; `data`, `api`, `resilience`,
   `security` only if the game has a storage of its own or talks to a service.
@@ -234,7 +234,7 @@ func player_health() -> int:
   | `testing.md` | every Godot project |
   | `tddab.md` | the TDDAB plans, with `tddab-planner.md` |
   | `godot.md` | `branches/game.md` |
-- **What LISTEN asks** (`j-new-project`): 2D or 3D; the target platforms (desktop, mobile, web); the
+- **What LISTEN asks** (`/dev:j-new-project`): 2D or 3D; the target platforms (desktop, mobile, web); the
   first mechanic — the rule the first playable scene shows.
 - **The lint gate**: the manifest's `native_lint`, run from the folder of `project.godot`; the pack's
   `project.godot` (its `[debug]` section merged into the project's, asking first) and `gdlintrc` go
@@ -243,6 +243,6 @@ func player_health() -> int:
 - **The test levels**: the keys of `tddab.md` §1.
 - **The start command**: `godot --path .` (the editor: `godot --path . --editor`); headless, the main
   scene runs with `godot --headless --path .`.
-- **Where its errors show** (`j-debug`): the engine's output in the terminal that started it, with the
+- **Where its errors show** (`/dev:j-debug`): the engine's output in the terminal that started it, with the
   GDScript backtrace of a `push_error`; `user://logs/godot.log` (on Linux
   `~/.local/share/godot/app_userdata/<project>/logs/`); the gdUnit4 run's report.

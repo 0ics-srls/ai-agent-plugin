@@ -5,7 +5,7 @@ description: Show current status (junior workflow). Shows branch, state, progres
 
 ## Prerequisites
 - Read the Memory Bank (skip the subdirectories) if not already done this session.
-- `j-settings.md` at the repository root (missing → run `/j-setup` first).
+- `j-settings.md` at the repository root (missing → run `/dev:j-setup` first).
 - If not read this session: `${CLAUDE_PLUGIN_ROOT}/commands/mind-sets/junior.md`
 
 ## Steps
@@ -51,7 +51,7 @@ STATE:
 [LISTEN/ANALYZE/INVENTORY/PROPOSE/PLAN/DIAGNOSE/DEVELOP/CLOSE/DEPLOY or IDLE]
 
 [If mismatch found:]
-⚠️ MB says branch X but you're on Y - run j-continue to sync
+⚠️ MB says branch X but you're on Y - run /dev:j-continue to sync
 
 DONE:
 - [list of completed items]
@@ -63,14 +63,14 @@ LAST MB UPDATE:
 [when was MB last updated]
 
 === AVAILABLE COMMANDS ===
-j-continue  → continue working
-j-save      → save and leave
-j-close     → close the feature or the bug, and deploy
-j-setup     → change project settings
-j-help      → show all commands
+/dev:j-continue  → continue working
+/dev:j-save      → save and leave
+/dev:j-close     → close the feature or the bug, and deploy
+/dev:j-setup     → change project settings
+/dev:j-help      → show all commands
 ```
 
 ## Rules
 - This command is read-only, does not modify anything
 - If MB is empty/outdated, suggest updating it
-- If j-settings.md is missing, suggest running j-setup
+- If j-settings.md is missing, suggest running /dev:j-setup

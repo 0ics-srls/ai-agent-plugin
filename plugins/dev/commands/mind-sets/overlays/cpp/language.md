@@ -78,7 +78,7 @@ the mapper of each form, and the hand practice it replaces:
 - every other form: one adapter per format that maps into the structs, and its parsed tree stays in
   it.
 
-## 7. What j-setup and j-new-project read in a C++ project
+## 7. What /dev:j-setup and /dev:j-new-project read in a C++ project
 
 - **Recognized by**: `CMakeLists.txt` whose `project()` names `CXX`, with `*.cpp`/`*.hpp` sources;
   `cmake/dependencies.cmake` says the test framework. A Godot extension (`godot-cpp`) has its game in
@@ -91,7 +91,7 @@ the mapper of each form, and the hand practice it replaces:
   | `testing.md` | every C++ project |
   | `tddab.md` | the TDDAB plans, with `tddab-planner.md` |
 
-- **What LISTEN asks** (`j-new-project`): what is built — a library, a command-line tool, an
+- **What LISTEN asks** (`/dev:j-new-project`): what is built — a library, a command-line tool, an
   extension; the test framework — GoogleTest with GoogleMock, or Catch2 with trompeloeil.
 - **The lint gate**: the manifest's `native_lint`, run from the folder of `CMakeLists.txt`; the pack's
   `.clang-tidy`, `CMakePresets.json` and `cmake/lint-gate.cmake` go to that folder.
@@ -99,5 +99,5 @@ the mapper of each form, and the hand practice it replaces:
 - **The test levels**: the keys of `tddab.md` §1.
 - **The start command**: `cmake --build --preset debug` and the program from `build/debug/`; a library
   has none.
-- **Where its errors show** (`j-debug`): the build's output (compiler and clang-tidy); the failed
+- **Where its errors show** (`/dev:j-debug`): the build's output (compiler and clang-tidy); the failed
   test's output; the sanitizers' report of the `asan` run; the program's log.

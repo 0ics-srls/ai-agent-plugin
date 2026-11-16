@@ -1,11 +1,11 @@
 ---
 allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
-description: Generate the manual E2E checklist from the use cases (junior workflow). Writes tests/e2e-manual/template.md — the scenarios j-e2e runs by hand in the browser through ChromeDevTools — from the tasks' requirements and the Memory Bank's productContext. Works on any web project, with or without automated end-to-end tests. Use before j-e2e, or when user says generate tests, crea test, vygeneruj testy.
+description: Generate the manual E2E checklist from the use cases (junior workflow). Writes tests/e2e-manual/template.md — the scenarios /dev:j-e2e runs by hand in the browser through ChromeDevTools — from the tasks' requirements and the Memory Bank's productContext. Works on any web project, with or without automated end-to-end tests. Use before /dev:j-e2e, or when user says generate tests, crea test, vygeneruj testy.
 ---
 
 ## Prerequisites
 - Read the Memory Bank (skip the subdirectories) if not already done this session.
-- `j-settings.md` at the repository root (missing → run `/j-setup` first).
+- `j-settings.md` at the repository root (missing → run `/dev:j-setup` first).
 - If not read this session: `${CLAUDE_PLUGIN_ROOT}/commands/mind-sets/junior.md`
 
 ## Purpose
@@ -24,7 +24,7 @@ works on a project that has no automated end-to-end tests at all. Its sources:
 - `memory-bank/productContext.md` (features list)
 
 ### 2. How the application is reached
-The checklist's header carries what `j-e2e` needs to reach the application, so no setting holds it:
+The checklist's header carries what `/dev:j-e2e` needs to reach the application, so no setting holds it:
 - **URLs** — the frontend's and the backend's health check, read from the project (the start
   scripts, the launch settings, the dev-server configuration) or asked with AskUserQuestion;
 - **login** — none, a credentials form, or a provider (OAuth/OIDC), asked with AskUserQuestion when
@@ -125,7 +125,7 @@ Sections:
 
 Total: NN test cases
 
-Run `j-e2e` to execute them.
+Run `/dev:j-e2e` to execute them.
 ```
 
 ## Rules

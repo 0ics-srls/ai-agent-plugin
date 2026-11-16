@@ -44,11 +44,11 @@ The smallest code that makes the RED pass, typed, through the gate (`language.md
 
 ## 6. The skeleton's blocks
 
-The form in PHP of each block of the skeleton `j-new-project` plans; the frameworks are the project's, chosen in LISTEN.
+The form in PHP of each block of the skeleton `/dev:j-new-project` plans; the frameworks are the project's, chosen in LISTEN.
 
 | Block | PHP |
 |---|---|
-| 1 | `composer init`; the pack's files as j-setup placed them; the contracts and the errors (`language.md` §1, §3). RED: the first contract's test |
+| 1 | `composer init`; the pack's files as /dev:j-setup placed them; the contracts and the errors (`language.md` §1, §3). RED: the first contract's test |
 | 2 | the code that talks to the outside, for the first entity, written once; its tests on the real thing |
 | 3 | the logic of the first entity on the contracts; the fakes and the tests on them |
 | 4 | the transport the project has, on the logic: validation at the boundary, the errors mapped once, serialization as is (`language.md` §6) |

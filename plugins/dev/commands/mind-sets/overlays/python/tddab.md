@@ -48,12 +48,12 @@ The smallest code that makes the RED pass, typed, through the gate (`language.md
 
 ## 6. The skeleton's blocks
 
-The form in Python of each block of the skeleton `j-new-project` plans; the frameworks are the
+The form in Python of each block of the skeleton `/dev:j-new-project` plans; the frameworks are the
 project's, chosen in LISTEN.
 
 | Block | Python |
 |---|---|
-| 1 | `uv init --package`; the pack's `ruff.toml`, `mypy.ini`, `pytest.ini` as j-setup copied them; the contracts (`Protocol`s) and the errors (`language.md` §1, §3). RED: the first contract's test |
+| 1 | `uv init --package`; the pack's `ruff.toml`, `mypy.ini`, `pytest.ini` as /dev:j-setup copied them; the contracts (`Protocol`s) and the errors (`language.md` §1, §3). RED: the first contract's test |
 | 2 | the storage: the first entity, the implementation of its contract written once, its tests in `tests/integration/` on the real store |
 | 3 | the domain: the first entity's service on the contracts; `tests/unit/doubles.py` and the service's tests |
 | 4 | the transport the project has, on the domain: validation at the boundary, the errors mapped once, serialization as is (`language.md` §6) |

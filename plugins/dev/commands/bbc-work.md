@@ -1,14 +1,14 @@
 ---
 allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
-description: BBC — delegate the work on one black box to its own git worktree and agent session. It opens the worktree and its branch, writes there the BB's scope and the Memory Bank, and STOPS with the command that opens a session in that folder; there the BB is developed with bbc-plan, and closed with j-close. Several BBs can be delegated at the same time. Use when the user says bbc work, lavora sul BB, delega il BB, or a step of the roadmap sends BBs in parallel.
+description: BBC — delegate the work on one black box to its own git worktree and agent session. It opens the worktree and its branch, writes there the BB's scope and the Memory Bank, and STOPS with the command that opens a session in that folder; there the BB is developed with /dev:bbc-plan, and closed with /dev:j-close. Several BBs can be delegated at the same time. Use when the user says bbc work, lavora sul BB, delega il BB, or a step of the roadmap sends BBs in parallel.
 ---
 
 ## Prerequisites
 1. Read the Memory Bank (skip the subdirectories) if not already done this session.
-2. `j-settings.md` at the repository root (missing → run `/j-setup` first).
+2. `j-settings.md` at the repository root (missing → run `/dev:j-setup` first).
 3. If not read this session: `${CLAUDE_PLUGIN_ROOT}/commands/mind-sets/bbc.md` — §3 point 5, the work in parallel.
-4. The map: `{@tasks}/bbc/BBC-MAP.md` (missing → `/bbc-analyze` first) and the BB the user names —
-   `{@tasks}/bbc/bb/BB<N>-<name>.md`. A BB not on the map → `/bbc-analyze` updates the map first.
+4. The map: `{@tasks}/bbc/BBC-MAP.md` (missing → `/dev:bbc-analyze` first) and the BB the user names —
+   `{@tasks}/bbc/bb/BB<N>-<name>.md`. A BB not on the map → `/dev:bbc-analyze` updates the map first.
 
 ## Purpose
 One BB, one git worktree, one branch, one agent session opened in that folder (`bbc.md` §3.5): the
@@ -22,8 +22,8 @@ The BB from the map, with its status and its contract. The base branch of `@merg
 (`@dev-branch` for `gitflow` and `gitflow-simple`, `@main-branch` otherwise), fetched:
 `git fetch origin <base>`. The worktree starts from it, so what the BB is developed against must
 already be there:
-- the map — `git show origin/<base>:{@tasks}/bbc/BBC-MAP.md`; missing → STOP: `/bbc-analyze` and
-  `/bbc-review` commit on the branch they ran on, and that commit reaches the base first;
+- the map — `git show origin/<base>:{@tasks}/bbc/BBC-MAP.md`; missing → STOP: `/dev:bbc-analyze` and
+  `/dev:bbc-review` commit on the branch they ran on, and that commit reaches the base first;
 - the Core of the contracts, when the roadmap has its step: that step done. A BB delegated before has
   no contract on the base to develop against → STOP, the Core first.
 
@@ -45,7 +45,7 @@ the set of its own submodule.
 
 ### 3. The scope, in the worktree
 In the worktree's folder:
-- `{@tasks}/NN-bb<N>-<name>/notes.md`, with `## BB scope` as `/bbc-plan` step 4 writes it — the BB, its
+- `{@tasks}/NN-bb<N>-<name>/notes.md`, with `## BB scope` as `/dev:bbc-plan` step 4 writes it — the BB, its
   status, its files, its contract, the contracts it uses — and nothing else yet;
 - the Memory Bank's `activeContext.md`: `@state::IDLE`, `@feature::NN-bb<N>-<name>`,
   `@branch::feature/NN-bb<N>-<name>`;
@@ -62,17 +62,17 @@ BB<N>-<name> delegated to <worktree folder>, branch feature/NN-bb<N>-<name>.
 
 Open a session there:   cd <worktree folder> && claude
 In that session:
-  /bbc-plan BB<N>-<name>      the development of the BB
-  /j-cvm-exec-plan            its plan
-  /j-close                    when the BB is done, from the worktree
+  /dev:bbc-plan BB<N>-<name>      the development of the BB
+  /dev:j-cvm-exec-plan            its plan
+  /dev:j-close                    when the BB is done, from the worktree
 ```
-A change of the map — `/bbc-refactor` — is made in the main folder, not in a BB's worktree: it changes
+A change of the map — `/dev:bbc-refactor` — is made in the main folder, not in a BB's worktree: it changes
 the map and the contracts other BBs use.
 
 Every work in the worktree stays on its branch and within the BB's scope: the steps of a command that
-would open another branch are skipped there, as `/bbc-plan` steps 1-3 are. Other BBs can be delegated
-now, each with this command. The integration and the flows are not delegated: `/bbc-integrate` and
-`/bbc-e2e` run in the main folder, once the BBs they compose are merged into the base (`bbc.md` §3.5).
+would open another branch are skipped there, as `/dev:bbc-plan` steps 1-3 are. Other BBs can be delegated
+now, each with this command. The integration and the flows are not delegated: `/dev:bbc-integrate` and
+`/dev:bbc-e2e` run in the main folder, once the BBs they compose are merged into the base (`bbc.md` §3.5).
 
 ## Rules
 - **One worktree, one session**: a BB's work runs only in the session opened in its folder.

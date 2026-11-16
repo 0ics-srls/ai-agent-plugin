@@ -1,12 +1,12 @@
 ---
 allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
-description: Deep MARKET research for a promising idea - competitors, TAM/SAM/SOM, monetization. Use when user says market research, ricerca di mercato, chi sono i competitor, quanto vale il mercato. NOT for fact verification (info-search); for the tech landscape use biz-techscape.
+description: Deep MARKET research for a promising idea - competitors, TAM/SAM/SOM, monetization. Use when user says market research, ricerca di mercato, chi sono i competitor, quanto vale il mercato. NOT for fact verification (/info:info-search); for the tech landscape use /biz:biz-techscape.
 ---
 
 ## Prerequisites
 - If not read this session: `${CLAUDE_PLUGIN_ROOT}/commands/mind-sets/startup-strategist.md`
 - Read the Memory Bank (skip the subdirectories) if not already done this session.
-- Idea should be evaluated first (run `biz-evaluate`)
+- Idea should be evaluated first (run `/biz:biz-evaluate`)
 
 ## What This Command Does
 
@@ -155,7 +155,7 @@ Create `ideas/research/{idea-slug}.md`:
 {Reasoning for verdict}
 
 ## Next Steps
-{If GO}: Run `biz-validate` to test key assumptions
+{If GO}: Run `/biz:biz-validate` to test key assumptions
 {If NO-GO}: Specific reasons why not. Move to parked.
 ```
 
@@ -181,7 +181,7 @@ Key findings:
 
 Verdict: {GO/VALIDATE/NO-GO}
 
-{If GO}: Run `biz-validate` to test assumptions before building.
+{If GO}: Run `/biz:biz-validate` to test assumptions before building.
 ```
 
 ## Rules

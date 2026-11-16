@@ -1,38 +1,38 @@
 ---
 allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
-description: BBC — plan the development of one black box as a feature. From the BB's definition in the map — its responsibility, its contract, its dependencies — the phases of j-new-feature scoped to the BB write a TDDAB plan, the cases of the contract as the tests and the implementation behind it, the other BBs as the fakes of the Core, the Core's contract tests run against the real implementation; the plan is reviewed, then it STOPS and the user triggers j-cvm-exec-plan. Use when the user says bbc plan, sviluppa il BB, pianifica il BB, or names a black box of the roadmap to build.
+description: BBC — plan the development of one black box as a feature. From the BB's definition in the map — its responsibility, its contract, its dependencies — the phases of /dev:j-new-feature scoped to the BB write a TDDAB plan, the cases of the contract as the tests and the implementation behind it, the other BBs as the fakes of the Core, the Core's contract tests run against the real implementation; the plan is reviewed, then it STOPS and the user triggers /dev:j-cvm-exec-plan. Use when the user says bbc plan, sviluppa il BB, pianifica il BB, or names a black box of the roadmap to build.
 ---
 
 ## Prerequisites
 1. Read the Memory Bank (skip the subdirectories) if not already done this session.
-2. `j-settings.md` at the repository root (missing → run `/j-setup` first).
+2. `j-settings.md` at the repository root (missing → run `/dev:j-setup` first).
 3. If not read this session: `${CLAUDE_PLUGIN_ROOT}/commands/mind-sets/junior.md`,
    `${CLAUDE_PLUGIN_ROOT}/commands/mind-sets/development-workflow.md`, `${CLAUDE_PLUGIN_ROOT}/commands/mind-sets/bbc.md` and
    `${CLAUDE_PLUGIN_ROOT}/commands/mind-sets/testing-principles.md`.
 4. `${CLAUDE_PLUGIN_ROOT}/commands/j-new-feature.md`, read in full: this command follows its steps by number.
-5. The map: `{@tasks}/bbc/BBC-MAP.md` (missing → `/bbc-analyze` first) and the BB the user names —
-   `{@tasks}/bbc/bb/BB<N>-<name>.md`. A BB not on the map → `/bbc-analyze` updates the map first. The
-   Core of the contracts is `/bbc-core`'s.
+5. The map: `{@tasks}/bbc/BBC-MAP.md` (missing → `/dev:bbc-analyze` first) and the BB the user names —
+   `{@tasks}/bbc/bb/BB<N>-<name>.md`. A BB not on the map → `/dev:bbc-analyze` updates the map first. The
+   Core of the contracts is `/dev:bbc-core`'s.
 
 ## Purpose
-`/j-new-feature`'s phases, with the scope of one BB (`bbc.md` §3): the work reads and changes the BB's
+`/dev:j-new-feature`'s phases, with the scope of one BB (`bbc.md` §3): the work reads and changes the BB's
 files and uses every other BB through its contract. What it plans is the development of that BB,
 against the Core (`bbc.md` §1.6). **It writes no code:
-`j-cvm-exec-plan` executes the plan.** The task's file is `{@tasks}/NN-<name>/notes.md`.
-`/bbc-core`, `/bbc-refactor`, `/bbc-e2e`, `/bbc-integrate` and `/bbc-debug` follow these steps by number.
+`/dev:j-cvm-exec-plan` executes the plan.** The task's file is `{@tasks}/NN-<name>/notes.md`.
+`/dev:bbc-core`, `/dev:bbc-refactor`, `/dev:bbc-e2e`, `/dev:bbc-integrate` and `/dev:bbc-debug` follow these steps by number.
 
 ## Steps
 
 ### 1-3. Clean state, base branch, branch and folder
-As `/j-new-feature` steps 1-3: the uncommitted changes reviewed and committed, the base branch of
+As `/dev:j-new-feature` steps 1-3: the uncommitted changes reviewed and committed, the base branch of
 `@merge-strategy` pulled, the next `NN`, the name asked and confirmed — `bb<N>-<name>` —
 `feature/NN-<name>` created and pushed, `{@tasks}/NN-<name>/`. In a worktree opened by
-`/bbc-work`, the branch and the folder already exist: these steps are skipped.
+`/dev:bbc-work`, the branch and the folder already exist: these steps are skipped.
 
 ### 4. Notes
-`{@tasks}/NN-<name>/notes.md` as `/j-new-feature` step 4, with one more line under its title —
-`Flow: bbc-plan`, or the name of the command that follows these steps (`bbc-core`, `bbc-refactor`,
-`bbc-integrate`, `bbc-e2e`) — so that `/j-continue` resumes the work with that command, and one more
+`{@tasks}/NN-<name>/notes.md` as `/dev:j-new-feature` step 4, with one more line under its title —
+`Flow: /dev:bbc-plan`, or the name of the command that follows these steps (`/dev:bbc-core`, `/dev:bbc-refactor`,
+`/dev:bbc-integrate`, `/dev:bbc-e2e`) — so that `/dev:j-continue` resumes the work with that command, and one more
 section before `## Requirements`:
 ```markdown
 ## BB scope
@@ -42,11 +42,11 @@ section before `## Requirements`:
 - Contract: <what it exposes, as the map writes it>
 - Uses (through their contracts): <BB, contract>…
 ```
-In a worktree opened by `/bbc-work`, `notes.md` already holds
+In a worktree opened by `/dev:bbc-work`, `notes.md` already holds
 `## BB scope`: it is completed — the `Flow:` line added — not written again.
 
 ### 5. LISTEN
-As `/j-new-feature` step 5: **Update MB** `@state::LISTEN`, `@feature::NN-<name>`,
+As `/dev:j-new-feature` step 5: **Update MB** `@state::LISTEN`, `@feature::NN-<name>`,
 `@branch::feature/NN-<name>`. This command writes `## Requirements` itself, from the map, and shows it — "Develop BB<N>-<name>
 behind its contract": its responsibility; every member of its contract with the cases it promises —
 the normal path, the edge cases, the errors, the boundaries (`testing-principles.md` 2.2); the
@@ -77,7 +77,7 @@ to it.
 The BB's scope: the code read is the BB's files; of every BB it uses, the contract on the map, checked
 against the code's declaration with code navigation — not its implementation (`bbc.md` §3.1).
 `## Analysis` says what the work touches inside the BB, and which contracts it uses. For a BB already
-built that this plan completes — a member added by `/bbc-refactor`, a case left out — it also writes the
+built that this plan completes — a member added by `/dev:bbc-refactor`, a case left out — it also writes the
 **coverage matrix**: one row per member of the contract, the cases it
 promises, and the tests that already prove each — or "none":
 
@@ -118,7 +118,7 @@ exists it costs a block, and once the code exists there are two implementations 
 repairs them. The worst copy is the one written during a clean-up of duplicates.
 
 PROPOSE presents this section together with `## Code Organization` and asks, in so many words:
-is this what we reuse? The plan then executes it without re-deciding it, and j-review-plan
+is this what we reuse? The plan then executes it without re-deciding it, and /dev:j-review-plan
 refuses a plan whose block rewrites a capability this section had already located.
 ```
 
@@ -158,24 +158,24 @@ BB, or the work belongs to another BB. The answers are written in `## Code Organ
 ### 9. PLAN — when the user approves
 **Update MB:** `@state::PLAN` · **notes.md:** "Organization approved" done.
 
-As `/j-new-feature` step 9: the rules re-read, the planner's hard gate, `plan.md`, its path in the
-Memory Bank, `/j-review-plan` until approved. The plan of this command is TDDAB:
+As `/dev:j-new-feature` step 9: the rules re-read, the planner's hard gate, `plan.md`, its path in the
+Memory Bank, `/dev:j-review-plan` until approved. The plan of this command is TDDAB:
 - blocks bottom-up, each one a member or a group of members of the contract; each RED names the cases
   of `## Requirements` it proves; the GREEN is the implementation, in the BB's namespace, behind the
   contract the Core declares; every other BB is the fake of its contract the Core provides. Its logic
   is tested with those fakes, its data access against the real storage (`bbc.md` §4.1). For a BB already
   built that this plan completes, every "none" of the coverage matrix becomes a test, a test green at its first run is the
   expected outcome, and what is missing is written at GREEN (`bbc.md` §4);
-- the BB's contract tests, written by `/bbc-core`, run against the real implementation, in the block of
+- the BB's contract tests, written by `/dev:bbc-core`, run against the real implementation, in the block of
   the members they prove: the fake and the BB keep the same contract;
 - every block changes only the BB's files and those the user added in PROPOSE; the composition root
-  is not one of them — `/bbc-integrate` registers the BB there (`bbc.md` §4.2);
+  is not one of them — `/dev:bbc-integrate` registers the BB there (`bbc.md` §4.2);
 - the last block writes the BB's definition (`bb/BB<N>-<name>.md`: its files, its tests and the command
   that runs them, the status `built`) and, when a contract, a dependency or the status changed,
   `BBC-MAP.md` (`bbc.md` §3.4).
 
 ### 10-11. Commit, STOP
-As `/j-new-feature` steps 10-11. With a contract changed, the STOP also names `/bbc-integrate` with
+As `/dev:j-new-feature` steps 10-11. With a contract changed, the STOP also names `/dev:bbc-integrate` with
 the BBs that use it, after the plan is executed.
 
 ## Rules

@@ -5,7 +5,7 @@ description: Close a feature or a bug and deploy (junior workflow). The CLOSE ph
 
 ## Prerequisites
 - Read the Memory Bank (skip the subdirectories) if not already done this session.
-- `j-settings.md` at the repository root (missing → run `/j-setup` first).
+- `j-settings.md` at the repository root (missing → run `/dev:j-setup` first).
 - If not read this session: `${CLAUDE_PLUGIN_ROOT}/commands/mind-sets/junior.md` and
   `${CLAUDE_PLUGIN_ROOT}/commands/mind-sets/development-workflow.md` (CLOSE).
 - For step 3, re-read now: `mind-sets/principles.md`, `code-principles.md`, `testing-principles.md`,
@@ -80,7 +80,7 @@ the change is checked in particular against:
 - `branches/data.md`, `branches/api.md`, `branches/security.md` — when they are in `@mindsets-branches`.
 
 Each issue is reported with the rule it breaks (file and section) and where. A violation → FIX before
-proceeding (`/j-bug` when it needs a diagnosis).
+proceeding (`/dev:j-bug` when it needs a diagnosis).
 
 ### 3b. Definition of Done Verification
 Before proceeding to tests, verify the FULL feature DoD:
@@ -113,7 +113,7 @@ git push -u origin {branch}
 **Read `@merge-strategy` from j-settings.md:**
 
 **In a worktree** — `git rev-parse --git-dir` differs from `git rev-parse --git-common-dir`, as a
-`/bbc-work` opens it — the base branch is open in the main folder and `git checkout` of it is refused
+`/dev:bbc-work` opens it — the base branch is open in the main folder and `git checkout` of it is refused
 there. With `direct` or `gitflow-simple` (`<base>` is `{@main-branch}` or `{@dev-branch}`), the merge is
 done from the worktree instead of the steps below:
 1. `git fetch origin` and `git merge origin/<base>` into `{branch}`, here; a conflict is shown and asked
@@ -171,7 +171,7 @@ PR created! Link: [PR URL]
 
 A reviewer will merge it. After merge:
 - Deploy will happen via CI/CD (if configured)
-- Or run j-deploy manually after merge
+- Or run /dev:j-deploy manually after merge
 
 Branch: {branch} (kept for review)
 ```
@@ -241,9 +241,9 @@ Branch: {branch} (kept for review)
 ### 8. Deploy (if not already done, only for @merge-strategy: direct)
 
 #### 8a. Check if Already Deployed
-Check if user already deployed manually with j-deploy:
-- Check `progress.md` for the deploy already recorded (j-deploy step 7)
-- Or ask user: "Have you already deployed with j-deploy?"
+Check if user already deployed manually with /dev:j-deploy:
+- Check `progress.md` for the deploy already recorded (/dev:j-deploy step 7)
+- Or ask user: "Have you already deployed with /dev:j-deploy?"
 
 **If already deployed → skip to step 9**
 
@@ -251,27 +251,27 @@ If not deployed yet → continue:
 
 **Update MB:** `@state::DEPLOY`
 
-#### 8b. Run the deploy (delegate to j-deploy)
+#### 8b. Run the deploy (delegate to /dev:j-deploy)
 
-`@deploy-script` is "none" → nothing to deploy: continue to step 9, and nothing of j-deploy runs.
+`@deploy-script` is "none" → nothing to deploy: continue to step 9, and nothing of /dev:j-deploy runs.
 
-`@production-branch` set → nothing is deployed here: `/j-release` sends it out through the CI/CD. Continue to step 9.
+`@production-branch` set → nothing is deployed here: `/dev:j-release` sends it out through the CI/CD. Continue to step 9.
 
 Read `${CLAUDE_PLUGIN_ROOT}/commands/j-deploy.md` and follow its **steps 3-6** EXACTLY (backup, execute deploy, verify/failure dialog with restore option, confirm success).
 
-Notes for the j-close context:
-- SKIP j-deploy steps 1-2 (branch check and final gate) — j-close already verified them in steps 1-4
+Notes for the /dev:j-close context:
+- SKIP /dev:j-deploy steps 1-2 (branch check and final gate) — /dev:j-close already verified them in steps 1-4
 - On SUCCESS → continue to step 9
-- On FAILURE → follow j-deploy's failure dialog; keep `@state::DEPLOY` until resolved, do NOT continue to step 9
+- On FAILURE → follow /dev:j-deploy's failure dialog; keep `@state::DEPLOY` until resolved, do NOT continue to step 9
 
 ### 9. Update MB → IDLE + ROTATE closed work out (NO branch deletion)
 **IMPORTANT:** Do NOT delete branches! User needs to see all branches on remote for control.
 
-- **Update notes.md (or bug-notes.md):** mark "Closed (j-close)".
+- **Update notes.md (or bug-notes.md):** mark "Closed (/dev:j-close)".
 - **A black-box work** (`## BB scope` in its `notes.md`): its lines of `## Roadmap` in
-  `{@tasks}/bbc/BBC-MAP.md` marked done, by the `Flow:` line of `notes.md` — the Core of a `bbc-core`, the BB of a `bbc-plan`,
-  the BBs integrated by a `bbc-integrate`, the flows of a `bbc-e2e`; a `bbc-refactor` has none. A step
-  is done when all of its lines are (`bbc.md` §2). The audit's line is `bbc-audit`'s to mark, not this
+  `{@tasks}/bbc/BBC-MAP.md` marked done, by the `Flow:` line of `notes.md` — the Core of a `/dev:bbc-core`, the BB of a `/dev:bbc-plan`,
+  the BBs integrated by a `/dev:bbc-integrate`, the flows of a `/dev:bbc-e2e`; a `/dev:bbc-refactor` has none. A step
+  is done when all of its lines are (`bbc.md` §2). The audit's line is `/dev:bbc-audit`'s to mark, not this
   command's.
 - Update MB:
   - In `progress.md` → the closed task's lines move to `history.md` (the rotation below)
@@ -331,10 +331,10 @@ Feature [name] completed and deployed!
 
 Verify at: {@domain} (from j-settings.md)
 
-Next time you want to work, use j-new-feature
+Next time you want to work, use /dev:j-new-feature
 ```
 With `@deploy-script: none`, nothing was deployed: it says "completed and merged", with no line to verify. With
-`@production-branch` set, it says "completed and merged", and names `/j-release`.
+`@production-branch` set, it says "completed and merged", and names `/dev:j-release`.
 
 **If `@merge-strategy: pr`:**
 ```
@@ -343,7 +343,7 @@ Feature [name] — PR created!
 PR: [link]
 Branch: {branch} (kept for review)
 
-After the PR is merged and deployed, use j-new-feature for the next task.
+After the PR is merged and deployed, use /dev:j-new-feature for the next task.
 ```
 
 **If `@merge-strategy: gitflow` or `gitflow-simple`:**
@@ -352,7 +352,7 @@ Feature [name] — merged/PR'd to {@dev-branch}!
 
 Deploy to production happens when develop is released to main (managed by team lead).
 
-Next time you want to work, use j-new-feature
+Next time you want to work, use /dev:j-new-feature
 ```
 
 ## Rules

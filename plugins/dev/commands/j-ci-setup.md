@@ -1,18 +1,18 @@
 ---
 allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
-description: Set up a project's CI/CD (junior workflow). A production branch; a pull request from the main branch to it runs the final gate; merged, it deploys. On GitHub or GitLab, read from the remote; the merge automatic or by hand, as the user decides. Optional, one project at a time. Use when the user says CI, CD, CI/CD, pipeline, branch production, or j-setup asks and the answer is yes.
+description: Set up a project's CI/CD (junior workflow). A production branch; a pull request from the main branch to it runs the final gate; merged, it deploys. On GitHub or GitLab, read from the remote; the merge automatic or by hand, as the user decides. Optional, one project at a time. Use when the user says CI, CD, CI/CD, pipeline, branch production, or /dev:j-setup asks and the answer is yes.
 ---
 
 ## Prerequisites
 - Read the Memory Bank (skip the subdirectories) if not already done this session.
-- `j-settings.md` at the repository root, with `@gate-final` (missing → run `/j-setup` first; a project still to be
+- `j-settings.md` at the repository root, with `@gate-final` (missing → run `/dev:j-setup` first; a project still to be
   built runs this command after its first plan: until then there is no gate to run).
 - A remote `origin`, and its command line authenticated: `gh auth status` or `glab auth status`.
 
 ## Purpose
 `{@main-branch}` is what is finished, the branch `@production-branch` is what runs. A pull request from one to the
 other runs `@gate-final`; when it is merged, the pipeline runs `@backup-script` and `@deploy-script`. Nothing is defined
-twice: the gate and the deploy stay the keys of `j-settings.md`. `/j-release` opens that pull request.
+twice: the gate and the deploy stay the keys of `j-settings.md`. `/dev:j-release` opens that pull request.
 
 ## Steps
 
@@ -81,11 +81,11 @@ git push origin {@main-branch}
 ```
 
 ### 9. Report
-The platform, the branch, the gate and the deploy they run, the merge, the secrets set by name, what the platform refused, what was left out. Next: `/j-release`, which
+The platform, the branch, the gate and the deploy they run, the merge, the secrets set by name, what the platform refused, what was left out. Next: `/dev:j-release`, which
 is also the first proof that it works.
 
 ## Rules
-- **Optional, and per project**: a project without `@production-branch` keeps `j-close` and `j-deploy` as they are.
+- **Optional, and per project**: a project without `@production-branch` keeps `/dev:j-close` and `/dev:j-deploy` as they are.
 - **Nothing defined twice**: the pipeline runs the keys of `j-settings.md`.
 - **Merge commits only**: squash would leave `@production-branch` out of `{@main-branch}`'s history.
 - **Ask with AskUserQuestion** whatever is not decided.

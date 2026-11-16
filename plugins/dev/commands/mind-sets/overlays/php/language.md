@@ -63,7 +63,7 @@ the mapper of each form, and the hand practice it replaces:
 - the configuration: one typed object read at start — not `getenv` in the code;
 - the database: rows fetched into classes in one place — not `$row['column']` where the data is used.
 
-## 7. What j-setup and j-new-project read in a PHP project
+## 7. What /dev:j-setup and /dev:j-new-project read in a PHP project
 
 - **Recognized by**: `composer.json`; its `require` says the frameworks and the branches.
 - **The files of this overlay, with the branches**:
@@ -74,9 +74,9 @@ the mapper of each form, and the hand practice it replaces:
   | `testing.md` | every PHP project |
   | `tddab.md` | the TDDAB plans, with `tddab-planner.md` |
 
-- **What LISTEN asks** (`j-new-project`): what is built, and what it talks to.
+- **What LISTEN asks** (`/dev:j-new-project`): what is built, and what it talks to.
 - **The lint gate**: the manifest's `native_lint`, run from the folder of `composer.json`; §5 says where the pack's files go.
 - **Vendored** (`@vendored-globs`): `vendor/`, `.phpunit.cache/`.
 - **The test levels**: the keys of `tddab.md` §1.
 - **The start command**: the project's script in `bin/`.
-- **Where its errors show** (`j-debug`): PHPStan's output; the failed test's output; the log.
+- **Where its errors show** (`/dev:j-debug`): PHPStan's output; the failed test's output; the log.

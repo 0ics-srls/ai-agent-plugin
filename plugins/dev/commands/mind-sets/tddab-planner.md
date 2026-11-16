@@ -150,7 +150,7 @@ carry.
 4. `<red>` — each line starts with `- test:`, describes ONE testable behavior. Must cover ALL cases: happy path, edge cases, error conditions, boundaries. No arbitrary limits on count.
 5. `<success>` — checklist of verifiable outcomes (`- [ ]` format), ALL must pass: the block's own
    outcomes, then the Gate, Block tests and Regression lines with their commands written out ("The
-   commands, by level"). `j-review-plan` flags a block whose success leaves them out or names a key
+   commands, by level"). `/dev:j-review-plan` flags a block whose success leaves them out or names a key
    instead of its command.
 6. `<files>` — ONLY in index.md, signals multi-file mode (see Multi-File Plans below)
 7. Tags can span multiple lines
@@ -574,7 +574,7 @@ time, each with what its phase needs. That is where the plan's discipline comes 
 as the only briefing, self-sufficient blocks, no dependency on a later block, every test a block
 lists a test that will exist in its test files, the commands written out.
 
-Before the user sees the plan, it goes through `/j-review-plan`: the issues the review reports are
+Before the user sees the plan, it goes through `/dev:j-review-plan`: the issues the review reports are
 fixed in the plan and the plan is reviewed again, until the review approves it. Only then is it shown,
 with the review's verdict.
 

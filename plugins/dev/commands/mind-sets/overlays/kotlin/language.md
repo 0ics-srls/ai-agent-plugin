@@ -229,7 +229,7 @@ the mapper of each form, and the hand practice it replaces:
   parameters — not `bodyAsText()` parsed by hand, nor `call.parameters["x"]` in the code;
 - the local database: SQLDelight's generated queries and their types — not a cursor read by column.
 
-## 7. What j-setup and j-new-project read in a Kotlin project
+## 7. What /dev:j-setup and /dev:j-new-project read in a Kotlin project
 
 - **Recognized by**: `settings.gradle.kts` and `gradle/libs.versions.toml` with the Kotlin Gradle plugin
   (`org.jetbrains.kotlin:kotlin-gradle-plugin`, which `build-logic/` applies as
@@ -246,7 +246,7 @@ the mapper of each form, and the hand practice it replaces:
   | `app.md` | `branches/frontend.md` |
   | `client.md` | `branches/frontend.md`, `branches/data.md`, `branches/resilience.md`, `branches/security.md` (§4) |
 
-- **What LISTEN asks** (`j-new-project`): the targets — iOS, desktop, Android, web (Wasm); the backend
+- **What LISTEN asks** (`/dev:j-new-project`): the targets — iOS, desktop, Android, web (Wasm); the backend
   whose OpenAPI document the client is generated from; whether the app keeps data on the device.
 - **The lint gate**: the manifest's `native_lint`, run from the root of the Gradle build, on a Mac when
   the app has an iOS target; the pack's `.editorconfig` goes to the root, `kmp.quality.gradle.kts` to
@@ -256,7 +256,7 @@ the mapper of each form, and the hand practice it replaces:
 - **The start command**: desktop `SHOP_API_URL=<backend> ./gradlew :desktopApp:run`; web `./gradlew
   :webApp:wasmJsBrowserDevelopmentRun`; Android `./gradlew :androidApp:installDebug` on a device or an
   emulator; iOS `iosApp/iosApp.xcodeproj` in Xcode.
-- **Where its errors show** (`j-debug`): the compiler's output of the build; the failed
+- **Where its errors show** (`/dev:j-debug`): the compiler's output of the build; the failed
   tests' reports (`build/reports/tests/`); Kermit's lines in the console of each target (the terminal,
   Logcat, the Xcode console, the browser's console); the `problem+json` the backend answers, with its
   `code`.

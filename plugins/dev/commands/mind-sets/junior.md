@@ -16,38 +16,38 @@ inside a phase is in the command; the project's settings are in `j-settings.md`.
 ```mermaid
 flowchart TD
     IDLE([IDLE])
-    IDLE -->|j-new-project, j-new-feature| LISTEN([LISTEN])
+    IDLE -->|/dev:j-new-project, /dev:j-new-feature| LISTEN([LISTEN])
     LISTEN --> ANALYZE([ANALYZE])
     ANALYZE --> INVENTORY([INVENTORY])
     INVENTORY --> PROPOSE([PROPOSE])
     PROPOSE -->|user approves| PLAN([PLAN])
-    IDLE -->|j-bug| BUG_LISTEN([LISTEN])
+    IDLE -->|/dev:j-bug| BUG_LISTEN([LISTEN])
     BUG_LISTEN --> DIAGNOSE([DIAGNOSE])
     DIAGNOSE --> PLAN
     PLAN -->|user approves the reviewed plan<br>j-cvm-exec-plan| DEVELOP([DEVELOP])
-    DEVELOP -->|j-close| CLOSE([CLOSE])
-    CLOSE -->|j-deploy, or j-release with CI/CD| DEPLOY([DEPLOY])
+    DEVELOP -->|/dev:j-close| CLOSE([CLOSE])
+    CLOSE -->|/dev:j-deploy, or /dev:j-release with CI/CD| DEPLOY([DEPLOY])
     CLOSE --> IDLE
     DEPLOY --> IDLE
-    IDLE -->|j-poc| POC([POC<br>no state tracking])
+    IDLE -->|/dev:j-poc| POC([POC<br>no state tracking])
     POC --> IDLE
 ```
 
 | Command | Phases |
 |---|---|
-| `j-new-project` | a project not designed as black boxes: LISTEN, ANALYZE, INVENTORY, PROPOSE, then its settings, then PLAN, then the Memory Bank; it stops before DEVELOP. On an existing project: LISTEN, its settings, ANALYZE, the Memory Bank, then IDLE |
-| `j-new-feature` | LISTEN, ANALYZE, INVENTORY, PROPOSE, PLAN; on a project with a black-box map, it reads the map |
-| `j-bug` | LISTEN, DIAGNOSE, PLAN; on a project with a black-box map, it reads the map |
-| `j-review-plan`, `j-cvm-check-plan` | PLAN: the plan reviewed against the mindsets and the code; its structure checked |
-| `j-cvm-exec-plan` | DEVELOP |
-| `j-close` | CLOSE |
-| `j-deploy`, `j-release` | DEPLOY: by hand, or through the CI/CD (`j-ci-setup`) |
-| `bbc-analyze`, `bbc-review` | the analysis: the black boxes designed from the requirements, no code read, reviewed in a loop until approved, and the roadmap (`bbc.md`) |
-| `bbc-core` | starts a black-box project — the profile, the skeleton — and plans the Core of the contracts, as `j-new-feature` (`bbc.md`) |
-| `bbc-plan`, `bbc-refactor`, `bbc-integrate`, `bbc-e2e` | as `j-new-feature`, on the black boxes of the map (`bbc.md`) |
-| `bbc-work` | a black box delegated to its own worktree and session, where `bbc-plan` develops it |
-| `bbc-audit` | the code checked against the analysis: a report, and a feature that fixes it |
-| `bbc-debug` | as `j-bug`, with ISOLATE on the map |
+| `/dev:j-new-project` | a project not designed as black boxes: LISTEN, ANALYZE, INVENTORY, PROPOSE, then its settings, then PLAN, then the Memory Bank; it stops before DEVELOP. On an existing project: LISTEN, its settings, ANALYZE, the Memory Bank, then IDLE |
+| `/dev:j-new-feature` | LISTEN, ANALYZE, INVENTORY, PROPOSE, PLAN; on a project with a black-box map, it reads the map |
+| `/dev:j-bug` | LISTEN, DIAGNOSE, PLAN; on a project with a black-box map, it reads the map |
+| `/dev:j-review-plan`, `/dev:j-cvm-check-plan` | PLAN: the plan reviewed against the mindsets and the code; its structure checked |
+| `/dev:j-cvm-exec-plan` | DEVELOP |
+| `/dev:j-close` | CLOSE |
+| `/dev:j-deploy`, `/dev:j-release` | DEPLOY: by hand, or through the CI/CD (`/dev:j-ci-setup`) |
+| `/dev:bbc-analyze`, `/dev:bbc-review` | the analysis: the black boxes designed from the requirements, no code read, reviewed in a loop until approved, and the roadmap (`bbc.md`) |
+| `/dev:bbc-core` | starts a black-box project — the profile, the skeleton — and plans the Core of the contracts, as `/dev:j-new-feature` (`bbc.md`) |
+| `/dev:bbc-plan`, `/dev:bbc-refactor`, `/dev:bbc-integrate`, `/dev:bbc-e2e` | as `/dev:j-new-feature`, on the black boxes of the map (`bbc.md`) |
+| `/dev:bbc-work` | a black box delegated to its own worktree and session, where `/dev:bbc-plan` develops it |
+| `/dev:bbc-audit` | the code checked against the analysis: a report, and a feature that fixes it |
+| `/dev:bbc-debug` | as `/dev:j-bug`, with ISOLATE on the map |
 
 ### State tracking
 The phase is saved in `activeContext.md`:
@@ -57,7 +57,7 @@ The phase is saved in `activeContext.md`:
 @branch::feature/NN-feature-name   (a bug: bugfix/NN-bug-description)
 @plan::{@tasks}/NN-name/plan.md    (from PLAN on)
 ```
-IDLE is no work in progress. A debugging session (`j-debug`) leaves its outcome:
+IDLE is no work in progress. A debugging session (`/dev:j-debug`) leaves its outcome:
 ```
 @lastDebug::{description}
 @debugResult::{found|needsMore|wasBug|wasFeature}
@@ -66,17 +66,17 @@ IDLE is no work in progress. A debugging session (`j-debug`) leaves its outcome:
 ### Commands from any state
 | Command | Action |
 |---------|--------|
-| `j-save` | Save state to MB, commit, push, leave |
-| `j-status` | Read MB, show current state |
-| `j-help` | Show available commands |
-| `j-continue` | Read MB, resume from saved state |
-| `j-setup` | Configure/update project settings |
-| `j-ci-setup` | CI/CD for the project, when the user wants it |
-| `j-debug`, `j-debug-mb` | Protocol D on a problem, without a branch or a task (`debug-protocol.md`) |
-| `j-browse` | The running application in the browser, guided by the user |
-| `j-e2e-generate`, `j-e2e` | The manual end-to-end checklist: written from the use cases, run in the browser |
-| `bbc-analyze`, `bbc-review` | The black boxes of a new project, or a new part of one, designed from the requirements before its code, no code read; reviewed until the user approves; and the roadmap of their development (`bbc.md`) |
-| `bbc-audit` | The code of the black boxes checked against the analysis: a report, and a feature that fixes it |
+| `/dev:j-save` | Save state to MB, commit, push, leave |
+| `/dev:j-status` | Read MB, show current state |
+| `/dev:j-help` | Show available commands |
+| `/dev:j-continue` | Read MB, resume from saved state |
+| `/dev:j-setup` | Configure/update project settings |
+| `/dev:j-ci-setup` | CI/CD for the project, when the user wants it |
+| `/dev:j-debug`, `/dev:j-debug-mb` | Protocol D on a problem, without a branch or a task (`debug-protocol.md`) |
+| `/dev:j-browse` | The running application in the browser, guided by the user |
+| `/dev:j-e2e-generate`, `/dev:j-e2e` | The manual end-to-end checklist: written from the use cases, run in the browser |
+| `/dev:bbc-analyze`, `/dev:bbc-review` | The black boxes of a new project, or a new part of one, designed from the requirements before its code, no code read; reviewed until the user approves; and the roadmap of their development (`bbc.md`) |
+| `/dev:bbc-audit` | The code of the black boxes checked against the analysis: a report, and a feature that fixes it |
 
 ---
 

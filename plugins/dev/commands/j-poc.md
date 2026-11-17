@@ -1,5 +1,4 @@
 ---
-allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
 description: Create proof of concept for unknown/complex features (junior workflow). Explores feasibility in isolated docs folder, no production code. Use when the user says POC, proof of concept, prova, test idea, skus ci to pojde, or wants to experiment before committing.
 ---
 

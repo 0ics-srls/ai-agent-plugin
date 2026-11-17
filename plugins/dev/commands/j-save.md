@@ -1,5 +1,4 @@
 ---
-allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
 description: Save and leave (junior workflow). Commits WIP, updates Memory Bank, pushes to remote. Use when the user says save, pause, stop, leave, I'm done for now, or wants to preserve progress before ending the session.
 ---
 

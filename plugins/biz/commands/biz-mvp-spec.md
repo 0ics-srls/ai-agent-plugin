@@ -1,5 +1,4 @@
 ---
-allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
 description: Generate technical MVP specification from a validated idea (bridge biz to dev). Use when user says mvp spec, specifica mvp, ready to build, prepariamo lo sviluppo, ide sa stavat.
 ---
 

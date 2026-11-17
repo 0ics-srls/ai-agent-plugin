@@ -1,5 +1,4 @@
 ---
-allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
 description: Parse and execute a plan — TDDAB or Step — with the CVM planexecutor, block by block, in the phases the planexecutor runs. Resumes after an interruption. Use when the user says execute plan, esegui piano, run plan CVM.
 ---
 

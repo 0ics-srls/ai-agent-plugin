@@ -1,5 +1,4 @@
 ---
-allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
 description: BBC — plan the development of one black box as a feature. From the BB's definition in the map — its responsibility, its contract, its dependencies — the phases of /dev:j-new-feature scoped to the BB write a TDDAB plan, the cases of the contract as the tests and the implementation behind it, the other BBs as the fakes of the Core, the Core's contract tests run against the real implementation; the plan is reviewed, then it STOPS and the user triggers /dev:j-cvm-exec-plan. Use when the user says bbc plan, sviluppa il BB, pianifica il BB, or names a black box of the roadmap to build.
 ---
 

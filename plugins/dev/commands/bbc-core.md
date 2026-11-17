@@ -1,5 +1,4 @@
 ---
-allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
 description: "BBC — plan the Core of the contracts, the first step of the roadmap; on a project with no code yet it is the project's start — the profile, the skeleton, then the Core. Every contract of the map written in the project's Core — the abstract concepts of the whole system, each BB's interfaces and the types they exchange under the BB's namespace — with its fake and its contract tests, so that every BB can then be developed in parallel against it. A TDDAB plan, reviewed, then it STOPS and the user triggers /dev:j-cvm-exec-plan. Use when the roadmap's first step is due, or the user says bbc core, scrivi il core, le interfacce dei BB."
 ---
 

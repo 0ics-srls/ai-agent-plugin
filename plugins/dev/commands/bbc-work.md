@@ -1,5 +1,4 @@
 ---
-allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
 description: BBC — delegate the work on one black box to its own git worktree and agent session. It opens the worktree and its branch, writes there the BB's scope and the Memory Bank, and STOPS with the command that opens a session in that folder; there the BB is developed with /dev:bbc-plan, and closed with /dev:j-close. Several BBs can be delegated at the same time. Use when the user says bbc work, lavora sul BB, delega il BB, or a step of the roadmap sends BBs in parallel.
 ---
 

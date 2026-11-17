@@ -1,5 +1,4 @@
 ---
-allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
 description: Deep truth audit - evaluate reliability, bias, contradictions, confidence scoring
 ---
 

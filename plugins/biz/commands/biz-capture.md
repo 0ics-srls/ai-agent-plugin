@@ -1,5 +1,4 @@
 ---
-allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
 description: Capture a new startup idea, problem, or insight into the idea registry. Use when user says ho un'idea, nuova idea, capture this idea, mam napad, or describes a business problem/insight worth tracking.
 ---
 

@@ -1,5 +1,4 @@
 ---
-allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
 description: Help - overview of all business development commands and the idea funnel. Use when user says biz help, come funziona il funnel, business commands, aiuto business.
 ---
 

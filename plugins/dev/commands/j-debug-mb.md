@@ -1,5 +1,4 @@
 ---
-allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
 description: Debug any problem with Protocol D - MBEL compact version (junior workflow). Uses ~70% fewer tokens than /dev:j-debug — prefer this in large context sessions. Same methodology, compressed mindset.
 ---
 

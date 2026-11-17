@@ -1,5 +1,4 @@
 ---
-allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
 description: Generate final verified intelligence report with traffic-light confidence levels
 ---
 

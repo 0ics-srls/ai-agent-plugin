@@ -1,5 +1,4 @@
 ---
-allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
 description: BBC — integrate black boxes after one of them changed its contract or they were built apart. Every call between them is checked on both sides of the contract, and a TDDAB plan proves them wired together, real BB with real BB; the map's integration points are updated. Use when the roadmap says built BBs meet, after /dev:bbc-plan changed a contract, or when the user says bbc integrate, integra i BB, test tra i BB.
 ---
 

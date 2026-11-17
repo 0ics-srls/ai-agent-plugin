@@ -1,5 +1,4 @@
 ---
-allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
 description: Close a feature or a bug and deploy (junior workflow). The CLOSE phase of development-workflow.md — verifies completion, reads the change against the mindsets, runs the final gate, merges as @merge-strategy says, optionally deploys, rotates the Memory Bank. Use when work is done, user says close, merge, chiudi, hotovo, or feature is ready for production.
 ---
 

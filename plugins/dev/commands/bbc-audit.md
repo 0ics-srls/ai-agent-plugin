@@ -1,5 +1,4 @@
 ---
-allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
 description: "BBC — check whether the code reflects the analysis: each black box's code in its namespace, its contract in the Core as the map writes it, the dependencies only through the Core and only those on the map, the decisions of the map kept. It writes a report, and the findings are fixed by one feature. Use when the roadmap reaches the audit, after BBs were built or changed, or the user says bbc audit, il codice rispecchia la mappa, controlla il codice contro la BBC."
 ---
 

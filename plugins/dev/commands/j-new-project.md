@@ -1,5 +1,4 @@
 ---
-allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
 description: Start a project with the junior workflow (junior workflow). A project to create goes through the phases of development-workflow.md up to PLAN — what the project is, the mindsets that apply, what already exists, the structure — has /dev:j-setup record the profile and wire the lint gate, writes the TDDAB plan of the skeleton and the Memory Bank, then STOPS; the user triggers /dev:j-cvm-exec-plan. A project that already has code is wired, described and given its Memory Bank, without a plan. Use when starting a brand new project from scratch, or bringing an existing one into the workflow — nuovo progetto, novy projekt.
 ---
 

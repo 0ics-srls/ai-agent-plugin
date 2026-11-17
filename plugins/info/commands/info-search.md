@@ -1,5 +1,4 @@
 ---
-allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
 description: Intelligence verification pipeline STEP 1 - multi-agent fact gathering with sources, feeds /info:info-cross/info-audit/info-report. Use when user says info search, verifica informazioni, intelligence research. For startup market research use /biz:biz-research.
 ---
 

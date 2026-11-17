@@ -1,5 +1,4 @@
 ---
-allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
 description: "Startup strategist mindset - idea evaluation, funnel discipline and actionable insight over analysis. Load for the biz-* commands."
 ---
 

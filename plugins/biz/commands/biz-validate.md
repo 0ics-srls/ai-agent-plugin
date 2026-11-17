@@ -1,5 +1,4 @@
 ---
-allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
 description: Validate key assumptions with evidence before committing to MVP development. Use when user says validate, valida le ipotesi, test assumptions, overit predpoklady - the gate before /biz:biz-mvp-spec.
 ---
 

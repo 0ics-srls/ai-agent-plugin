@@ -1,5 +1,4 @@
 ---
-allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
 description: Setup/validate Junior workflow settings for this project. On an existing project it wires ai-agent in — detects language, stack, commands, ports, the mindsets profile and the lint gate, and writes j-settings.md. On a project not created yet it writes the base j-settings.md and leaves the rest to /dev:j-new-project. MUST run first before any other j-* command.
 ---
 

@@ -1,5 +1,4 @@
 ---
-allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
 description: "BBC — design the black boxes of a new project, or of a new part of one, from the requirements, with the user, before any code ({@tasks}/bbc/): the black boxes by responsibility, their contracts, dependencies and flows, the decisions of the architecture. No code is read. The diagram is approved before the details; then /dev:bbc-review, and back here with its findings until the user approves the map. Use when a project, or a part of it, too large for one context window is to be built as black boxes, or the user says bbc analyze, mappa BBC, black box map, scomponi in BB, progetta a black box."
 ---
 

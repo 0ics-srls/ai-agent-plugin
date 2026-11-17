@@ -1,5 +1,4 @@
 ---
-allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
 description: "Intelligence analyst mindset - source attribution, tiered reliability, confidence scoring and contradiction detection. Load for the info-* verification pipeline."
 ---
 

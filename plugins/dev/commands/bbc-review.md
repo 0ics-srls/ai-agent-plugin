@@ -1,5 +1,4 @@
 ---
-allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
 description: "BBC — review the analysis: the black-box map against the requirements and the method — the boundaries, the contracts, the connections, the logic of the flows, the requirements and the decisions — with no code read; write what is wrong with where and why, and send it back to /dev:bbc-analyze, until the user approves the map; then propose the roadmap of the development — the Core of the contracts, the BBs (in parallel when the user wants), the integrations, the flows, the audit of the code — approved by the user and written in the map. Use after /dev:bbc-analyze, before working on the BBs, or when the user says bbc review, controlla la mappa, roadmap dei BB."
 ---
 

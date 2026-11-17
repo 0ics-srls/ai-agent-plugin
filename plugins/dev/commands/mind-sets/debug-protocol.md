@@ -1,5 +1,4 @@
 ---
-allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
 description: "Debug Protocol Mindset - Systematic debugging methodology (Protocol D)"
 ---
 

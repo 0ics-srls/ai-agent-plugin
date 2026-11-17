@@ -1,5 +1,4 @@
 ---
-allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
 description: INTERACTIVE browsing - user guides, the agent clicks. Browse and interact with any web page via ChromeDevTools MCP, token-efficient (text snapshots; a screenshot only when text is not enough, read by an agent). Use when user says browse, naviga, open page, apri questa pagina, click on, fill the form, or to reproduce a bug in the UI. To run the project's end-to-end checklist use /dev:j-e2e instead.
 ---
 

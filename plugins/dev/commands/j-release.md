@@ -1,5 +1,4 @@
 ---
-allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
 description: Release what is on the main branch (junior workflow). Opens the pull request from the main branch to the production branch; its CI runs the final gate, and once merged — by itself or by hand, as /dev:j-ci-setup decided — the CD deploys. Use when the user says release, rilascia, manda in produzione, nasad, on a project with CI/CD.
 ---
 

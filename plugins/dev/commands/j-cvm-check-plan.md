@@ -1,5 +1,4 @@
 ---
-allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
 description: Validate a plan — TDDAB or Step — with the CVM parser. Shows the plan's type, its blocks and the validation errors with their lines. Use when the user says check plan, validate plan, controlla piano CVM.
 ---
 

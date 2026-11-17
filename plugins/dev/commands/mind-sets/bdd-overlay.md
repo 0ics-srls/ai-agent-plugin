@@ -1,5 +1,4 @@
 ---
-allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
 description: "BDD overlay - the Use Case → Gherkin → step definitions methodology. Loaded only when an experienced developer asks for it; the j-* commands do not load it on their own."
 ---
 

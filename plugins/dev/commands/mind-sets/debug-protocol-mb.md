@@ -1,5 +1,4 @@
 ---
-allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
 description: "Debug Protocol Mindset (MBEL compact) - Same methodology, ~75% smaller"
 ---
 

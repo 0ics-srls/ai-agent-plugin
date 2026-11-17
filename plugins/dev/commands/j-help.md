@@ -1,5 +1,4 @@
 ---
-allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
 description: Help (junior workflow). Shows all available junior commands with descriptions. Use when the user asks what commands exist, how junior workflow works, or says help/aiuto/pomoc.
 ---
 

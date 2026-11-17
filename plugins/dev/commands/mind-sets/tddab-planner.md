@@ -1,5 +1,4 @@
 ---
-allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
 description: "TDDAB v2 methodology - atomic test-first blocks, bottom-up decomposition, RED as the contract, and the commands each block carries. Single source for every plan executor; load together with the language overlay."
 ---
 

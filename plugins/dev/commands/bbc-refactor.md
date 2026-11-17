@@ -1,5 +1,4 @@
 ---
-allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
 description: "BBC — change a black box of the map — its responsibility, its contract, a split or a merge, a decision — and then the code that follows it: the phases of a feature up to a reviewed plan, the map changed and approved first. Use when the user says bbc refactor, cambia il BB, sposta la responsabilità, dividi o unisci i BB, or /dev:bbc-audit sent a finding of the map here."
 ---
 

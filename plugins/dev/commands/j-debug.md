@@ -1,5 +1,4 @@
 ---
-allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
 description: Debug a problem while looking for it, with Protocol D, explaining each step (junior workflow). It finds and explains the cause and changes no production code — a bug is fixed with /dev:j-bug. Full verbose mindset — use when context window is not a concern. For large context sessions use /dev:j-debug-mb instead.
 ---
 

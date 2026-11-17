@@ -1,5 +1,4 @@
 ---
-allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
 description: "Development workflow — the phases a piece of work goes through, from the request to the deploy, in any project and any language: what each phase does and what it leaves. The one place the process is written; junior.md maps the commands onto it."
 ---
 

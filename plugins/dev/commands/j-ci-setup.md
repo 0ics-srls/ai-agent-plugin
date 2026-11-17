@@ -1,5 +1,4 @@
 ---
-allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
 description: Set up a project's CI/CD (junior workflow). A production branch; a pull request from the main branch to it runs the final gate; merged, it deploys. On GitHub or GitLab, read from the remote; the merge automatic or by hand, as the user decides. Optional, one project at a time. Use when the user says CI, CD, CI/CD, pipeline, branch production, or /dev:j-setup asks and the answer is yes.
 ---
 

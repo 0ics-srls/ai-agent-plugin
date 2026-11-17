@@ -1,5 +1,4 @@
 ---
-allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
 description: Fix a bug (junior workflow). Goes through the bug path of development-workflow.md — LISTEN, DIAGNOSE with Protocol D, PLAN — on its own branch and task folder, then STOPS; the user triggers /dev:j-cvm-exec-plan to execute the fix. Use when the user reports a bug, something is broken, non funziona, nefunguje, or needs to fix an error.
 ---
 

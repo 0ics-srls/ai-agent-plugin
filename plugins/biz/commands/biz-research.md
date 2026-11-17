@@ -1,5 +1,4 @@
 ---
-allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
 description: Deep MARKET research for a promising idea - competitors, TAM/SAM/SOM, monetization. Use when user says market research, ricerca di mercato, chi sono i competitor, quanto vale il mercato. NOT for fact verification (/info:info-search); for the tech landscape use /biz:biz-techscape.
 ---
 

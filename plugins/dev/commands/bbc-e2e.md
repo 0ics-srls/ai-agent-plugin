@@ -1,5 +1,4 @@
 ---
-allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
 description: "BBC — plan the end-to-end tests of the map's flows: every flow that crosses the black boxes, through the real transport and the real storage, at the level the project has (the API, the user interface). A TDDAB plan, reviewed and ready for /dev:j-cvm-exec-plan. Use when the user says bbc e2e, test dei flussi, or /dev:bbc-integrate pointed here."
 ---
 

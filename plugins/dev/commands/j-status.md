@@ -1,5 +1,4 @@
 ---
-allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
 description: Show current status (junior workflow). Shows branch, state, progress, and pending work. Use when the user asks where are we, what's the status, cosa manca, co sme robili, or wants a summary of current work.
 ---
 

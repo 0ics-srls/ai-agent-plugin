@@ -1,5 +1,4 @@
 ---
-allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
 description: Close/kill an idea with documented reasons and lessons learned. Use when user says kill the idea, chiudi l'idea, abbandona, drop it, zrus to — terminal decision, history is preserved.
 ---
 

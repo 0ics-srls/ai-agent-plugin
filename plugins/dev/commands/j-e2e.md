@@ -1,5 +1,4 @@
 ---
-allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
 description: Run the manual E2E checklist in the browser with ChromeDevTools (junior workflow). Executes the test cases of tests/e2e-manual/template.md against the running app — on any web project, with or without automated end-to-end tests. Use when the user says run e2e, testa il frontend, spusti e2e testy, or wants to verify UI behavior end-to-end.
 ---
 

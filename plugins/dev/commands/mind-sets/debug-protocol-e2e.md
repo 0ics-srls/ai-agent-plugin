@@ -1,5 +1,4 @@
 ---
-allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
 description: "Debug Protocol for E2E Testing - Multi-layer debugging (frontend + backend + DB)"
 ---
 

@@ -1,5 +1,4 @@
 ---
-allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
 description: Start a new feature (junior workflow). Creates the feature branch and task folder and goes through the phases of development-workflow.md up to PLAN — what the user needs, the code and the mindsets that apply, what already exists, the structure — writes the plan, reviews it, then STOPS. The user triggers /dev:j-cvm-exec-plan to execute it. Use when the user wants to add something new, implement a feature, aggiungere funzionalita, or pridat novu feature.
 ---
 

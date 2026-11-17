@@ -1,5 +1,4 @@
 ---
-allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
 description: "Shared rule for symbol and usage lookup across LSAI, vs-mcp, xmp4 and grep - prove the tool is present and ready before trusting an empty result. Followed by every search and review (junior.md, development-workflow.md)."
 ---
 

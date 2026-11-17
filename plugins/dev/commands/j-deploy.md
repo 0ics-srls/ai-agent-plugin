@@ -1,5 +1,4 @@
 ---
-allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
 description: Deploy to production (junior workflow). The DEPLOY phase of development-workflow.md — runs the final gate, the backup, the deploy script, and verifies. Use when the user says deploy, metti in produzione, nasad, or push to production.
 ---
 

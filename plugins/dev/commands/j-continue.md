@@ -1,5 +1,4 @@
 ---
-allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
 description: Continue existing work (junior workflow). Resumes a feature or a bug from where it stopped — reads the Memory Bank's state, checks it against the branch and the task folder, re-reads what the phase needs, picks up the thread. Use when the user says continue, riprendi, pokracuj, or starts a new session on existing work.
 ---
 

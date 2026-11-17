@@ -1,5 +1,4 @@
 ---
-allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
 description: "BBC (Black Box Codebase) — the method of designing a project, or a new part of one, too large for one context window as black boxes, on abstractions, before its code: the map, the work on one box at a time through the others' contracts, the change of a contract, the order of the tests, the diagnosis from the leaves. The principles it stands on are principles.md 3.3, 3.4, 3.6 and code-principles.md 1.4, 1.7, 1.8; this file adds only the method. Read by the bbc-* commands."
 ---
 

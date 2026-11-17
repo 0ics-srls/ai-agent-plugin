@@ -1,5 +1,4 @@
 ---
-allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
 description: Install and configure MCP servers for the project. Universal — works with both Claude Code (.mcp.json / mcpServers) and opencode (opencode.jsonc / mcp). Interactive — asks which MCPs to add, auto-installs everything, merges into the right config. Use when user says mcp setup, add mcp, configura mcp, or wants to enable AI tooling.
 ---
 

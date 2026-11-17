@@ -1,5 +1,4 @@
 ---
-allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
 description: Generate the manual E2E checklist from the use cases (junior workflow). Writes tests/e2e-manual/template.md — the scenarios /dev:j-e2e runs by hand in the browser through ChromeDevTools — from the tasks' requirements and the Memory Bank's productContext. Works on any web project, with or without automated end-to-end tests. Use before /dev:j-e2e, or when user says generate tests, crea test, vygeneruj testy.
 ---
 

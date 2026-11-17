@@ -1,5 +1,4 @@
 ---
-allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
 description: Review a plan — TDDAB or Step — against its methodology, the project's mindsets and the real code, before the user sees it and before it runs (junior workflow). Use when the user says review plan, controlla il piano, skontroluj plan, or before executing a plan.
 ---
 

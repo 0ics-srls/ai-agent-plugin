@@ -1,5 +1,4 @@
 ---
-allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
 description: "Step Plan methodology - action-based sequential plans (removals, migrations, refactors) for work that is not test-first. The alternative to tddab-planner; /dev:j-review-plan validates both."
 ---
 

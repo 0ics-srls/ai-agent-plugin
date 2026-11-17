@@ -1,5 +1,4 @@
 ---
-allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
 description: "Audit the code of a project against the cards of mind-sets/audit.md, in one command, to the report — the folders to audit said by the user once (the product, not the proofs of concept or the base library), the map and the algorithmic facts computed on them, the description of every module, then the agent reads the map against the cards, writes the candidates, confirms or withdraws each one by reading only its places, and writes the report of the confirmed problems. On a project too large for one session it writes its own Step plans and executes them itself; run again after an interruption, it resumes. Works on a project not made with the set too, after /dev:j-setup. Use when the user says audit the code, controlla il codice, audit del design, code audit."
 ---
 

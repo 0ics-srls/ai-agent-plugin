@@ -1,5 +1,4 @@
 ---
-allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
 description: Analyze existing software landscape - tools, OSS, vendors, APIs, licenses - for reuse, build-vs-buy and differentiation. Use when user says techscape, cosa esiste gia, build vs buy, license check, che tool ci sono. Runs AFTER /biz:biz-evaluate and BEFORE /biz:biz-research.
 ---
 

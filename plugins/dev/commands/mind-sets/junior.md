@@ -1,5 +1,4 @@
 ---
-allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
 description: "Junior workflow mindset - which command enters which phase of development-workflow.md, where the phase is tracked, how the agent works, and the golden rules. Base mindset for the j-* family; the phases are development-workflow.md's, what a command does in them is in the command."
 ---
 

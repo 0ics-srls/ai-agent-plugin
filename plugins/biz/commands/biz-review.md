@@ -1,5 +1,4 @@
 ---
-allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
 description: BUSINESS alignment review of development progress - are we building the right thing? (bridge dev to biz). Use when user says biz review, siamo allineati col business, business check, ma to zmysel. NOT a code review.
 ---
 

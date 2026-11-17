@@ -1,5 +1,4 @@
 ---
-allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
 description: A feature built in small steps the user drives (junior workflow). Each run is one step — the user says one piece, the piece goes through the phases of a feature at its own size, ONE TDDAB block is written, approved and executed with the planexecutor, then it STOPS and the user checks. The first run opens the branch and the task folder; the next ones add a step to the same feature; /dev:j-close closes it. Use when the user wants to build step by step, a piece at a time, un pezzo alla volta, passo passo, po kroku, or does not know the whole feature yet.
 ---
 

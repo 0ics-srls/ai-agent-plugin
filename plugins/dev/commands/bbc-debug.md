@@ -1,5 +1,4 @@
 ---
-allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
 description: BBC — fix a bug that crosses several black boxes. The bug path of /dev:j-bug — LISTEN, DIAGNOSE with Protocol D, PLAN — with ISOLATE done on the map, the BBs' tests run leaves first, then the integration points; then STOPS, the user triggers /dev:j-cvm-exec-plan. Use when a failure spans several BBs and cannot be placed, or the user says bbc debug.
 ---
 

@@ -1,5 +1,4 @@
 ---
-allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
 description: "The cards of the code audit — one per rule of the mindsets that is verified by reading the code: the rule it quotes, the defect, where the tool points, how it is found on a project of thousands of files, the questions, what is not a violation, the confirmation and the gravity. Read by /dev:x-audit-code: the agent reads the map against them, and confirms by reading only where it points."
 ---
 

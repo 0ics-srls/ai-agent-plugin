@@ -1,5 +1,4 @@
 ---
-allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
 description: Pivot an existing idea - fork into a new direction while preserving history. Use when user says pivot, cambiamo direzione, fork the idea, nuova variante dell'idea.
 ---
 

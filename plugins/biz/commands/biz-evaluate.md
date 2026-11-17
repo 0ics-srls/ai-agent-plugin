@@ -1,5 +1,4 @@
 ---
-allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
 description: Score and evaluate a captured idea against startup criteria (6 dimensions, /60). Use when user says evaluate the idea, valuta l'idea, quanto vale, score it, ohodnot napad.
 ---
 

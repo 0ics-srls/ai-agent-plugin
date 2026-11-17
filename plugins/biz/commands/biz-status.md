@@ -1,5 +1,4 @@
 ---
-allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
 description: Quick dashboard of all ideas and their funnel status. Use when user says biz status, stato delle idee, come vanno le idee, idea dashboard, ako su na tom napady.
 ---
 

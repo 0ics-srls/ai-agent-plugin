@@ -242,7 +242,9 @@ no `@lint-<component>`, no configuration files, no `sgconfig.yml` line; the repo
    linter only.
 3. Each `config_files` template from `${CLAUDE_PLUGIN_ROOT}/lint-rules/<language>/native/` goes into the project at
    the same relative path, where the language's §7 says. A file that
-   already exists is merged, asking first, and kept otherwise. The templates under `externals/` go in
+   already exists is merged, asking first, and kept otherwise. **A template the language's §7 keeps
+   out of an existing project is not copied there**: it configures how the project builds or tests,
+   it is not a check, and a project that already builds and tests has its own. The templates under `externals/` go in
    when the project keeps code that is not its own there: `externals/` exists, or `@base-library` is a
    submodule.
 4. A component's gate is the one its language's overlay names (`language.md` §7),
@@ -487,7 +489,8 @@ Repairs, made silently:
 - Lint configuration files that differ from the pack (`${CLAUDE_PLUGIN_ROOT}/lint-rules/<language>/native/`, and
   `sgconfig.yml` from its template, the rules under `.ast-grep/` when `.ast-grep/VERSION` is not
   `${CLAUDE_PLUGIN_ROOT}/VERSION`) → show the diff and, on confirmation, bring them to the pack's
-  version; a line the project added on purpose is kept, asking. A template the language's §7 merges into
+  version — a template the language's §7 keeps out of an existing project is compared only when the
+  project has that file because the set put it there; a line the project added on purpose is kept, asking. A template the language's §7 merges into
   another file is compared there, in that file: it is not a file of the project.
 - The tools of step 0 and `ast-grep` → checked again; a missing `ast-grep` is installed as in step 7.
 - `## CI/CD` missing → what step 9 lists: a pipeline (`.github/workflows/`, `.gitlab-ci.yml`) or a

@@ -93,8 +93,21 @@ the mapper of each form, and the hand practice it replaces:
 
 - **What LISTEN asks** (`/dev:j-new-project`): what the program is — a library, a command-line tool, a
   service — and what it talks to.
-- **The lint gate**: the manifest's `native_lint`; the pack's `ruff.toml`, `mypy.ini` and `pytest.ini`
-  go to the folder of `pyproject.toml`.
+- **What /dev:j-setup asks on an existing project**: the project already has tests — a `test_*.py` or a
+  `*_test.py` file — or its own pytest configuration (`[tool.pytest.ini_options]` in `pyproject.toml`,
+  a `pytest.ini`, a pytest section in `tox.ini` or `setup.cfg`) → ask with AskUserQuestion, once: keep
+  the tests where they are and as they run, or adopt the layout of this overlay? It is the owner's
+  decision, and keeping is a full answer. *Keep*: the pack's `pytest.ini` is not copied, no test is
+  moved and no dependency is added; the test levels are the commands the project already runs, on its
+  own folder — `@test-fast` and `@test-slow` name it, `uv run pytest <the folder of its tests>` —
+  and `testing.md` §1 says where a new test goes. *Adopt*: nothing changes here — moving the tests
+  into `tests/unit` and `tests/integration`, with `pytest-timeout`, `pytest-asyncio` and the pack's
+  `pytest.ini`, is a work of its own, `/dev:j-new-feature`, and until it closes the project is set up as
+  *Keep*.
+- **The lint gate**: the manifest's `native_lint`; the pack's `ruff.toml` and `mypy.ini` go to the
+  folder of `pyproject.toml`. `pytest.ini` goes there too in a project the set creates: it is the
+  test runner's configuration — where the tests are, their time limit, the async mode — not a check,
+  and it is kept out of an existing project (above).
 - **Vendored** (`@vendored-globs`): `.venv/`, `.mypy_cache/`, `.ruff_cache/`, `.pytest_cache/`.
 - **The test levels**: the keys of `tddab.md` §1.
 - **The start command**: `uv run <the entry point>`, as `[project.scripts]` declares it.

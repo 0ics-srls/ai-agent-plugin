@@ -20,13 +20,17 @@ into its blocks (`tddab-planner.md`, "The commands, by level").
 | `@bench` | `none` |
 | `@gate-final` | the lint gate, `uv run pytest tests`, the audit (`language.md` §5) |
 
+In an existing project that kept its tests (`language.md` §7), `@test-fast` and `@test-slow` are the
+commands `j-settings.md` has, on the project's own test folder.
+
 Before the tests, the component's gate (`language.md` §5).
 
 ## 2. Each block at its level
 
 The RED of a block runs at the level of what it builds: the logic in `tests/unit/` on the doubles of
 `tests/unit/doubles.py`; the code that talks to the outside in `tests/integration/` on the real thing
-(`testing.md` §2).
+(`testing.md` §2). In a project that kept its tests, a block's tests go beside the ones that are
+there (`testing.md` §1).
 
 ## 3. The RED of a block
 

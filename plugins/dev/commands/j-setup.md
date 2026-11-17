@@ -65,7 +65,7 @@ What was written is committed with what this command produces.
 ### 0c. A project that has the set as a git submodule
 The signs: `.gitmodules` has a submodule whose url ends in `ai-agent`, `ai-agent-lite` or
 `ai-agent-oc` (its path is `.ai-agent`, here `<submodule>`), or `.claude/commands` is a symbolic
-link, or `.claude` itself is one. None of them → step 1.
+link, or `.claude` itself is one. None of them → step 0d.
 
 With the submodule and the plugin together every command is there twice. Say what the move does —
 the list below — and ask with AskUserQuestion: move the project to the plugin now, or leave it on
@@ -96,8 +96,72 @@ the submodule. Left on the submodule → say that the plugin is to be disabled i
      are the plugins `biz` and `info` of the same catalogue, installed when wanted.
 7. Step 0b again, then `git add -A . && git commit -m "chore: the set as a plugin, not a submodule"`.
 
-Then step 1: `j-settings.md` is there, so the settings are validated (step 20), which brings the
+Then step 0d, and step 1: `j-settings.md` is there, so the settings are validated (step 20), which brings the
 lint configuration files to the plugin's pack.
+
+### 0d. Who works with the agent
+The agent talks, explains and proposes differently to a programmer, to a junior and to someone who
+does not program. Who it is, is written where the agent reads it at every session: a block
+`# THE USER — READ FIRST` in `CLAUDE.md`, or in `CLAUDE.local.md` when it is one person's and not
+the project's.
+```bash
+grep -l "^# THE USER — READ FIRST" CLAUDE.md CLAUDE.local.md 2>/dev/null
+```
+One of them has the block → nothing is asked; the user can ask to change it. Neither → ask with
+AskUserQuestion, one question each. Called by `/dev:j-new-project` or `/dev:bbc-core` with a profile, this step
+is skipped: it was asked when the base settings were written.
+- **Who works with the agent on this project**: a programmer; a junior developer; someone who does
+  not program.
+- **The language the agent talks to them in.**
+- **For the whole project or for this person only**: the project's — the block goes in `CLAUDE.md`,
+  committed, and holds for everybody who works here; this person's — it goes in `CLAUDE.local.md`,
+  which is not committed (`.gitignore` gets the line `CLAUDE.local.md`).
+
+The block, written at the top of the file — after its title and the lines under it, before the next
+heading; `CLAUDE.local.md` is created with it. `{language}` is the user's answer. For a programmer the
+block is its first paragraph and the line that says so; for the other two, the paragraph of their
+case and the table.
+```markdown
+# THE USER — READ FIRST
+
+**Talk to the user in {language}.** Every answer, question (AskUserQuestion included), summary and
+explanation is in {language}. Code, identifiers and commit messages stay as the project writes them.
+
+**The user is a programmer.** Nothing more than what this file and the project's rules say.
+
+**The user is a junior developer.** So:
+- explain a technical word the first time it comes up, in one line;
+- say why and not only what: which command, which phase it enters, what it is for;
+- after a piece of work, say how to check it: the command to run, the page to open, what to expect;
+- when they say what they want in their own words, propose the command that does it — the table
+  below — say in one line what it will do, and wait for their yes. Never start by yourself a command
+  that opens a branch, merges or deploys.
+
+**The user does not program.** So:
+- plain words, no jargon; a technical word that cannot be avoided is explained where it is used;
+- never assume they can read or judge code: show what changes for whoever uses the product, and let
+  them decide;
+- ask before anything that publishes — `/dev:j-close` merges, and may deploy — and before anything that
+  cannot be undone;
+- before they close a piece of work, say how to try it, step by step;
+- for something new, propose small steps first: `/dev:j-step`, one piece at a time;
+- when they say what they want in their own words, propose the command that does it — the table
+  below — say in one line what it will do, and wait for their yes. Never start by yourself a command
+  that opens a branch, merges or deploys.
+
+| The user says | Propose |
+|---|---|
+| something new, and the whole of it is not known yet — or "a piece at a time" | `/dev:j-step` |
+| something new, known in full | `/dev:j-new-feature` |
+| something does not work | `/dev:j-bug` |
+| why does it do that? — to understand, before any fix | `/dev:j-debug` |
+| where are we? | `/dev:j-status` |
+| let's go on with what was left | `/dev:j-continue` |
+| enough for today | `/dev:j-save` |
+| it is done, publish it | `/dev:j-close` — after asking whether they tried it |
+| what can I do here? | `/dev:j-help` |
+```
+The file changed is committed with what this command produces; `CLAUDE.local.md` is not.
 
 ### 1. Existing settings
 ```bash
@@ -338,7 +402,7 @@ the scan or the answers, the unknown ones left out.
 ### 12. Commit what this command produced
 Only the files this command wrote, by path:
 ```bash
-git add j-settings.md .claude/settings.json <what step 0b wrote> <sgconfig.yml and .ast-grep/, when step 7 wrote them> <each file steps 7 and 8 created or changed, package.json included>
+git add j-settings.md .claude/settings.json <what step 0b wrote> <CLAUDE.md, when step 0d changed it> <sgconfig.yml and .ast-grep/, when step 7 wrote them> <each file steps 7 and 8 created or changed, package.json included>
 git commit -m "chore(j-setup): project settings and lint configuration"
 ```
 Other pending changes stay as they are, and the report names them.
@@ -370,7 +434,7 @@ included.
 ### 16. Write and commit
 `j-settings.md` with the sections above that have values, and the header line
 `# Base settings — j-new-project completes them`. Commit it alone:
-`git add j-settings.md .claude/settings.json <what step 0b wrote> && git commit -m "chore(j-setup): base settings"`.
+`git add j-settings.md .claude/settings.json <what step 0b wrote> <CLAUDE.md, when step 0d changed it> && git commit -m "chore(j-setup): base settings"`.
 
 ### 17. Report
 The base settings, the keys left for `/dev:j-new-project`, what the user declined in step 0, and the next

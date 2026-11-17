@@ -1,6 +1,6 @@
 # ai-agent — a development workflow for Claude Code
 
-**v2.31.47** · by 0ics srl · [how it works](FLOW.md)
+**v2.31.48** · by 0ics srl · [how it works](FLOW.md)
 
 `dev` is a Claude Code plugin that makes the agent work the way a careful developer does: it listens
 before it reads, looks for what already exists before it writes, has you approve the structure and
@@ -80,7 +80,11 @@ the code-navigation servers the workflow can use.
   in a pipeline too, where the plugin is not installed;
 - `.claude/settings.json`: one rule, `Read(~/.claude/plugins/cache/ai-agent/**)`, that lets the
   agent read the plugin's own pages without a prompt at each one. `/dev:j-setup` asks before adding it;
-- when the project does not have them: `CLAUDE.md`, `.mcp.json`, `memory-bank/` with its README.
+- when the project does not have them: `CLAUDE.md`, `.mcp.json`, `memory-bank/` with its README;
+- in `CLAUDE.md` — or in your own `CLAUDE.local.md` — who works with the agent: `/dev:j-setup` asks whether
+  you are a programmer, a junior or someone who does not program, and in which language to talk to you.
+  For the last two the agent explains in plain words and, when you say what you want, proposes the
+  command that does it.
 
 ## Update
 

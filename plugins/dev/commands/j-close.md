@@ -90,6 +90,8 @@ Before proceeding to tests, verify the FULL feature DoD:
 **If ANY gate fails → STOP. Tell user what's missing. Do NOT proceed.**
 
 ### 4. The final gate
+The gate stops at the first command that fails, and a test run at its first failing test
+(`testing-principles.md` 6.3): what is reported is that failure, not a count of what else is red.
 Run `{@gate-final}` from `j-settings.md` — every component's lint, `@lint-astgrep`, `@test-slow`, each
 frontend's build, `@test-e2e`, `@bench`, with no filter: this is the pre-merge barrier, where
 regressions at a distance surface. What `@limitations` says does not run locally is named in the

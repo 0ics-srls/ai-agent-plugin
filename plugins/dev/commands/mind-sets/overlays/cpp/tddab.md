@@ -13,13 +13,15 @@ debug`; `{file}` is a test file's name without its extension, which is its progr
 
 | Key | C++ |
 |---|---|
-| `@test-focused-<component>` | `BUILD && ctest --preset all -R '^{file}\..*{test}$'` |
-| `@test-block-<component>` | `BUILD && ctest --preset all -R '^{file}\.'`, once for each test file the block touches |
-| `@test-fast` | `BUILD && ctest --preset unit` |
-| `@test-slow` | `BUILD && ctest --preset all` |
+| `@test-focused-<component>` | `BUILD && ctest --preset all --stop-on-failure -R '^{file}\..*{test}$'` |
+| `@test-block-<component>` | `BUILD && ctest --preset all --stop-on-failure -R '^{file}\.'`, once for each test file the block touches |
+| `@test-fast` | `BUILD && ctest --preset unit --stop-on-failure` |
+| `@test-slow` | `BUILD && ctest --preset all --stop-on-failure` |
 | `@test-e2e` | the project's end-to-end tests, when it has them; otherwise `none` |
 | `@bench` | `none` |
-| `@gate-final` | the lint gate, `BUILD && ctest --preset all`, the `asan` build and run, the audit (`language.md` §5) |
+| `@gate-final` | the lint gate, `BUILD && ctest --preset all --stop-on-failure`, the `asan` build and run, the audit (`language.md` §5) |
+
+`--stop-on-failure` stops `ctest` after the first test that fails (`testing-principles.md` 6.3).
 
 Before the tests, the component's gate (`language.md` §5): the build runs the warnings and clang-tidy.
 

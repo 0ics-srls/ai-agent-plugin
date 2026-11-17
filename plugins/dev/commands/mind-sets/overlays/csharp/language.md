@@ -213,7 +213,8 @@ How the principles and the code principles are written in C# 14 on .NET 10.
   `PackageReference`s, not `xunit.v3` — → ask with AskUserQuestion, once: migrate the tests to xUnit v3,
   or stay on v2? It is the owner's decision, and staying is a full answer. *Stay*: the gate turns the
   v3 rule off — `@lint-astgrep: ast-grep scan --globs '!externals/**' --off=no-xunit-abstractions` —
-  the test levels are the commands the project already runs, on VSTest, and `global.json` gets no
+  the test levels are the commands the project already runs, on VSTest, each ending with
+  `-- xUnit.StopOnFail=true` (`tddab.md` §1), and `global.json` gets no
   `test` key; `testing.md` §1 says how its tests are written. *Migrate*: nothing changes here — the
   migration is a work of its own, `/dev:j-new-feature`, and until it closes the project is on v2, set up as
   *Stay*. Nothing is asked about the mock library: the project keeps the one it has — Moq,

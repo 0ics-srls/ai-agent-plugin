@@ -55,6 +55,11 @@ language's overlay gives (`overlays/<language>/tddab.md` §1):
 - [ ] Regression: [the fast run] → all pass
 ```
 
+Every one of these commands stops at the first failure (`testing-principles.md` 6.3): the test
+commands carry the runner's own option, as `j-settings.md` writes them, and a line that chains
+commands chains them with `&&`. VERIFY stops at the first line that fails: it does not go on to count
+what else is red.
+
 A component the block does not touch has no command in them, and a key that is `none` has none. The
 Gate commands come from `## Linting`, the other two from `## Tests — by level`. VERIFY's task says to
 run the tests of what the block touches; the Regression line is a criterion of the success, and VERIFY

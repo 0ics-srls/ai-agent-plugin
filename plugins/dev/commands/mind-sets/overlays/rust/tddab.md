@@ -20,6 +20,10 @@ blocks (`tddab-planner.md`, "The commands, by level").
 | `@bench` | `cargo bench`, when the project has a `benches/` folder; otherwise `none` |
 | `@gate-final` | the lint gate, `cargo test --workspace --all-features`, the audit (`language.md` §5) |
 
+`cargo test` stops at the first test binary that fails — `--no-fail-fast` is never passed
+(`testing-principles.md` 6.3). Inside one binary the harness runs its tests to the end: that is as
+far as it stops.
+
 Before the tests, the component's gate (`language.md` §5).
 
 ## 2. Each block at its level

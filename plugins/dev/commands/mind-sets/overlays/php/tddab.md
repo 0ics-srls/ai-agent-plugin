@@ -12,12 +12,14 @@ The values of the `## Tests — by level` keys of `j-settings.md` in a PHP proje
 | Key | PHP |
 |---|---|
 | `@test-focused-<component>` | `vendor/bin/phpunit --filter {test} {file}` |
-| `@test-block-<component>` | `vendor/bin/phpunit {file}`, once for each test file the block touches |
-| `@test-fast` | `vendor/bin/phpunit` |
-| `@test-slow` | `vendor/bin/phpunit --testsuite=Unit,Feature` |
+| `@test-block-<component>` | `vendor/bin/phpunit --stop-on-defect {file}`, once for each test file the block touches |
+| `@test-fast` | `vendor/bin/phpunit --stop-on-defect` |
+| `@test-slow` | `vendor/bin/phpunit --stop-on-defect --testsuite=Unit,Feature` |
 | `@test-e2e` | the project's end-to-end tests, when it has them; otherwise `none` |
 | `@bench` | `none` |
-| `@gate-final` | the lint gate, `vendor/bin/phpunit --testsuite=Unit,Feature`, the audit (`language.md` §5) |
+| `@gate-final` | the lint gate, `vendor/bin/phpunit --stop-on-defect --testsuite=Unit,Feature`, the audit (`language.md` §5) |
+
+`--stop-on-defect` stops the run at the first error, failure, warning or risky test (`testing-principles.md` 6.3).
 
 In an existing project that kept its tests (`language.md` §7), `@test-fast` and `@test-slow` are the
 commands `j-settings.md` has, on the project's own suites.

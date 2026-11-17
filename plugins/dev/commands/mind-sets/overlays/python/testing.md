@@ -12,8 +12,8 @@ How `testing-principles.md` is written with pytest.
   project's own configuration; no plan, review or audit proposes to move the tests, to add the
   runner's plugins or to change its options. `testing-principles.md` holds all the same.
 - pytest, with the pack's `pytest.ini`: a warning is an error, markers and configuration strict.
-- **The default run is the fast one** (testing principles 6.2): `uv run pytest` runs `tests/unit`;
-  the full run names the folder, `uv run pytest tests`.
+- **The default run is the fast one** (testing principles 6.2): `uv run pytest -x` runs `tests/unit`;
+  the full run names the folder, `uv run pytest -x tests`. `-x` stops at the first failing test (6.3).
 - A run that collects no test is red (pytest exits 5), not green.
 - Asynchronous tests run with pytest-asyncio; a test has a time limit, so a test that hangs fails with
   its name.

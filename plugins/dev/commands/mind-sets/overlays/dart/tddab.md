@@ -13,12 +13,14 @@ The values of the `## Tests — by level` keys of `j-settings.md` in a Dart proj
 | Key | Dart |
 |---|---|
 | `@test-focused-<component>` | `dart test {file} --name "{test}"` |
-| `@test-block-<component>` | `dart test {file}`, once for each test file the block touches |
-| `@test-fast` | `dart test test/unit` |
-| `@test-slow` | `dart test` |
+| `@test-block-<component>` | `dart test --fail-fast {file}`, once for each test file the block touches |
+| `@test-fast` | `dart test --fail-fast test/unit` |
+| `@test-slow` | `dart test --fail-fast` |
 | `@test-e2e` | the project's end-to-end tests, when it has them; otherwise `none` |
 | `@bench` | `none` |
-| `@gate-final` | the lint gate, `dart test`, the audit (`language.md` §5) |
+| `@gate-final` | the lint gate, `dart test --fail-fast`, the audit (`language.md` §5) |
+
+`--fail-fast` stops the run after the first failing test (`testing-principles.md` 6.3).
 
 Before the tests, the component's gate (`language.md` §5).
 

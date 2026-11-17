@@ -98,6 +98,12 @@ is visible at once.
 and the default run leaves them out through the runner's own configuration — a label alone leaves them
 in. They run on demand and always before a merge: green means both runs are green.
 
+6.3 **A run stops at the first failure.** One failing test makes the run red, and nothing is learned
+by running the rest: the runner is told to stop there — its own option, on every command that runs
+tests, at every level — and a chain of commands stops at the first one that fails. A run is never
+read as "x failed of y": the first failure is what gets fixed, and then the run starts again. Where a
+runner cannot stop there, the language's overlay says how far it goes.
+
 ## 7. A suite that stays fast as it grows
 
 7.1 **The tests run in parallel.** Each test owns its data and its resources and depends on no other

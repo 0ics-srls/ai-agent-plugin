@@ -82,7 +82,7 @@ the mapper of each form, and the hand practice it replaces:
   keep the tests where they are and as they run, or adopt the layout of this overlay? It is the owner's
   decision, and keeping is a full answer. *Keep*: the pack's `phpunit.xml` is not copied, no test is
   moved and nothing of the project's configuration is changed; the test levels are the commands the
-  project already runs — `@test-fast` and `@test-slow` are `vendor/bin/phpunit` with the suite or the
+  project already runs — `@test-fast` and `@test-slow` are `vendor/bin/phpunit --stop-on-defect` with the suite or the
   folder its tests are in — and `testing.md` §1 says where a new test goes. *Adopt*: nothing changes
   here — moving the tests into `tests/Unit` and `tests/Feature` under the pack's `phpunit.xml` is a
   work of its own, `/dev:j-new-feature`, and until it closes the project is set up as *Keep*.

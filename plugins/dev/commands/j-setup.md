@@ -273,7 +273,13 @@ The keys of `## Tests — by level` in step 11, in the forms the language's over
 the backend and its storage, so `/dev:j-close`, `/dev:j-deploy` and the pipeline run it as it is — `@bench` the run of
 a benchmarks project where there is one; otherwise `none`. `@gate-final` writes out, in order, each
 component's lint, `@lint-astgrep`, `@test-slow`, each frontend's build, `@test-e2e` and `@bench`,
-leaving out the ones that are `none`.
+leaving out the ones that are `none` — **joined with `&&`, never with `;`**: the gate stops at the
+first command that fails.
+
+**Every test command stops at the first failure** (`testing-principles.md` 6.3): it carries the
+runner's own option, as the overlay's `tddab.md` §1 writes it — also on an existing project that kept
+its own test setup, where the option goes on the command and the project's configuration is not
+touched.
 
 The command that starts each component, `@start-<component>` in `## Run`, in the form the language's
 overlay gives (`language.md` §7): `/dev:j-debug` starts the services with it. A component nothing starts, a
@@ -491,6 +497,9 @@ Repairs, made silently:
   version — a template the language's §7 keeps out of an existing project is compared only when the
   project has that file because the set put it there; a line the project added on purpose is kept, asking. A template the language's §7 merges into
   another file is compared there, in that file: it is not a file of the project.
+- A test command of `## Tests — by level` without its runner's stop-at-the-first-failure option
+  (`overlays/<language>/tddab.md` §1), or a `@gate-final` whose commands are joined with `;` → show
+  the corrected lines and, on confirmation, write them.
 - The tools of step 0 and `ast-grep` → checked again; a missing `ast-grep` is installed as in step 7.
 - `## CI/CD` missing → what step 9 lists: a pipeline (`.github/workflows/`, `.gitlab-ci.yml`) or a
   branch on the remote other than the main and the dev branch. Either one → asked: which branch is the

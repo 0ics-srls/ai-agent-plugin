@@ -13,12 +13,14 @@ into its blocks (`tddab-planner.md`, "The commands, by level").
 | Key | Python |
 |---|---|
 | `@test-focused-<component>` | `uv run pytest {file}::{test}` — one test by its node id |
-| `@test-block-<component>` | `uv run pytest {file}`, once for each test file the block touches |
-| `@test-fast` | `uv run pytest` — `tests/unit`, the default of `pytest.ini` |
-| `@test-slow` | `uv run pytest tests` — unit and integration |
+| `@test-block-<component>` | `uv run pytest -x {file}`, once for each test file the block touches |
+| `@test-fast` | `uv run pytest -x` — `tests/unit`, the default of `pytest.ini` |
+| `@test-slow` | `uv run pytest -x tests` — unit and integration |
 | `@test-e2e` | the project's end-to-end tests, when it has them; otherwise `none` |
 | `@bench` | `none` |
-| `@gate-final` | the lint gate, `uv run pytest tests`, the audit (`language.md` §5) |
+| `@gate-final` | the lint gate, `uv run pytest -x tests`, the audit (`language.md` §5) |
+
+`-x` stops the run at the first failing test (`testing-principles.md` 6.3).
 
 In an existing project that kept its tests (`language.md` §7), `@test-fast` and `@test-slow` are the
 commands `j-settings.md` has, on the project's own test folder.

@@ -19,6 +19,10 @@ copies them into its blocks (`tddab-planner.md`, "The commands, by level").
 | `@test-e2e` | `npm run e2e`, whose `playwright.config.ts` starts the backend and the application (`testing.md`) | the same |
 | `@gate-final`, the frontend's part | `npm run check`, `npm run build`, `npm run e2e` | the same |
 
+A run stops at its first failure (`testing-principles.md` 6.3), by what the `test` and `e2e` scripts
+of `package.json` run: Vitest with `--bail=1` — under Angular's builder, `test: { bail: 1 }` in the
+Vitest file its `runnerConfig` names — and Playwright with `-x`.
+
 A block that changes a page adds the end-to-end tests of that page to its success, as a criterion
 before the three lines: `@test-e2e` narrowed to the page's tag — `npx playwright test --grep @orders`.
 `--include` and the file argument take the

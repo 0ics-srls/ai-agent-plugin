@@ -12,8 +12,8 @@ How `testing-principles.md` is written with PHPUnit.
   with the project's own configuration; no plan, review or audit proposes to move the tests or to
   change the runner's options. `testing-principles.md` holds all the same.
 - PHPUnit, with the pack's `phpunit.xml`: a warning, a deprecation or a test with no assertion is a failure.
-- **The default run is the fast one** (testing principles 6.2), by the pack's `defaultTestSuite`: `vendor/bin/phpunit`; the full run
-  names both suites, `vendor/bin/phpunit --testsuite=Unit,Feature`.
+- **The default run is the fast one** (testing principles 6.2), by the pack's `defaultTestSuite`: `vendor/bin/phpunit --stop-on-defect`; the full run
+  names both suites, `vendor/bin/phpunit --stop-on-defect --testsuite=Unit,Feature`. The run stops at the first defect (6.3).
 - PHPUnit fails a run with no test only with `failOnEmptyTestSuite`, which the pack sets.
 - Several inputs of one behaviour are one `#[DataProvider]` (testing principles 1.4).
 - A test's name says the behaviour: `test_should_<behaviour>_when_<condition>`. One test class for one production class.

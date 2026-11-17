@@ -19,6 +19,9 @@ level").
 | `@bench` | `none` |
 | `@gate-final` | the lint gate, `carton exec prove -lr t`, the audit (`language.md` §5) |
 
+`prove` has no option to stop at the first failing test (`testing-principles.md` 6.3): a run goes
+to its end, file by file. The first failure it reports is the one that gets fixed.
+
 Before the tests, the component's gate (`language.md` §5).
 
 ## 2. Each block at its level

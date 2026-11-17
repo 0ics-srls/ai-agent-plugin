@@ -16,7 +16,7 @@ Vite.
     "DOM.Iterable"]`) and `tsconfig.node.json`, whose `include` is `vite.config.ts`,
     `playwright.config.ts` and `e2e`;
   - `package.json` scripts: `generate` (`orval --config orval.config.mjs`), `check` (`tsc -b && eslint
-    --max-warnings 0 .`), `test` (`vitest run`), `e2e` (`playwright test`),
+    --max-warnings 0 .`), `test` (`vitest run --bail=1`), `e2e` (`playwright test -x`),
     `start` (`vite`), `build` (`tsc -b && vite build`), and `precheck`, `pretest`, `prebuild` running
     `generate` (with DevExtreme, `prebuild` and `prestart` also run its license tool, `devextreme.md` §1);
   - `vite.config.ts` — the proxy of the API and the test environment:

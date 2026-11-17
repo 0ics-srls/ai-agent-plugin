@@ -22,6 +22,11 @@ level"). They run on a Mac when the app has an iOS target, with an Android emula
 | `@bench` | `none` |
 | `@gate-final` | the lint gate, `./gradlew check connectedAndroidDeviceTest`, the iOS app's `xcodebuild` (`app.md` §5), the audit (`language.md` §5) |
 
+The pack's `kmp.quality.gradle.kts` sets `failFast` on the JVM's test tasks: a run stops at its first
+failing test (`testing-principles.md` 6.3). The test tasks of the native and JS targets have no such
+option and run their tests to the end; Gradle stops at the first task that fails, without
+`--continue`, which is never passed.
+
 Before the tests, the component's gate (`language.md` §5): `./gradlew assemble`.
 
 ## 2. Each block at its level

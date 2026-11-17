@@ -21,6 +21,9 @@ the game); a plan copies them into its blocks (`tddab-planner.md`, "The commands
 | `@bench` | `none` |
 | `@gate-final` | the lint gate, `RUN -a res://test`, the main scene started headless |
 
+gdUnit4 stops at the first failing test by itself (`testing-principles.md` 6.3): its `-c`, which
+makes it run the whole set, is never passed.
+
 `--import` comes first when the block adds a `class_name`: it writes the cache of the global classes.
 Before the tests, the component's gate (`language.md` §5). The run's `Overall Summary: N test cases`
 is read: a path with no test exits 0.

@@ -14,7 +14,7 @@ Vite.
   - the pack's compiler options merged into `tsconfig.app.json` (its `include` stays
     `["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue"]`) and `tsconfig.node.json`, whose `include` is
     `vite.config.ts`, `playwright.config.ts` and `e2e`;
-  - `package.json` scripts: `generate`, `check` (`vue-tsc -b && eslint --max-warnings 0 .`), `test` (`vitest run`), `e2e` (`playwright test`), `start` (`vite`), `build` (`vue-tsc -b
+  - `package.json` scripts: `generate`, `check` (`vue-tsc -b && eslint --max-warnings 0 .`), `test` (`vitest run --bail=1`), `e2e` (`playwright test -x`), `start` (`vite`), `build` (`vue-tsc -b
     && vite build`), and `precheck`, `pretest`, `prebuild` running `generate` (with DevExtreme,
     `prebuild` and `prestart` also run its license tool, `devextreme.md` §1);
   - `vite.config.ts` with `@vitejs/plugin-vue`, the proxy of `/api` and `test: { environment: "jsdom" }`

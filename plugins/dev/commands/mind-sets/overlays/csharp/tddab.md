@@ -13,12 +13,17 @@ blocks (`tddab-planner.md`, "The commands, by level").
 | Key | C# |
 |---|---|
 | `@test-focused-backend` | `dotnet test --project {project} --filter-method "*{test}*"` |
-| `@test-block-backend` | `dotnet test --project {project}`, once for each test project the block touches |
-| `@test-fast` | `dotnet test --solution App.Unit.slnf` — the unit projects and the layer test |
-| `@test-slow` | `dotnet test --solution App.slnx` — every project, integration included |
+| `@test-block-backend` | `dotnet test --project {project} --stop-on-fail on`, once for each test project the block touches |
+| `@test-fast` | `dotnet test --solution App.Unit.slnf --stop-on-fail on` — the unit projects and the layer test |
+| `@test-slow` | `dotnet test --solution App.slnx --stop-on-fail on` — every project, integration included |
 | `@test-e2e` | the project's end-to-end tests, when it has them; otherwise `none` |
 | `@bench` | `dotnet run -c Release --project benchmarks/App.Benchmarks` on BenchmarkDotNet (MIT), where the project has benchmarks; otherwise `none` |
-| `@gate-final` | the lint gate, `dotnet test --solution App.slnx`, the frontend's part, `@test-e2e`, `@bench` where they are not `none` |
+| `@gate-final` | the lint gate, `dotnet test --solution App.slnx --stop-on-fail on`, the frontend's part, `@test-e2e`, `@bench` where they are not `none` |
+
+`--stop-on-fail on` stops a test project at its first failing test (`testing-principles.md` 6.3). The
+projects of a solution run side by side, so another project may already have started when one fails:
+the run is red at the first failure all the same. A project that stayed on xUnit v2 (`language.md`
+§7) ends its test commands with `-- xUnit.StopOnFail=true`, the same option on VSTest.
 
 Before the tests, the component's gate: `dotnet build App.slnx` (`language.md` §5).
 

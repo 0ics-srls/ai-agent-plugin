@@ -99,7 +99,7 @@ the mapper of each form, and the hand practice it replaces:
   the tests where they are and as they run, or adopt the layout of this overlay? It is the owner's
   decision, and keeping is a full answer. *Keep*: the pack's `pytest.ini` is not copied, no test is
   moved and no dependency is added; the test levels are the commands the project already runs, on its
-  own folder — `@test-fast` and `@test-slow` name it, `uv run pytest <the folder of its tests>` —
+  own folder — `@test-fast` and `@test-slow` name it, `uv run pytest -x <the folder of its tests>` —
   and `testing.md` §1 says where a new test goes. *Adopt*: nothing changes here — moving the tests
   into `tests/unit` and `tests/integration`, with `pytest-timeout`, `pytest-asyncio` and the pack's
   `pytest.ini`, is a work of its own, `/dev:j-new-feature`, and until it closes the project is set up as

@@ -13,12 +13,14 @@ The values of the `## Tests — by level` keys of `j-settings.md` in a Java proj
 | Key | Java |
 |---|---|
 | `@test-focused-<component>` | `./mvnw -q test -Dtest={class}#{test} -DexcludedGroups=` |
-| `@test-block-<component>` | `./mvnw -q test -Dtest={class} -DexcludedGroups=`, once for each test class the block touches |
-| `@test-fast` | `./mvnw -q test` |
-| `@test-slow` | `./mvnw -q test -DexcludedGroups=` |
+| `@test-block-<component>` | `./mvnw -q test -Dsurefire.skipAfterFailureCount=1 -Dtest={class} -DexcludedGroups=`, once for each test class the block touches |
+| `@test-fast` | `./mvnw -q test -Dsurefire.skipAfterFailureCount=1` |
+| `@test-slow` | `./mvnw -q test -Dsurefire.skipAfterFailureCount=1 -DexcludedGroups=` |
 | `@test-e2e` | the project's end-to-end tests, when it has them; otherwise `none` |
 | `@bench` | `none` |
-| `@gate-final` | the lint gate, `./mvnw -q test -DexcludedGroups=`, the audit (`language.md` §5) |
+| `@gate-final` | the lint gate, `./mvnw -q test -Dsurefire.skipAfterFailureCount=1 -DexcludedGroups=`, the audit (`language.md` §5) |
+
+`-Dsurefire.skipAfterFailureCount=1` makes Surefire skip the remaining tests after the first failure or error (`testing-principles.md` 6.3).
 
 Before the tests, the component's gate (`language.md` §5).
 

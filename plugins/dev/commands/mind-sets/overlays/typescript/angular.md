@@ -13,7 +13,7 @@ How `branches/frontend.md`, `language.md` and `client.md` are written in an Angu
   - `package.json`: `"type": "module"`, and the scripts `generate` (`orval --config
     orval.config.mjs`), `check` (`tsc -p tsconfig.app.json --noEmit && tsc -p tsconfig.spec.json
     --noEmit && tsc -p tsconfig.e2e.json && eslint --max-warnings 0 .`),
-    `test` (`ng test`), `e2e` (`playwright test`), and `precheck`, `pretest`, `prebuild` running
+    `test` (`ng test`), `e2e` (`playwright test -x`), and `precheck`, `pretest`, `prebuild` running
     `generate` (with DevExtreme, `prebuild` and `prestart` also run its license tool, `devextreme.md` §1);
   - `tsconfig.json`: the pack's compiler options merged into its `compilerOptions`, and in
     `angularCompilerOptions` `"strictTemplates": true` and `"extendedDiagnostics": { "defaultCategory":
@@ -218,6 +218,7 @@ call it loses its entity: `private readonly load = loader(options => this.orders
 ## 7. Tests
 
 - `ng test`: Vitest through the `unit-test` builder, specs beside their code (`*.spec.ts`), types
-  proved with `expectTypeOf` (`testing.md`).
-- `playwright test` in `e2e/`, with `playwright.config.ts` starting the backend and `ng serve` on its own
+  proved with `expectTypeOf` (`testing.md`). The builder's `runnerConfig` names a Vitest file with
+  `test: { bail: 1 }`: the run stops at its first failure (testing principles 6.3).
+- `playwright test -x` in `e2e/`, with `playwright.config.ts` starting the backend and `ng serve` on its own
   port (`testing.md`).

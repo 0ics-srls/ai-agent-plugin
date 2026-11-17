@@ -12,12 +12,14 @@ The values of the `## Tests — by level` keys of `j-settings.md` in a Go projec
 | Key | Go |
 |---|---|
 | `@test-focused-<component>` | `go test -race -tags=integration -v -run '^{test}$' {package}` |
-| `@test-block-<component>` | `go test -race -tags=integration -v {package}`, once for each package the block touches |
-| `@test-fast` | `go test -race ./...` |
-| `@test-slow` | `go test -race -tags=integration ./...` |
+| `@test-block-<component>` | `go test -race -failfast -tags=integration -v {package}`, once for each package the block touches |
+| `@test-fast` | `go test -race -failfast ./...` |
+| `@test-slow` | `go test -race -failfast -tags=integration ./...` |
 | `@test-e2e` | the project's end-to-end tests, when it has them; otherwise `none` |
 | `@bench` | `go test -run '^$' -bench . ./...`, when the project has benchmarks; otherwise `none` |
-| `@gate-final` | the lint gate, `go test -race -tags=integration ./...`, the audit (`language.md` §5) |
+| `@gate-final` | the lint gate, `go test -race -failfast -tags=integration ./...`, the audit (`language.md` §5) |
+
+`-failfast` starts no new test after the first failure (`testing-principles.md` 6.3).
 
 Before the tests, the component's gate (`language.md` §5).
 

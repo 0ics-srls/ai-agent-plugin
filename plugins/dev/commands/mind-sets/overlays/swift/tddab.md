@@ -20,6 +20,10 @@ into its blocks (`tddab-planner.md`, "The commands, by level").
 | `@bench` | `none` |
 | `@gate-final` | the lint gate, `swift test`, an app's `xcodebuild` build and UI tests, the audit (`language.md` §5) |
 
+`swift test` has no option to stop at the first failing test (`testing-principles.md` 6.3): a run
+goes to its end. A test stops at its own first failed requirement (`#require`), and the first
+failure the run reports is the one that gets fixed.
+
 Before the tests, the component's gate (`language.md` §5).
 
 ## 2. Each block at its level

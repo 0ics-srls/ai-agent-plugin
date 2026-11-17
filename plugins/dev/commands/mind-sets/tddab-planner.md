@@ -39,7 +39,12 @@ the block's names, and global commands a plan copies as they are. Their form in 
 |---|---|---|
 | a block's intro, `Focused run:` | the tests the block writes — RED, GREEN and FIX run them | `@test-focused-<component>`, filled with the block's test project or file and its tests |
 | a block's success | the gate of each component the block touches, the block's test projects, the fast regression | `@lint-<component>`, `@lint-astgrep`, `@test-block-<component>` filled, `@test-fast` |
-| the mission's `## Commands` | the same gates and `@test-fast` once, and the final gate the FINAL REVIEW runs | `@lint-*`, `@test-fast`, `@gate-final` |
+| the mission's `## Commands` | the same gates and `@test-fast`, once: what the FINAL REVIEW runs | `@lint-*`, `@test-fast` |
+
+**`@gate-final` is not in a plan.** The final gate — the slow tests, the end-to-end run, the builds,
+the audit — takes minutes, and it judges a work that is finished: `/dev:j-close` runs it, once. A block,
+and the FINAL REVIEW that closes an execution, run the fast commands above and nothing wider; a
+feature built in steps (`/dev:j-step`) is executed once per step, and would pay the whole gate at each.
 
 Every block's success ends with these three lines, each command written out in the form the
 language's overlay gives (`overlays/<language>/tddab.md` §1):
@@ -89,7 +94,7 @@ developer who just walked into the project.]
 
 ## Code rules — the rules this plan's code must obey, each with its source (file, section), transcribed from the mindsets j-settings.md names in @mindsets-branches and @mindsets-overlay, and from principles.md, code-principles.md, testing-principles.md
 
-## Commands — each component's gate, `@test-fast` and `@gate-final` from j-settings.md, written out
+## Commands — each component's gate and `@test-fast` from j-settings.md, written out; the FINAL REVIEW runs these, not `@gate-final`
 </mission>
 
 <block id="01-short-name">
@@ -492,7 +497,7 @@ For each block, verify:
       the second consumer, not written again. If the inventory found nothing, the block says so.
 - [ ] The mission has `## Design principles`, transcribed from code-principles.md §1
 - [ ] The mission has `## Code rules`: the rules of the project's mindsets that these blocks must obey, each with its source, and the reference code obeys them
-- [ ] The mission has `## Commands`: each component's gate, `@test-fast` and `@gate-final`, written out
+- [ ] The mission has `## Commands`: each component's gate and `@test-fast`, written out — and not `@gate-final`, which is `/dev:j-close`'s
 - [ ] No block asks for a commit, a Memory Bank update or the whole suite
 
 ---

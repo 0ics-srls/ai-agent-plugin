@@ -161,6 +161,11 @@ the blocks of the earlier steps are in the planexecutor's list and are skipped, 
 goes through its phases — RED, GREEN, VERIFY, the commit. Every rule of that command holds: one CVM
 call per turn, no code outside the task the planexecutor hands out, the plan not edited while it runs.
 
+**No step runs the final gate.** A step ends with its block's own commands — the gate of what it
+touches, its tests, the fast regression — and the FINAL REVIEW of the execution runs the same fast
+commands (`j-cvm-exec-plan.md` step 3). `@gate-final` is `/dev:j-close`'s, once, when the feature is done:
+a step that ran it would make a one-line piece cost minutes.
+
 A block that cannot be made to pass → stop and tell the user what and why, as that command's step 4
 says. The piece is then said again, smaller or differently: a new step.
 
@@ -178,6 +183,7 @@ Next: /dev:j-step with the next piece, or with what to correct. /dev:j-close whe
 
 ## Rules
 - **One piece, one block, one execution, then STOP.** A step does not go on to the next piece.
+- **The final gate is `/dev:j-close`'s**: no step runs `@gate-final`.
 - **No code outside the planexecutor**: the block is the only way code gets written.
 - **Every step looks for what exists before it writes**, `## Shared` first.
 - **A block already executed is never changed**: a correction is a new step.

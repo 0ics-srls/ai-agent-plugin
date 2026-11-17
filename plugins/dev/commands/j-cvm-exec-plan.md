@@ -47,6 +47,13 @@ its reply, then the next `getTask` — until it answers "Execution completed". W
 in the task and in the plan. Every CVM call is made by the main conversation, one per turn: two in the
 same turn put the phases out of step.
 
+**The FINAL REVIEW is not the final gate.** The planexecutor's last task asks for "a final full test
+suite": what it runs is the mission's `## Commands` — each component's gate and `@test-fast` — once.
+`@gate-final` — the slow tests, the end-to-end run, the builds, the audit — is not run here, nor
+after a block, nor because a task's words seem to ask for it: it takes minutes, and it is
+`/dev:j-close`'s, once, on the finished work. A plan written before this rule, whose `## Commands` names
+`@gate-final`, is executed the same way.
+
 ### 4. When a fix cannot be found
 The planexecutor repeats FIX and RE-VERIFY until the block passes; it has no limit. When the evidence
 gives no fix, stop and tell the user: the plan may need to change.

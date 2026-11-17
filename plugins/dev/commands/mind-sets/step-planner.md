@@ -49,7 +49,7 @@ Plan type (tddab or step) is auto-detected from blocks: all "- action:" → step
 
 ## Code rules — the rules this plan's code must obey, each with its source (file, section), transcribed from the mindsets j-settings.md names in @mindsets-branches and @mindsets-overlay, and from principles.md, code-principles.md, testing-principles.md
 
-## Commands — the commands the blocks and the FINAL REVIEW run, written out
+## Commands — the commands the blocks and the FINAL REVIEW run, written out: the gates and `@test-fast`, not `@gate-final`, which is `/dev:j-close`'s
 </mission>
 
 <block id="01-short-name">

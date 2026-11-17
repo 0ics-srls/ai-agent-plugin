@@ -112,7 +112,9 @@ AskUserQuestion, one question each. Called by `/dev:j-new-project` or `/dev:bbc-
 is skipped: it was asked when the base settings were written.
 - **Who works with the agent on this project**: a programmer; a junior developer; someone who does
   not program.
-- **The language the agent talks to them in.**
+- **The language the agent talks to them in** — the one of the conversation: the answers, the
+  questions, the explanations. It is not the language the code is written in, which is `@language`
+  (step 3). The options: English, Italian, Slovak; any other one, the user writes it.
 - **For the whole project or for this person only**: the project's — the block goes in `CLAUDE.md`,
   committed, and holds for everybody who works here; this person's — it goes in `CLAUDE.local.md`,
   which is not committed (`.gitignore` gets the line `CLAUDE.local.md`).

@@ -42,7 +42,9 @@ principles 4.9).
   The tools are `require-dev`: `phpstan/phpstan`, `phpstan/phpstan-strict-rules`, `phpunit/phpunit`.
 - Every dependency's license is admitted by principles 6.4.
 - The pack's files beside `composer.json` (`${CLAUDE_PLUGIN_ROOT}/lint-rules/php/native/`): `phpstan.neon` (its `paths`
-  are the project's own), `phpunit.xml` (`testing.md`).
+  are the project's own), and, in a project the set creates, `phpunit.xml` (`testing.md`): it is the
+  test runner's configuration — where the suites are, which one runs by default — not a check, and it is
+  kept out of an existing project (§7).
 - The gate is the manifest's `native_lint`: `vendor/bin/phpstan analyse`. It checks no formatting and no style: they
   find no defect, and on code that exists they only make it be rewritten.
 - The audit of the dependencies (principles 6.5), in `@gate-final`: `composer audit`.
@@ -75,6 +77,15 @@ the mapper of each form, and the hand practice it replaces:
   | `tddab.md` | the TDDAB plans, with `tddab-planner.md` |
 
 - **What LISTEN asks** (`/dev:j-new-project`): what is built, and what it talks to.
+- **What /dev:j-setup asks on an existing project**: the project already has tests — a `*Test.php` file — or
+  its own PHPUnit configuration (`phpunit.xml`, `phpunit.xml.dist`) → ask with AskUserQuestion, once:
+  keep the tests where they are and as they run, or adopt the layout of this overlay? It is the owner's
+  decision, and keeping is a full answer. *Keep*: the pack's `phpunit.xml` is not copied, no test is
+  moved and nothing of the project's configuration is changed; the test levels are the commands the
+  project already runs — `@test-fast` and `@test-slow` are `vendor/bin/phpunit` with the suite or the
+  folder its tests are in — and `testing.md` §1 says where a new test goes. *Adopt*: nothing changes
+  here — moving the tests into `tests/Unit` and `tests/Feature` under the pack's `phpunit.xml` is a
+  work of its own, `/dev:j-new-feature`, and until it closes the project is set up as *Keep*.
 - **The lint gate**: the manifest's `native_lint`, run from the folder of `composer.json`; §5 says where the pack's files go.
 - **Vendored** (`@vendored-globs`): `vendor/`, `.phpunit.cache/`.
 - **The test levels**: the keys of `tddab.md` §1.

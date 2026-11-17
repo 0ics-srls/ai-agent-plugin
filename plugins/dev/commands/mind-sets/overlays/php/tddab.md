@@ -19,12 +19,16 @@ The values of the `## Tests — by level` keys of `j-settings.md` in a PHP proje
 | `@bench` | `none` |
 | `@gate-final` | the lint gate, `vendor/bin/phpunit --testsuite=Unit,Feature`, the audit (`language.md` §5) |
 
+In an existing project that kept its tests (`language.md` §7), `@test-fast` and `@test-slow` are the
+commands `j-settings.md` has, on the project's own suites.
+
 Before the tests, the component's gate (`language.md` §5).
 
 ## 2. Each block at its level
 
 The RED of a block runs at the level of what it builds: the logic in `tests/Unit/` on the doubles; the code that talks to the
-outside in `tests/Feature/` on the real thing (`testing.md` §2).
+outside in `tests/Feature/` on the real thing (`testing.md` §2). In a project that kept its tests, a block's tests go beside the
+ones that are there (`testing.md` §1).
 
 ## 3. The RED of a block
 

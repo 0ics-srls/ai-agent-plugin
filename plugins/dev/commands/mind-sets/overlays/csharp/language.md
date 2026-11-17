@@ -111,7 +111,13 @@ How the principles and the code principles are written in C# 14 on .NET 10.
 - `Directory.Build.props` at the folder of the solution is the pack's,
   `${CLAUDE_PLUGIN_ROOT}/lint-rules/csharp/native/Directory.Build.props`, which /dev:j-setup copies: `net10.0`, the latest
   language, nullable references and implicit usings, every warning an error, the
-  artifacts output, the NuGet audit of every transitive package.
+  artifacts output, the NuGet audit of every transitive package. **In an existing project only the
+  gate's properties go in** — `Nullable`, `TreatWarningsAsErrors`, `AnalysisLevel`,
+  `EnforceCodeStyleInBuild`, the three `NuGetAudit` ones: `TargetFramework`, `LangVersion`,
+  `ImplicitUsings` and `UseArtifactsOutput` say how the project is built, not what is checked, and a
+  project that already builds has its own — its frameworks, its language version, its `bin/` and
+  `obj/` where its scripts and its pipeline look for them. They are left out of the copy, and out of
+  the merge into a `Directory.Build.props` the project already has.
 - Central Package Management: `Directory.Packages.props` at the folder of the solution, with
   `ManagePackageVersionsCentrally` `true` and `CentralPackageTransitivePinningEnabled` `true`, holds
   every version as a `PackageVersion`; each `.csproj` lists its `PackageReference`s by name, without

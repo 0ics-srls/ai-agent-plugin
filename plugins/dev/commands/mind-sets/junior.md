@@ -37,6 +37,7 @@ flowchart TD
 |---|---|
 | `/dev:j-new-project` | a project not designed as black boxes: LISTEN, ANALYZE, INVENTORY, PROPOSE, then its settings, then PLAN, then the Memory Bank; it stops before DEVELOP. On an existing project: LISTEN, its settings, ANALYZE, the Memory Bank, then IDLE |
 | `/dev:j-new-feature` | LISTEN, ANALYZE, INVENTORY, PROPOSE, PLAN; on a project with a black-box map, it reads the map |
+| `/dev:j-step` | a feature in steps the user drives: each run takes one piece through LISTEN, ANALYZE, INVENTORY, PROPOSE and PLAN at its size — one TDDAB block — and DEVELOP, then stops for the user to check; the first run opens the feature, `/dev:j-close` closes it |
 | `/dev:j-bug` | LISTEN, DIAGNOSE, PLAN; on a project with a black-box map, it reads the map |
 | `/dev:j-review-plan`, `/dev:j-cvm-check-plan` | PLAN: the plan reviewed against the mindsets and the code; its structure checked |
 | `/dev:j-cvm-exec-plan` | DEVELOP |

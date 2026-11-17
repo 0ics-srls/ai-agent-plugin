@@ -20,6 +20,7 @@ FIRST TIME SETUP:
 
 START WORK:
   /dev:j-new-feature  → Start a new feature
+  /dev:j-step         → Build a feature one piece at a time: you say a piece, I build it, you check it
   /dev:j-bug          → Fix a bug
   /dev:j-poc          → Experiment with something new (proof of concept)
   /dev:j-continue     → Resume where you left off

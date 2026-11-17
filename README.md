@@ -1,6 +1,6 @@
 # ai-agent — a development workflow for Claude Code
 
-**v2.31.46** · by 0ics srl · [how it works](FLOW.md)
+**v2.31.47** · by 0ics srl · [how it works](FLOW.md)
 
 `dev` is a Claude Code plugin that makes the agent work the way a careful developer does: it listens
 before it reads, looks for what already exists before it writes, has you approve the structure and
@@ -57,6 +57,7 @@ Every command is typed with the plugin's name in front.
 | `/dev:j-setup` | First, once per project: it finds the language, the stack and the commands, asks only what it cannot see, writes `j-settings.md` and wires the lint gate |
 | `/dev:j-new-project` | A new project, from what it must be to the plan of its skeleton — or an existing one, described and given its Memory Bank |
 | `/dev:j-new-feature` | A feature: you say what you need, and it goes up to a reviewed plan |
+| `/dev:j-step` | A feature a piece at a time: you say a piece, it is built as one test-first block, you check, and say the next |
 | `/dev:j-bug` | A bug: the cause proved first, then the plan of the fix |
 | `/dev:j-cvm-exec-plan` | Executes the plan, block by block |
 | `/dev:j-close` | Runs the gate, merges, optionally deploys |

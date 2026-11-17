@@ -68,7 +68,8 @@ Want to continue from here or do you have updates?
 ### 6. Resume
 Updates from the user → listen. Confirmed → resume the phase, as the command that owns it says
 (`/dev:j-new-project` for `01-scaffold`, `/dev:j-new-feature` for a feature, `/dev:j-bug` for a bug; CLOSE is
-`/dev:j-close`'s, DEPLOY `/dev:j-deploy`'s). A task whose `notes.md` has `## BB scope` is a black-box work: its
+`/dev:j-close`'s, DEPLOY `/dev:j-deploy`'s). A task whose `notes.md` says `Flow: j-step` is a feature in steps:
+`/dev:j-step` resumes it — the step left half way, or the next one. A task whose `notes.md` has `## BB scope` is a black-box work: its
 phases are resumed as the command of its `Flow:` line says (`/dev:bbc-core`, `/dev:bbc-plan`, `/dev:bbc-refactor`,
 `/dev:bbc-integrate`, `/dev:bbc-e2e`; `/dev:bbc-plan` when the line is missing), with the BB's scope (`bbc.md` §3); a bug whose `bug-notes.md`
 says `Flow: bbc-debug` keeps its ISOLATE on the map (`/dev:bbc-debug` step 6). Resuming is entering the phase: whatever was in context when the work

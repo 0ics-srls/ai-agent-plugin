@@ -39,6 +39,28 @@ flowchart TD
 The plan is executed by the CVM plan executor, an MCP server that hands the agent one block at a time
 and keeps the state: a plan interrupted is resumed where it stopped. `/dev:j-mcp-setup` installs it.
 
+## A feature in steps
+
+When you do not know the whole feature yet — an interface, a game, something you have to see to
+decide — `/dev:j-step` builds it one piece at a time. Each run is one step: you say a piece, the
+agent looks at what it touches and at what already does it, writes one test-first block, you approve
+it, it is executed, and the agent stops. You check, and say the next piece, or what to correct.
+
+```mermaid
+flowchart LR
+    PIECE(["you say a piece"]) -->|"/dev:j-step"| LOOK["what it touches<br>what already does it"]
+    LOOK --> BLOCK["ONE test-first block"]
+    BLOCK -->|"you approve"| RUN["executed<br>a commit"]
+    RUN --> CHECK{"you check"}
+    CHECK -->|"the next piece,<br>or a correction"| PIECE
+    CHECK -->|"the feature is done"| CLOSE["/dev:j-close"]
+```
+
+The first run opens the branch and the task folder; every later one adds a step to the same feature,
+and a block to the same plan. Small steps have a risk — nobody decides the structure of the whole —
+so every step looks for what exists before it writes, the notes keep what the steps have in common,
+and a piece that changes something shared stops and asks you first.
+
 ## A bug
 
 A bug designs nothing, so it has no inventory and no structure of its own: the cause is found first,
@@ -66,6 +88,9 @@ flowchart TD
     NEW -->|"yes"| WHAT{"what do you<br>want to do?"}
     PROJECT --> WHAT
     WHAT -->|"add something"| FEATURE["/dev:j-new-feature"]
+    WHAT -->|"add it a piece at a time"| STEP["/dev:j-step<br>one block, executed, you check"]
+    STEP -->|"the next piece"| STEP
+    STEP -->|"done"| CLOSE
     WHAT -->|"something is broken"| BUG["/dev:j-bug"]
     WHAT -->|"understand a problem"| DEBUG["/dev:j-debug"]
     WHAT -->|"try an idea"| POC["/dev:j-poc"]
@@ -84,6 +109,7 @@ flowchart TD
 | `/dev:j-setup` | Finds what the project shows — language, stack, commands — asks only what it cannot see, writes `j-settings.md` and wires the lint gate. Run first, once per project; run again to check and repair |
 | `/dev:j-new-project` | A new project: from what it must be to the plan of its skeleton. An existing one: wired, described, given its Memory Bank |
 | `/dev:j-new-feature` | A feature, up to a reviewed plan; then it stops |
+| `/dev:j-step` | A feature a piece at a time: one piece, one test-first block, executed, then it stops for you to check; run again for the next piece |
 | `/dev:j-bug` | A bug, up to a reviewed plan of the fix; then it stops |
 | `/dev:j-cvm-exec-plan` | Executes a plan, block by block; resumes one that was interrupted |
 | `/dev:j-review-plan`, `/dev:j-cvm-check-plan` | A plan reviewed against the rules and the code; its structure checked |

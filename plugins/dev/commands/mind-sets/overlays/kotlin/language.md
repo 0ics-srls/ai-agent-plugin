@@ -24,8 +24,6 @@ client and the local storage are `client.md`.
   builds the graph (`app.md` §4).
 - **The console is never written directly** — `println`, `print`, `System.out`: the pack's ast-grep
   rule `kotlin-no-console-output` refuses them; the app logs with Kermit (§4).
-- **`commonMain` imports no platform** — `android.*`, `platform.*`: the rule `kotlin-no-platform-import-in-commonmain` refuses it;
-  what differs per target is `expect`/`actual`.
 
 ## 2. Coroutines and waiting
 

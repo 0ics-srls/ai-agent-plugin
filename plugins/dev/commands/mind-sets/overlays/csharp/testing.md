@@ -36,6 +36,8 @@ How `testing-principles.md` is written with xUnit v3 on .NET 10.
   `A.CallTo(() => notifier.OrderPlacedAsync(OrderId, A<CancellationToken>._)).MustHaveHappenedOnceExactly();`.
   Doubles are named for what they are (`FakeRepository<T>`), and the shared arrangement comes from
   builders and helper methods.
+- `App.Core.Tests` — unit: what the Core holds with behaviour of its own — the query and page
+  records, the error codes.
 - `App.Domain.Tests` — unit: the services with in-memory implementations of `IRepository<T>` and
   `IUnitOfWork`, `FakeTimeProvider`, builders for the data.
 - `App.Db.Tests` — integration on the real database engine started with Testcontainers: migrations,
@@ -49,57 +51,6 @@ How `testing-principles.md` is written with xUnit v3 on .NET 10.
   failure — the framework's ones too — is sent for real and its answer checked against what the
   document declares: status, `application/problem+json`, `Code`.
 - `App.Db.Tests` reads an enum column back as text and checks it holds the declared name.
-- The unit run (`@test-fast`) is the unit projects and the layer test, through a solution filter
+- The unit run (`@test-fast`) is the unit projects, through a solution filter
   (`App.Unit.slnf`) that each block creating a unit test project extends; the full run
   (`@test-slow`), at the end of a plan and before every merge, is the whole solution.
-
-## 2. The layer test
-
-`App.Layers.Tests` proves what the project references cannot forbid (`branches/service-layers.md` 1):
-the types of the storage technology reach Domain and Api through the reference to Db, and the compiler
-accepts them there. The test uses ArchUnitNET (`TngTech.ArchUnitNET.xUnitV3`, Apache 2.0) and is in
-the unit run. It references the newest layer's project (`App.Api` brings the others once it exists) and
-the storage package `Microsoft.EntityFrameworkCore`, whose assembly it loads with the layers: a rule on
-types that are not loaded passes without looking.
-
-```csharp
-// tests/App.Layers.Tests/LayerTests.cs
-using ArchUnitNET.Domain;
-using ArchUnitNET.Fluent;
-using ArchUnitNET.Fluent.Syntax.Elements.Types;
-using ArchUnitNET.Loader;
-using ArchUnitNET.xUnitV3;
-using static ArchUnitNET.Fluent.ArchRuleDefinition;
-
-namespace App.Layers.Tests;
-
-public sealed class LayerTests
-{
-    private static readonly Architecture Layers = new ArchLoader()
-        .LoadAssemblies([.. new[] { "App.Core", "App.Db", "App.Domain", "App.Api", "Microsoft.EntityFrameworkCore" }.Select(System.Reflection.Assembly.Load)])
-        .Build();
-
-    private static readonly IObjectProvider<IType> Storage = Types().That().ResideInNamespaceMatching(@"^Microsoft\.EntityFrameworkCore(\..+)?$");
-
-    private static GivenTypesConjunction Layer(string name) => Types().That().ResideInNamespaceMatching($@"^App\.{name}(\..+)?$");
-
-    [Fact]
-    public void Core_UsesNoStorageType() => Layer("Core").Should().NotDependOnAny(Storage).Check(Layers);
-
-    [Fact]
-    public void Domain_UsesNoStorageType() => Layer("Domain").Should().NotDependOnAny(Storage).Check(Layers);
-
-    [Fact]
-    public void Api_UsesNoStorageType() => Layer("Api").Should().NotDependOnAny(Storage).Check(Layers);
-}
-```
-
-- A layer's rule is added by the block that writes the layer's first type, and its assembly joins
-  the loaded list then: a rule over a layer with no type fails ("The rule requires positive
-  evaluation").
-- A violation fails with the type and what it uses: `App.Domain.Leak does depend on
-  "Microsoft.EntityFrameworkCore.DbUpdateConcurrencyException"`.
-- The project is named for the layers, not `*.Architecture.Tests`, whose namespace hides ArchUnitNET's
-  `Architecture` type; `System.Reflection.Assembly` is written in full, because ArchUnitNET has an
-  `Assembly` of its own.
-- A new rule of the layers is one more `[Fact]` on `Layer(...)`.

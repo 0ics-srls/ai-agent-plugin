@@ -34,8 +34,8 @@ The steps of the method, each with the command that takes it. Before them, `/dev
    one at a time, or `/dev:bbc-work`, one worktree per BB.
 5. **Composed**: real BB with real BB, in the order of the dependency graph — `/dev:bbc-integrate`.
 6. **The flows**, end to end through the real transport and storage — `/dev:bbc-e2e`.
-7. **The code checked against the analysis**: a report, and a feature that fixes what it found —
-   `/dev:bbc-audit`.
+7. **The code checked against the analysis**: a report, and a feature that fixes what its author
+   decides to fix — `/dev:bbc-audit`.
 8. **A change of the map, then of the code**: a BB's responsibility, its contract, a split or a merge, a
    decision — changed in the map with the user, and the code brought to it — `/dev:bbc-refactor`.
 9. **A failure isolated** BB by BB, leaves first — `/dev:bbc-debug`.
@@ -96,7 +96,7 @@ the integrations, the flows, and last the audit of the code against the map — 
 flows) it covers, each of them with its own status. `/dev:bbc-review` proposes it and the user approves it.
 Who marks a step done: `/dev:j-close` marks the Core, a BB, an integration, a flow, by the `Flow:` line of
 the work it closes — a step whose BBs go in parallel closes BB by BB, and is done when all of its are;
-`/dev:bbc-audit` marks the audit step, when its report has no finding.
+`/dev:bbc-audit` marks the audit step, when its report is written.
 
 The map is written from the requirements and the user's approvals, never from code. A BB's files are
 written in its definition by the plan that builds it. The existing code a new part uses is an external

@@ -135,20 +135,20 @@ From the top down:
 
 ### B1. Dependencies go one way only
 - **Rule**: `principles.md` 3.3: «a consumer depends on an interface … no dependency points back up»; for the projects made with the set, `branches/service-layers.md` 1: «every reference goes one way only».
-- **The defect**: a reference against the direction the project gave itself; a cycle among modules; the type of a detail (the storage, the network) reaching the code that decides.
-- **Where to look**: F-ref (the references of the projects, the imports); the types used beyond the declared references (F-nav).
+- **The defect**: a reference against the direction the project gave itself; a cycle among modules.
+- **Where to look**: F-ref (the references of the projects, the imports).
 - **At scale**: the map derives the layers, or the modules, of the project and their direction (from the structure, the documents, `systemPatterns.md`); the graph of the references on the whole project shows the edges against that direction and the cycles. Every edge is a place to read, without searching for it.
-- **The questions**: what is the direction the project gave itself, and where is it derived from? Does this reference contradict it? Is it a type of a contract (allowed) or of an implementation?
+- **The questions**: what is the direction the project gave itself, and where is it derived from? Does this reference contradict it?
 - **Not a violation**: the composition root, which knows everything to compose; a test that refers to what it proves; a project without layers, which the description of the project says as such (logic in the wrong place stays B2).
 - **Confirmation**: the project's direction with its source (the structure, the document, the line of the Memory Bank), the reference or the import that contradicts it (file:line).
 - **Gravity**: `grave` for a cycle; `da correggere` otherwise.
 
 ### B2. Each layer does only its own job
-- **Rule**: `branches/service-layers.md` 3: «Business logic sits in Domain, never in the transport or in the data access; the transport never talks to the storage».
-- **The defect**: a business rule in the endpoint or in the repository; an endpoint that talks to the storage.
+- **Rule**: `branches/service-layers.md` 3: «Business logic sits in Domain, not in the transport and not in the data access».
+- **The defect**: a business rule in the endpoint or in the repository.
 - **Where to look**: F-nav (the callees of an endpoint, of a repository); F-cx (complexity concentrated in a transport layer).
-- **At scale**: the paths in the call graph from an endpoint down to the storage, skipping the layer in between.
-- **The questions**: does this code decide something of the domain (a condition on our data, a transition) or does it only translate? Does it call the storage skipping the layer below?
+- **At scale**: the complexity the map shows in the transport and in the data access (F-cx).
+- **The questions**: does this code decide something of the domain (a condition on our data, a transition) or does it only translate?
 - **Not a violation**: the validation of the input at the boundary (its place, principles 4.3); the mapping of the errors.
 - **Confirmation**: the decision in the wrong place (file:line), the layer it belongs to.
 - **Gravity**: `da correggere`.
@@ -260,9 +260,9 @@ From the top down:
 
 ### C6. DIP: the code that decides depends on a detail
 - **Rule**: `code-principles.md` 1.8: «The code that decides depends on contracts … the details — storage, network, external services, the clock — sit behind them».
-- **The defect**: a domain rule that calls the database, the network, the file system, the system clock directly.
+- **The defect**: a domain rule that calls the network, the file system, the system clock directly.
 - **Where to look**: F-nav (the callees of the domain services); F-ref.
-- **At scale**: from the graph: the domain services that reach types of storage, network, file system, clock.
+- **At scale**: from the graph: the domain services that reach types of network, file system, clock.
 - **The questions**: does this code decide, or coordinate details? Is the detail behind a contract shaped on what the caller needs?
 - **Not a violation**: the composition root; an adapter, which is the detail itself.
 - **Confirmation**: the call to the detail (file:line) inside the code that decides.

@@ -23,7 +23,6 @@ Gradle enforces it (A → B: A depends on B).
 | `:ui-kit` | the design system: the theme, the shared components | Compose |
 | `:sharedUI` | `App()`, the one `NavDisplay`, the composition root in `di/` | the features, `domain`, `sharedLogic`, `ui-kit` |
 | `:test-support` | the doubles of the contracts, written once (`testing.md` §3) | `api-contract`; only tests see it |
-| `:architecture` | the rules inside the modules, with Konsist (`testing.md` §5) | — |
 | `:androidApp`, `:desktopApp`, `:webApp`, `iosApp/` | each platform's entry point and settings (§5) | `sharedUI` |
 
 A feature never sees another feature, the domain or sharedLogic: it speaks to the contracts.

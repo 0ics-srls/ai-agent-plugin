@@ -1,6 +1,6 @@
 # ai-agent — a plugin of the ai-agent catalogue
 
-**v2.31.54** — The whole ai-agent set: it installs the plugins dev, biz and info.
+**v2.31.55** — The whole ai-agent set: it installs the plugins dev, biz and info.
 
 It has no command of its own: installing it installs the plugins `dev` (software development), `biz` (the funnel of the startup ideas) and `info` (research verified), each of which can then be enabled or disabled by itself, for the machine or for one project.
 

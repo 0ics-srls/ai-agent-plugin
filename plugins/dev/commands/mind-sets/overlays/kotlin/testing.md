@@ -2,10 +2,9 @@
 
 How `testing-principles.md` is written in a Kotlin Multiplatform app: kotlin-test in `commonTest`,
 run on every target; the doubles of the contracts in `:test-support`, Mokkery (Apache 2.0) for a call
-across the boundary; orbit-test for the ViewModels; Compose's UI test; Konsist (Apache 2.0) for the
-rules inside the modules. JUnit 5, MockK and Espresso do not run in `commonTest`. Measured with
-kotlin-test 2.4.21, Mokkery 3.6.0, orbit-test 12.0.1, Konsist 0.18.1, androidx.test 1.7.0, on a Mac
-with the Android emulator.
+across the boundary; orbit-test for the ViewModels; Compose's UI test. JUnit 5, MockK and Espresso do not run in
+`commonTest`. Measured with kotlin-test 2.4.21, Mokkery 3.6.0, orbit-test 12.0.1, androidx.test 1.7.0,
+on a Mac with the Android emulator.
 
 ---
 
@@ -18,11 +17,11 @@ with the Android emulator.
   `allTests` nor `check` runs the device's tests, and the root's `connectedCheck` runs only the app's
   (measured). `./gradlew :<module>:jvmTest --tests '<class>.<test>'` runs one test; a filter that
   matches nothing fails («No tests found for given includes», measured).
-- **The fast run** is the JVM's: `./gradlew jvmTest :architecture:test`. **The whole run** is `./gradlew
-  check connectedAndroidDeviceTest`: every target's tests, the device's, and Konsist.
+- **The fast run** is the JVM's: `./gradlew jvmTest`. **The whole run** is `./gradlew check
+  connectedAndroidDeviceTest`: every target's tests and the device's.
 - A test that touches one target's platform — the Koin graph test — lives in that target's source set
   (`jvmTest`). A test that needs a real engine on several targets — the local database on SQLite —
-  lives in a group of its own (`sqliteTest`), each target giving the engine (§6).
+  lives in a group of its own (`sqliteTest`), each target giving the engine (§5).
 - **Where they run**: iOS needs Xcode; Android needs `aapt2` and an emulator or a device; Wasm's tests
   need Chromium.
 
@@ -31,11 +30,11 @@ with the Android emulator.
 - **Unit** — `commonTest` of each module: the services on the doubles of the contracts (§3), the
   ViewModels with orbit-test (§4), every target.
 - **The code that talks to the outside** — the client's mapping on Ktor's `MockEngine`, which answers
-  as the backend does (§6), every target; the local database on the real SQLite engine of the JVM, iOS
-  and the Android device (§6).
-- **The screens** — Compose's UI test on `(State) → UI` (§7): on the desktop, iOS, the web and the
+  as the backend does (§5), every target; the local database on the real SQLite engine of the JVM, iOS
+  and the Android device (§5).
+- **The screens** — Compose's UI test on `(State) → UI` (§6): on the desktop, iOS, the web and the
   Android device.
-- **The composition and the rules** — the Koin graph test (§4), Konsist (§5).
+- **The composition** — the Koin graph test (§4).
 - The test files are named after the class they test (`CustomerServiceTest`); a test's name says the
   behaviour (`blockUnknownCustomerIsNotFound`).
 
@@ -272,77 +271,7 @@ class KoinGraphTest {
 }
 ```
 
-## 5. The rules inside the modules
-
-Gradle enforces the arrows between modules; Konsist reads the sources as Kotlin and checks what the
-arrows cannot: Compose only in the user interface, the fakes only in `:test-support`. A file that
-breaks a rule fails its test (measured). The test declares the project's sources as its inputs:
-without them Gradle considers it up to date and does not run it again when a source changes
-(measured).
-
-```kotlin
-// architecture/src/test/kotlin/shop/architecture/ArchitectureTest.kt
-package shop.architecture
-
-import com.lemonappdev.konsist.api.Konsist
-import com.lemonappdev.konsist.api.verify.assertFalse
-import kotlin.test.Test
-
-class ArchitectureTest {
-    private val production = Konsist.scopeFromProduction()
-
-    @Test
-    fun composeIsUsedOnlyByTheUserInterface() {
-        production.files
-            .filterNot { file ->
-                file.packagee
-                    ?.name
-                    .orEmpty()
-                    .let { it.endsWith(".ui") || it in shells }
-            }.assertFalse { file -> file.imports.any { it.name.startsWith("androidx.compose.") } }
-    }
-
-    @Test
-    fun fakesLiveOnlyInTheTestSupportModule() {
-        production
-            .classes()
-            .filter { it.name.startsWith("Fake") }
-            .assertFalse { !it.resideInModule("test-support") }
-    }
-
-    private companion object {
-        /** The packages whose whole job is the user interface: the design system, the shell, the apps. */
-        val shells = setOf("shop.uikit", "shop.sharedui", "shop.android", "shop.desktop", "shop.web")
-    }
-}
-```
-
-```kotlin
-// architecture/build.gradle.kts
-// The rules inside the modules that Gradle's arrows do not enforce, read by Konsist from the sources.
-plugins {
-    id("kmp.jvm.test")
-}
-
-dependencies {
-    testImplementation(kotlin("test"))
-    testImplementation(libs.konsist)
-}
-
-// The rules read the sources of every module: they are the test's inputs, so a change reruns it.
-tasks.test {
-    inputs
-        .files(
-            rootProject.layout.projectDirectory.asFileTree.matching {
-                include("**/src/**/*.kt")
-                exclude("**/build/**", "build-logic/**")
-            },
-        ).withPropertyName("projectSources")
-        .withPathSensitivity(PathSensitivity.RELATIVE)
-}
-```
-
-## 6. The client and the local database
+## 5. The client and the local database
 
 ```kotlin
 // sharedLogic/src/commonTest/kotlin/shop/sharedlogic/data/ShopApiTest.kt
@@ -536,7 +465,7 @@ internal actual fun inMemoryDriver(): SqlDriver =
     AndroidSqliteDriver(ShopDatabase.Schema.synchronous(), ApplicationProvider.getApplicationContext(), null)
 ```
 
-## 7. The screens
+## 6. The screens
 
 Compose's UI test (`androidx.compose.ui.test.v2.runComposeUiTest`; the first version is deprecated and
 the gate refuses it) draws the screen from a state and acts on it. It lives in `skikoTest`, the source
@@ -653,8 +582,8 @@ class CustomersScreenTest {
 }
 ```
 
-## 8. End to end
+## 7. End to end
 
-The whole app against the real backend, on the desktop target: Compose's UI test (§7) on `App()` with the real composition, in a source set `e2eTest` of `:desktopApp`, run by `./gradlew :desktopApp:e2eTest` with `SHOP_API_URL` set; the task starts the backend with its start command, waits on its readiness URL and stops it at the end; it is left out of `check`. It finds the elements by their test tag, acts as the user does and waits for what the user sees. The mobile targets stay at the level of §7: a device needs its own runner, and the project adds one when it wants it. This form has not been measured, unlike the rest of this file.
+The whole app against the real backend, on the desktop target: Compose's UI test (§6) on `App()` with the real composition, in a source set `e2eTest` of `:desktopApp`, run by `./gradlew :desktopApp:e2eTest` with `SHOP_API_URL` set; the task starts the backend with its start command, waits on its readiness URL and stops it at the end; it is left out of `check`. It finds the elements by their test tag, acts as the user does and waits for what the user sees. The mobile targets stay at the level of §6: a device needs its own runner, and the project adds one when it wants it. This form has not been measured, unlike the rest of this file.
 
 A coroutine test is `runTest`: `kotlin-no-runblocking-in-tests` refuses `runBlocking`.

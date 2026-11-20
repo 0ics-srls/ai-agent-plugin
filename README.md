@@ -1,6 +1,6 @@
 # ai-agent — a development workflow for Claude Code
 
-**v2.31.54** · by 0ics srl · [how it works](FLOW.md)
+**v2.31.55** · by 0ics srl · [how it works](FLOW.md)
 
 `dev` is a Claude Code plugin that makes the agent work the way a careful developer does: it listens
 before it reads, looks for what already exists before it writes, has you approve the structure and

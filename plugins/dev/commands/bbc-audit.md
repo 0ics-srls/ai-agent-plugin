@@ -1,5 +1,5 @@
 ---
-description: "BBC — check whether the code reflects the analysis: each black box's code in its namespace, its contract in the Core as the map writes it, the dependencies only through the Core and only those on the map, the decisions of the map kept. It writes a report, and the findings are fixed by one feature. Use when the roadmap reaches the audit, after BBs were built or changed, or the user says bbc audit, il codice rispecchia la mappa, controlla il codice contro la BBC."
+description: "BBC — check whether the code reflects the analysis: each black box's code in its namespace, its contract in the Core as the map writes it, the dependencies only through the Core and only those on the map, the decisions of the map kept. It writes a report: the author decides what a feature fixes. Use when the roadmap reaches the audit, after BBs were built or changed, or the user says bbc audit, il codice rispecchia la mappa, controlla il codice contro la BBC."
 ---
 
 ## Prerequisites
@@ -19,8 +19,8 @@ description: "BBC — check whether the code reflects the analysis: each black b
 ## Purpose
 The map is the design the code follows (`bbc.md`): it was approved before the code existed. This command
 reads the code and says where it does not follow the map — nothing else. The rules of the set on how
-code is written are `/dev:x-audit-code`'s; this one checks only what the map promises. **It fixes nothing:**
-its findings make a report, and one feature fixes them.
+code is written are `/dev:x-audit-code`'s; this one checks only what the map promises. **It fixes nothing and it blocks
+nothing:** its findings make a report, and whoever wrote the code decides which of them a feature fixes.
 
 ## Steps
 
@@ -68,13 +68,12 @@ a plan is made against one. Then it is executed here, as `${CLAUDE_PLUGIN_ROOT}/
 code, `file:line`), the evidence, what the map says instead; the BBs with no finding, named; the BBs
 `to build`, named.
 
-The roadmap: when the report has no finding, the audit's line of `## Roadmap` in
-`{@tasks}/bbc/BBC-MAP.md` is marked done (`bbc.md` §2). With findings it stays open: the run of this
-command after the fix closes it.
+The roadmap: with the report written, the audit's line of `## Roadmap` in `{@tasks}/bbc/BBC-MAP.md` is
+marked done (`bbc.md` §2), findings or not.
 
 ### 6. Commit
 ```bash
-git add {@tasks}/bbc/BBC-AUDIT-YYYY-MM-DD.md   # and {@tasks}/bbc/BBC-MAP.md, when step 5 marked the roadmap
+git add {@tasks}/bbc/BBC-AUDIT-YYYY-MM-DD.md   # and {@tasks}/bbc/BBC-MAP.md, whose roadmap step 5 marked
 git commit -m "docs(bbc): audit of the code against the map YYYY-MM-DD"
 ```
 Only these files; other pending changes stay as they are, and the report names them.

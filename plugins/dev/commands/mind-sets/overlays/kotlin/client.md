@@ -216,7 +216,7 @@ SQLDelight, SQL first: the schema and the named queries in `.sq` files, the colu
 names, an enumeration stored as its declared name. The schema is generated asynchronous, because the
 web's driver runs in a worker; the other drivers — Android's, the native one, the JVM's SQLite — take
 it through `synchronous()`. The cache is proved on the real SQLite engine of the JVM, iOS and Android
-(`testing.md` §6); on the web it compiles with its driver.
+(`testing.md` §5); on the web it compiles with its driver.
 
 ```sql
 -- sharedLogic/src/commonMain/sqldelight/shop/sharedlogic/db/Customer.sq

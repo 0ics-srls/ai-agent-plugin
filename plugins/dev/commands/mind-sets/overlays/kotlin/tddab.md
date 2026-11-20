@@ -15,10 +15,10 @@ level"). They run on a Mac when the app has an iOS target, with an Android emula
 | Key | Kotlin |
 |---|---|
 | `@test-focused-<component>` | `./gradlew :{module}:jvmTest --tests '{class}.{test}'` — one test, on the JVM |
-| `@test-block-<component>` | `./gradlew :{module}:allTests :{module}:connectedAndroidDeviceTest`, once for each module the block touches — every target, the Android device included; `./gradlew :architecture:test` for the rules |
-| `@test-fast` | `./gradlew jvmTest :architecture:test` |
-| `@test-slow` | `./gradlew check connectedAndroidDeviceTest` — every target, the Android device, Konsist |
-| `@test-e2e` | `./gradlew :desktopApp:e2eTest`, which starts the backend (`testing.md` §8) |
+| `@test-block-<component>` | `./gradlew :{module}:allTests :{module}:connectedAndroidDeviceTest`, once for each module the block touches — every target, the Android device included |
+| `@test-fast` | `./gradlew jvmTest` |
+| `@test-slow` | `./gradlew check connectedAndroidDeviceTest` — every target, the Android device |
+| `@test-e2e` | `./gradlew :desktopApp:e2eTest`, which starts the backend (`testing.md` §7) |
 | `@bench` | `none` |
 | `@gate-final` | the lint gate, `./gradlew check connectedAndroidDeviceTest`, the iOS app's `xcodebuild` (`app.md` §5), the audit (`language.md` §5) |
 
@@ -33,8 +33,8 @@ Before the tests, the component's gate (`language.md` §5): `./gradlew assemble`
 
 The RED of a block runs at the level of what it builds: a service of the domain in `commonTest` on the
 doubles of `:test-support` (`testing.md` §3); a ViewModel with orbit-test (§4); the mapping of the
-backend's answers on `MockEngine`, the local database on SQLite (§6); a screen with Compose's UI test
-(§7); a binding of the composition in the Koin graph test (§4).
+backend's answers on `MockEngine`, the local database on SQLite (§5); a screen with Compose's UI test
+(§6); a binding of the composition in the Koin graph test (§4).
 
 ## 3. Reference RED — a domain service block
 
@@ -140,10 +140,10 @@ the backend's. Their form in Kotlin:
 
 | Block | Kotlin (KMP) |
 |---|---|
-| F1 | the Gradle build: `settings.gradle.kts`, `gradle/libs.versions.toml`, `gradle.properties` (`language.md` §5), `build-logic/` with the conventions and the pack's `kmp.quality` and `.editorconfig` as /dev:j-setup copied them; `core` (`AppResult`, `AppError`, `ErrorCode`), `api-contract`, `test-support`, `architecture` (`testing.md` §5). RED: the Konsist rules on the first module |
+| F1 | the Gradle build: `settings.gradle.kts`, `gradle/libs.versions.toml`, `gradle.properties` (`language.md` §5), `build-logic/` with the conventions and the pack's `kmp.quality` and `.editorconfig` as /dev:j-setup copied them; `core` (`AppResult`, `AppError`, `ErrorCode`), `api-contract`, `test-support`. RED: the tests of `core` — `AppResult`, the error codes |
 | F2 | the generated client: `openapi/<project>.json`, `kmp.openapi`, the models in `core`, `api-client`, `sharedLogic`'s `ShopApi` and the engine of each target (`client.md` §1-2). RED: `ShopApiTest` on `MockEngine` |
 | F3 | the domain: the first entity's contracts, its service, the adapter over sharedLogic, the Koin module (`app.md` §4); the fakes in `test-support`. RED: the service's suite (`testing.md` §3) |
 | F4 | the first entity's screens: the feature (ViewModel, screen, module), `ui-kit`, `sharedUI` with the `NavDisplay` and the composition root, the four entry points and their settings (`app.md` §2-5). RED: the ViewModel's suite, the screen's UI test, the Koin graph test |
-| F5 | end to end: `e2eTest` of `:desktopApp`, the first entity's screen against the real backend (`testing.md` §8) |
+| F5 | end to end: `e2eTest` of `:desktopApp`, the first entity's screen against the real backend (`testing.md` §7) |
 
 With local storage, a block between F3 and F4 adds the database (`client.md` §3), its RED on SQLite.

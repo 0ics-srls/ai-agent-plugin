@@ -6,6 +6,7 @@ How `branches/data.md` is written with EF Core.
 
 ## 1. Data — EF Core
 
+- The `DbContext` and its `DbSet`s are `internal` to `App.Db`: the layer exists to hide them.
 - `IUnitOfWork` commits through one `SaveChangesAsync` at the end of the operation.
 - Reads go through `IRepository<T>.Query()`, untracked (`AsNoTracking`).
 - Every list query is bounded: a page size with a maximum, with `Skip`/`Take` for numbered pages and

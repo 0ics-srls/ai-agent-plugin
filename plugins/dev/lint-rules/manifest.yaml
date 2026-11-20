@@ -82,7 +82,7 @@ languages:
     # The build is the gate: build-logic's kmp.quality puts every compiler warning at error. No format
     # check. Run from the root of the Gradle build, on a Mac when the app has an iOS target.
     native_lint: "./gradlew assemble"
-    # ast-grep: the console written directly (println, System.out), a platform's import in commonMain,
+    # ast-grep: the console written directly (println, System.out),
     # runBlocking in a test, and the _shared rules (secrets,
     # SQL built by concatenation, TODO without an issue).
     ast_grep: true

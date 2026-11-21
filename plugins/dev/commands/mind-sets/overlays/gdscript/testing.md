@@ -35,12 +35,13 @@ How `testing-principles.md` is written with gdUnit4 on Godot 4.7.
   (`tddab.md` §6, block G1).
 - **Fast and slow**: `test/unit/` runs in memory, in milliseconds; `test/integration/` loads scenes and
   touches files. `-a` takes a folder or a suite file — the split is the folder.
-- **The run**: `bash tools/gate/run_tests.sh -a <folder or suite>` — the pack's wrapper of gdUnit4's
-  `runtest.sh`, which it calls with `--godot_binary "$(command -v godot)" --headless
-  --ignoreHeadlessMode`. Exit 0 green, 100 a failed test, 105 a suite that does not compile, and 1 in
-  the two cases gdUnit4 itself calls green: no test ran — a path that does not exist, or holds no test
-  («No test cases found») — and objects still alive as the engine closes (`instances were leaked at
-  exit`, `resources still in use at exit`), which Godot reports after gdUnit4 has set its exit code. A
-  single test cannot be run alone (`-i` excludes, it does not select): the smallest run is its suite.
+- **The run**: `godot --headless --path . -s res://tools/gate/run_tests.gd -a <folder or suite>` — the
+  pack's tool, a script the engine runs, so the same command on every system: it starts gdUnit4's own
+  runner in a process of its own and judges its run. Exit 0 green, 100 a failed test, 105 a suite that
+  does not compile, and 1 in the two cases gdUnit4 itself calls green: no test ran — a path that does
+  not exist, or holds no test («No test cases found») — and objects still alive as the engine closes
+  (`instances were leaked at exit`, `resources still in use at exit`), which Godot reports after
+  gdUnit4 has set its exit code. A single test cannot be run alone (`-i` excludes, it does not select):
+  the smallest run is its suite.
 - **Tests obey the production rules**: the same warnings, the same gdlint; the one
   exception is the `return_value_discarded` line above.

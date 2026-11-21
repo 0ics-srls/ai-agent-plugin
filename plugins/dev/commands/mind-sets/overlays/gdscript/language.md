@@ -202,15 +202,17 @@ func player_health() -> int:
 
 - The gate is the manifest's `native_lint`: `godot --headless --import --quit` (it writes the cache of
   the global classes, without which a script does not know a `class_name` of another file), then
-  `bash tools/gate/parse_scripts.sh` — the pack's tool: one Godot process loads every `.gd` outside
-  `addons/`, `.godot/` and the folders with a `.gdignore`, and the step fails on each script that does
-  not compile, a warning at error included, and on a run that does not end with its verdict line
-  (`parse_scripts: N scripts, 0 do not compile`) — then `gdlint .`, which skips `addons/` and `.godot/`
-  and keeps its two rules that find a defect — a value compared with itself, an expression with no
-  effect (the pack's `gdlintrc`). The step loads the scripts itself because `godot --check-only` exits
-  0 on macOS for a script that does not parse (measured on 4.7.2; on Linux it exits 1). The gate checks
-  no names, no order and no formatting: they find no defect, and on code that exists they only make it
-  be rewritten.
+  `godot --headless --path . -s res://tools/gate/parse_scripts.gd` — the pack's tool, a script the
+  engine runs, so the same command on every system: it loads every `.gd` outside `addons/`, `.godot/`
+  and the folders with a `.gdignore`, prints `parse_scripts: N scripts, M do not compile`, and exits 1
+  when one does not compile, a warning at error included — then `gdlint .`, which skips `addons/` and
+  `.godot/` and keeps its two rules that find a defect — a value compared with itself, an expression
+  with no effect (the pack's `gdlintrc`). The step loads the scripts itself because `godot
+  --check-only` exits 0 on macOS for a script that does not parse (measured on 4.7.2; on Linux it exits
+  1). There the engine also exits 0 when the script it is given is missing or does not compile: the
+  two tools of `tools/gate/` each check that the other is there and compiles. The gate checks no
+  names, no order and no formatting: they find no defect, and on code that exists they only make it be
+  rewritten.
 
 ## 6. Serialization
 
@@ -242,7 +244,7 @@ func player_health() -> int:
   first mechanic — the rule the first playable scene shows.
 - **The lint gate**: the manifest's `native_lint`, run from the folder of `project.godot`; the pack's
   `project.godot` (its `[debug]` section merged into the project's, asking first), `gdlintrc` and
-  `tools/gate/` — the parse step and the test run — go to that folder.
+  `tools/gate/` — the parse step and the test run, two scripts the engine runs — go to that folder.
 - **Vendored** (`@vendored-globs`): `addons/`, `.godot/`.
 - **The test levels**: the keys of `tddab.md` §1.
 - **The start command**: `godot --path .` (the editor: `godot --path . --editor`); headless, the main

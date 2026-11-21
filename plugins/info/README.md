@@ -1,6 +1,6 @@
 # info — a plugin of the ai-agent catalogue
 
-**v2.31.58** — Research verified (info-*): search, cross-reference, audit, report.
+**v2.31.59** — Research verified (info-*): search, cross-reference, audit, report.
 
 Start with `/info:info-help`: facts are gathered with their sources, cross-referenced against independent ones, audited for reliability and bias, and reported with a confidence level each. It writes its documents in the project's folder and needs no setup.
 

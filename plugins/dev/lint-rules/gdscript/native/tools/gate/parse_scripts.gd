@@ -1,9 +1,14 @@
 extends SceneTree
 ## The gate's parse step: loads every script of the project in one process and reports the ones that
-## do not compile. `--check-only` is not used: on macOS it exits 0 on a script that does not parse.
+## do not compile. It is a script of the engine, so it runs the same on every system:
+## godot --headless --path . -s res://tools/gate/parse_scripts.gd
+## `--check-only` is not used: on macOS it exits 0 on a script that does not parse.
 
 ## Folders whose scripts are not the project's own.
 const SKIPPED: Array[String] = ["res://addons", "res://.godot"]
+## The other tool of the gate. The engine exits 0 on macOS when the script it is given is missing or
+## does not compile, so each tool checks that the other is there: this one finds it among the scripts.
+const TEST_RUN: String = "res://tools/gate/run_tests.gd"
 
 
 func _init() -> void:
@@ -16,8 +21,11 @@ func _init() -> void:
 			broken.append(path)
 	for path: String in broken:
 		printerr("parse_scripts: does not compile: ", path)
+	var complete: bool = scripts.has(TEST_RUN)
+	if not complete:
+		printerr("parse_scripts: missing: ", TEST_RUN)
 	print("parse_scripts: %d scripts, %d do not compile" % [scripts.size(), broken.size()])
-	quit(0 if broken.is_empty() and not scripts.is_empty() else 1)
+	quit(0 if broken.is_empty() and complete else 1)
 
 
 func _collect(folder: String, scripts: Array[String]) -> void:

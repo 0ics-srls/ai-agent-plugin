@@ -15,9 +15,8 @@ How the principles and the code principles are written in Java.
   own checks it in the compact constructor (code principles 2.4). A mutable collection is never handed out.
 - **A contract is an `interface`**, shaped by its consumer; the implementation is package-private.
 - **Private by default** (code principles 4.4): package-private classes, `public` only for what a consumer needs.
-- **Constructor injection**: the fields `final`, the dependencies in the signature; `@Autowired` on a field is
-  refused by the gate.
-- No `System.out`, no `System.err`: the gate refuses each.
+- **Constructor injection**: the fields `final`, the dependencies in the signature.
+- No `System.out`, no `System.err`: the gate refuses each — a command-line tool's own output aside (§7).
 - `Optional` as a return value, never as a field or a parameter.
 - A warning is silenced with `@SuppressWarnings` on the smallest scope, with a comment saying why.
 
@@ -92,6 +91,8 @@ the mapper of each form, and the hand practice it replaces:
   talks to.
 - **The lint gate**: the manifest's `native_lint`, run from the folder of the root `pom.xml`; §5 says where the
   pack's files go.
+- **A command-line tool**: `@lint-astgrep` carries `--off=no-system-out-println` —
+  `ast-grep scan --globs '!externals/**' --off=no-system-out-println`.
 - **Vendored** (`@vendored-globs`): `target/`.
 - **The test levels**: the keys of `tddab.md` §1.
 - **The start command**: `java -jar target/<artifact>.jar`.

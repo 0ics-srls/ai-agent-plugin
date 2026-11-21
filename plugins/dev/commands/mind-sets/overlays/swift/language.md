@@ -10,8 +10,8 @@ How the principles and the code principles are written in Swift 6, for the Apple
 
 - Apple's API Design Guidelines: types `PascalCase`; functions, properties, enumeration cases
   `camelCase`; no prefixes, no underscores.
-- **A value is a `struct` with `let` properties** (code principles 3.1); a `class` only for identity,
-  `final`. Data that crosses a concurrency boundary is `Sendable`.
+- **A value is a `struct` with `let` properties** (code principles 3.1); a `class` only for identity.
+  Data that crosses a concurrency boundary is `Sendable`.
 - **A closed set is an `enum`**; one that leaves the program has a `String` raw value equal to its
   declared name (code principles 3.3, 3.5).
 - **A contract is a `protocol`** in Core, small, `Sendable`; the implementation conforms to it, the
@@ -22,8 +22,8 @@ How the principles and the code principles are written in Swift 6, for the Apple
   `swift-no-implicitly-unwrapped-optional` refuse them outside the tests.
 - **Access is the smallest that works**: `private` by default, `public` only for a module's API.
 - **The console is never written directly** — `print`, `debugPrint`, `dump`, `NSLog`: the pack's
-  ast-grep rule `swift-no-console-output` refuses them; a command-line tool writes its output to
-  `FileHandle.standardOutput`, everything else goes through the logger (§4).
+  ast-grep rule `swift-no-console-output` refuses them; a command-line tool writes its output with
+  `print` (code principles 4.9; §7), everything else goes through the logger (§4).
 
 ## 2. Concurrency and waiting
 
@@ -97,6 +97,8 @@ the mapper of each form, and the hand practice it replaces:
   whether it keeps data on the device.
 - **The lint gate**: the manifest's `native_lint`, run from the folder of `Package.swift`; the pack
   has no configuration file to copy.
+- **A command-line tool**: `@lint-astgrep` carries `--off=swift-no-console-output` —
+  `ast-grep scan --globs '!externals/**' --off=swift-no-console-output`.
 - **Vendored** (`@vendored-globs`): `.build/`, `DerivedData/`, `*.xcodeproj/xcuserdata/`.
 - **The test levels**: the keys of `tddab.md` §1.
 - **The start command**: a tool `swift run <product>`; an app from Xcode, or `xcodebuild` and the

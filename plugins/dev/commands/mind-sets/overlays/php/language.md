@@ -13,11 +13,11 @@ How the principles and the code principles are written in PHP.
   program is the declared name (code principles 3.3, 3.5); a `match` on it has no `default`.
 - **A state machine is an `enum` with its transitions as methods**, or a class per state behind one interface (code
   principles 2.1).
-- **A value is a `final readonly class`** (code principles 3.1), never an associative array; one with a rule of its own checks
+- **A value is a `readonly class`** (code principles 3.1), never an associative array; one with a rule of its own checks
   it in the constructor (code principles 2.4).
 - **A contract is an `interface`**, shaped by its consumer.
-- **`final` and `private` by default** (code principles 4.4): composition, not inheritance.
-- **Constructor injection**: `app()` and `resolve()` in business code hide a dependency from the signature.
+- **`private` by default** (code principles 4.4).
+- **Constructor injection.**
 - No `var_dump`, `dd`, `dump`, `print_r`, `ray`: the gate refuses each.
 - A PHPStan finding is silenced with its ignore comment, on the line, naming the identifier and saying why.
 

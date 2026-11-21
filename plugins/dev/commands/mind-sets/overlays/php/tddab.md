@@ -43,8 +43,8 @@ The smallest code that makes the RED pass, typed, through the gate (`language.md
 
 ## 5. Rules of a PHP block
 
-- `declare(strict_types=1);` first; everything typed; `final` by default (`language.md` §1).
-- A value a `final readonly class`, never an array; a closed set a backed `enum`.
+- `declare(strict_types=1);` first; everything typed (`language.md` §1).
+- A value a `readonly class`, never an array; a closed set a backed `enum`.
 - The state of a contract on the fakes; a call across the boundary on `createMock` (`testing.md` §3).
 - No debug output: the logger (`language.md` §4).
 

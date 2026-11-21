@@ -112,7 +112,7 @@ languages:
     # in the compiler, three Checkstyle checks and SpotBugs' bug categories on verify. Run from the
     # folder of the root pom.xml.
     native_lint: "./mvnw -q -DskipTests verify"
-    # ast-grep: the console, field injection, blocking on a future, JUnit's assertions, and the _shared rules.
+    # ast-grep: the console, blocking on a future, JUnit's assertions, and the _shared rules.
     ast_grep: true
     config_files:
       - java/native/pom-plugins.xml

@@ -21,7 +21,8 @@ How the principles and the code principles are written in C23.
 - **Memory**: every allocation is freed on every path, by the function that owns it.
 - **A buffer has a size from a named constant**, and text is copied bounded by that size.
 - **The console is never written directly** — `printf`, `puts`, `perror`, `fprintf(stderr, …)`: the
-  pack's ast-grep rule `c-no-console-output` refuses them; output goes through the logger (§4).
+  pack's ast-grep rule `c-no-console-output` refuses them; output goes through the logger (§4) —
+  a command-line tool's own output aside (§7).
 
 ## 2. Concurrency and waiting
 
@@ -84,6 +85,8 @@ sees a `cJSON *`.
   is a POSIX program.
 - **The lint gate**: the manifest's `native_lint`, run from the folder of `CMakeLists.txt`; the pack's
   `.clang-tidy`, `CMakePresets.json` and `cmake/lint-gate.cmake` go to that folder.
+- **A command-line tool**: `@lint-astgrep` carries `--off=c-no-console-output` —
+  `ast-grep scan --globs '!externals/**' --off=c-no-console-output`.
 - **Vendored** (`@vendored-globs`): `build/`.
 - **The test levels**: the keys of `tddab.md` §1.
 - **The start command**: `cmake --build --preset debug` and the program from `build/debug/`; a library

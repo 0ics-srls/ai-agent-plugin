@@ -15,7 +15,7 @@ How the principles and the code principles are written in modern Perl.
 - **A state machine is a class holding its state and its transitions**, refusing the illegal ones (code principles 2.1).
 - **A contract is a `Moo::Role` with `requires`**; a service takes `ConsumerOf[...]`.
 - **Private by default** (code principles 4.4): `_` on a private method or attribute, `init_arg => undef` for an internal one.
-- **Constructor injection**: a bootstrap function is the composition root, with no global registry.
+- **Constructor injection**: a bootstrap function is the composition root.
 - Three-argument `open`, or `Path::Tiny`. A process runs in list form, never through a shell string.
 - No `print` or `warn` for debugging, no `Data::Dumper` left behind. A web script runs under taint mode.
 - A Perl::Critic finding is silenced with `## no critic (<Policy>) -- <why>`, on the line.

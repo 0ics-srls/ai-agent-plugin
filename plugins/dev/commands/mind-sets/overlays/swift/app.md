@@ -19,7 +19,7 @@ How `branches/frontend.md` is written in a SwiftUI app for iOS and macOS. The la
 
 ## 2. A screen's logic
 
-- One view model per screen: `@MainActor @Observable final class`, holding what the screen shows — the
+- One view model per screen: `@MainActor @Observable class`, holding what the screen shows — the
   data with its loading state and its error (frontend 4) — and changing it only in answer to an intent.
 - It speaks only to the contracts; where the user goes next is the shell's, asked through a closure.
 

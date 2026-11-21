@@ -175,12 +175,12 @@ From the top down:
 
 ### B5. Dependencies are not injected, the composition does not read
 - **Rule**: `principles.md` 3.6: «Dependencies are injected … Each module owns the registration of its own parts, and the composition root reads in ten seconds».
-- **The defect**: a service that builds its dependencies or looks them up in a global registry at run time; registrations scattered outside the module that owns them.
-- **Where to look**: F-nav (direct constructions of services, accesses to the container); F-oo.
-- **At scale**: the constructions of services inside other services and the accesses to the container, from the parser on everything.
+- **The defect**: a service that builds its dependencies; registrations scattered outside the module that owns them.
+- **Where to look**: F-nav (direct constructions of services); F-oo.
+- **At scale**: the constructions of services inside other services, from the parser on everything.
 - **The questions**: is it a service (behaviour behind a contract) or a value? Should whoever builds it receive it?
-- **Not a violation**: building a value or a datum; a declared and registered factory.
-- **Confirmation**: the construction or the lookup (file:line), the dependency that should come from the constructor.
+- **Not a violation**: building a value or a datum; a declared and registered factory; a dependency asked to the service locator.
+- **Confirmation**: the construction (file:line), the dependency that should come from the constructor.
 - **Gravity**: `da correggere`.
 
 ### B6. A datum that carries logic, a service without a contract
@@ -479,7 +479,7 @@ From the top down:
 - **Gravity**: `da correggere`.
 
 ### H5. Logs that do not go through the logger
-- **Rule**: `code-principles.md` 4.9: «Every log entry is a constant message template with named values … a direct write to the console … is a defect»; `branches/operations.md` 1.
+- **Rule**: `code-principles.md` 4.9: «Every log entry is a constant message template with named values … Every other program has no need to write to the console»; `branches/operations.md` 1.
 - **The defect**: messages built by concatenation; secrets or personal data in the logs; direct writes to the console (the ast-grep pack finds a part of them: that part belongs to the gate).
 - **Where to look**: F-nav on the calls to the logger.
 - **At scale**: the calls to the logger (F-nav).
@@ -596,7 +596,6 @@ not read here: the tools measure it.
 ## The rules of the overlays
 
 An overlay says how a rule is written in the language: it is the *form* of a card, not a new card.
-`aspnetcore.md` §2 («Services resolve nothing from `IServiceProvider` at run time») is B5 in C#;
 `language.md` §6 of C# (the JSON options in one place) is E4. The agent reads the cards with the
 project's overlay beside them. A rule of an overlay that falls under no card (for instance C# «Native AOT
 only on explicit request») is a choice of stack, decided in the project: it is not verified.

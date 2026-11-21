@@ -24,7 +24,7 @@ How the principles and the code principles are written in Rust.
 - **Private by default** (code principles 4.4): `pub(crate)` inside a crate; what `lib.rs` re-exports is the
   crate's public surface.
 - No `unwrap`, `expect`, `println!`, `eprintln!`, `dbg!`, `todo!`, `unimplemented!` outside the tests:
-  Clippy refuses each. A command-line tool writes its output with `writeln!` on the handle of stdout.
+  Clippy refuses each. A command-line tool writes its output with `println!` (code principles 4.9; §7).
 - **`unsafe` is forbidden by the pack.** A project that needs it, for a foreign function, lifts it by the
   owner's decision, in the crate that needs it, with a `// SAFETY:` comment on each block.
 - A lint is silenced as `#[expect(clippy::<lint>, reason = "...")]`, on the smallest scope: Clippy refuses
@@ -105,6 +105,8 @@ the mapper of each form, and the hand practice it replaces:
   it talks to.
 - **The lint gate**: the manifest's `native_lint`, run from the folder of the root `Cargo.toml`; §5 says where
   the pack's files go.
+- **A command-line tool**: the lines `print_stdout` and `print_stderr` of the pack's `Cargo.lints.toml` are not
+  merged into `Cargo.toml`; `dbg_macro` is.
 - **Vendored** (`@vendored-globs`): `target/`.
 - **The test levels**: the keys of `tddab.md` §1.
 - **The start command**: `cargo run -p <the binary's package>`.

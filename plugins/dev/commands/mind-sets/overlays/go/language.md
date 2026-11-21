@@ -19,7 +19,8 @@ How the principles and the code principles are written in Go.
 - **Values are passed by value**, a slice or a map copied when it leaves the owner (code principles 3.1).
 - **Private by default** (code principles 4.4): `internal/` for the application, unexported until a consumer needs it.
 - **Constructor injection, no framework**: `main` is the composition root.
-- No `fmt.Print*`, no `panic` for what can be returned, no ignored error, `_ = err` included: the gate refuses each.
+- No `panic` for what can be returned, no ignored error, `_ = err` included: the gate refuses each. `fmt.Print*` is for the
+  output of a command-line tool (code principles 4.9); everything else logs (§4).
 - A linter is silenced with `//nolint:<linter> // <why>` on the line: `nolintlint` refuses one without its reason.
 
 ## 2. Concurrency

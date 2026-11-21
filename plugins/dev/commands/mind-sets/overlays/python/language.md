@@ -21,7 +21,7 @@ How the principles and the code principles are written in Python.
 - **Values are frozen** (code principles 3.1): `@dataclass(frozen=True, slots=True)`, their collections
   tuples.
 - No `print`, no `breakpoint()`, no `eval`/`exec`, no `pickle` or unsafe `yaml.load` on what comes from
-  outside: ruff refuses each.
+  outside: ruff refuses each — `print` aside, in a command-line tool (§7).
 
 ## 2. Async
 
@@ -108,6 +108,8 @@ the mapper of each form, and the hand practice it replaces:
   folder of `pyproject.toml`. `pytest.ini` goes there too in a project the set creates: it is the
   test runner's configuration — where the tests are, their time limit, the async mode — not a check,
   and it is kept out of an existing project (above).
+- **A command-line tool**: its gate is `uv run ruff check --ignore T20 . && uv run mypy .` — `print` is
+  its output; `T10`, the check on a `breakpoint()` left behind, stays.
 - **Vendored** (`@vendored-globs`): `.venv/`, `.mypy_cache/`, `.ruff_cache/`, `.pytest_cache/`.
 - **The test levels**: the keys of `tddab.md` §1.
 - **The start command**: `uv run <the entry point>`, as `[project.scripts]` declares it.

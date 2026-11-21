@@ -29,5 +29,5 @@ selected. The build comes first: `cmake --build --preset debug`.
 - **The state a contract keeps** is a fake written once, with the real behaviour.
 - **A call across the boundary that is itself the behaviour** is a mock of the contract: with
   GoogleMock a `StrictMock` (so an unexpected call fails), with Catch2 trompeloeil's `mock_interface`
-  and a `REQUIRE_CALL`. A mocked class is not `final`.
+  and a `REQUIRE_CALL`.
 - The test keeps the double it hands in through a `std::shared_ptr` (`language.md` §1).

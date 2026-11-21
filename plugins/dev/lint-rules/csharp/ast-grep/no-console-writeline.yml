@@ -2,8 +2,8 @@ id: no-console-writeline
 language: csharp
 severity: error
 message: "Use ILogger (LogTrace/LogDebug), not Console output, in production code."
-# Scope follows the message: "in production code" — test projects are out of scope. A console CLI
-# whose STDOUT is its interface marks that line with `// ast-grep-ignore: no-console-writeline`;
+# Scope follows the message: "in production code" — test projects are out of scope. A command-line
+# tool, whose output is its product, has this rule switched off (overlays/csharp/language.md §7);
 # no project's own paths live in this template.
 ignores:
   - "**/*.Tests/**"

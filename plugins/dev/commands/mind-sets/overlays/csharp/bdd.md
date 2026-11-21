@@ -42,7 +42,7 @@ using Reqnroll;
 namespace App.Api.Tests.Features;
 
 [Binding]
-public sealed class OrderSteps
+public class OrderSteps
 {
     private HttpResponseMessage? response;
 

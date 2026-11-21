@@ -46,7 +46,7 @@ using AwesomeAssertions;
 
 namespace App.Domain.Tests.Customers;
 
-public sealed class CustomerServiceTests
+public class CustomerServiceTests
 {
     private const string NewName = "Grace Hopper";
     private const int UnknownId = 404;
@@ -115,7 +115,7 @@ using App.Db.Customers;
 
 namespace App.Domain.Customers;
 
-internal sealed class CustomerService(IRepository<Customer> customers, IUnitOfWork unitOfWork) : ICustomerService
+internal class CustomerService(IRepository<Customer> customers, IUnitOfWork unitOfWork) : ICustomerService
 {
     public async Task<bool> RenameAsync(int id, string name, CancellationToken cancellationToken)
     {

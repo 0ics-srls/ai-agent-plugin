@@ -183,7 +183,8 @@ How the principles and the code principles are written in C# 14 on .NET 10.
   `logger.LogInformation("Customer {CustomerId} created", customer.Id)`. The template stays constant
   (CA2254).
 - The console is a sink of the structured logger — Serilog's console sink, configured with the other
-  sinks; the code writes through `ILogger<T>`, and `Console.WriteLine` appears nowhere in it.
+  sinks; the code writes through `ILogger<T>`, and `Console.WriteLine` is for the output
+  of a command-line tool only (§7).
 - Polling a third-party system without signals lives in one class: a `PeriodicTimer` loop with its
   interval and deadline from Options, which completes a `TaskCompletionSource` or writes to a
   `Channel<T>` that the rest of the code awaits.
@@ -221,6 +222,8 @@ How the principles and the code principles are written in C# 14 on .NET 10.
   NSubstitute — (`testing.md` §1).
 - **The lint gate**: the manifest's `native_lint`, `App` the solution's name; its configuration files go
   to the folder of the solution, the pack's `externals/` files to `externals/` (§5).
+- **A command-line tool**: `@lint-astgrep` carries `--off=no-console-writeline` —
+  `ast-grep scan --globs '!externals/**' --off=no-console-writeline`.
 - **Vendored** (`@vendored-globs`): `bin/`, `obj/`, `artifacts/`.
 - **The test levels**: the keys of `tddab.md` §1 — `@test-fast` on the solution filter of the unit
   projects (`*.Unit.slnf`), `@test-slow` on the solution. Their commands need the test runner in

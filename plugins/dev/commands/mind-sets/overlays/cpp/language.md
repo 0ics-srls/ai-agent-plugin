@@ -12,8 +12,7 @@ How the principles and the code principles are written in C++23.
   protected members `m_`.
 - **A type with behaviour is a `class`; a `struct` is plain data** — an entity, a value, the settings.
   An entity is data with an identity that travels as it is (code principles 3.1, 3.2).
-- **A contract is an abstract class** in Core: special members deleted, a virtual destructor; the
-  implementation is `final`.
+- **A contract is an abstract class** in Core: special members deleted, a virtual destructor.
 - **A dependency is injected by the constructor, and its ownership is always in the type**: a
   `std::shared_ptr` when it is shared, a `std::unique_ptr` moved in when the consumer is its only
   owner — decided case by case. Never a borrow: no reference member, no `std::reference_wrapper`, no
@@ -23,7 +22,8 @@ How the principles and the code principles are written in C++23.
 - **A value with a meaning is a named constant.**
 - **No unchecked access**: `.at()`, `std::span`; no pointer arithmetic.
 - **The console is never written directly** — `std::cout`, `printf`, `puts`, `std::print`: the pack's
-  ast-grep rule `cpp-no-console-output` refuses them; output goes through the logger (§4).
+  ast-grep rule `cpp-no-console-output` refuses them; output goes through the logger (§4) —
+  a command-line tool's own output aside (§7).
 
 ## 2. Concurrency and waiting
 
@@ -95,6 +95,8 @@ the mapper of each form, and the hand practice it replaces:
   extension; the test framework — GoogleTest with GoogleMock, or Catch2 with trompeloeil.
 - **The lint gate**: the manifest's `native_lint`, run from the folder of `CMakeLists.txt`; the pack's
   `.clang-tidy`, `CMakePresets.json` and `cmake/lint-gate.cmake` go to that folder.
+- **A command-line tool**: `@lint-astgrep` carries `--off=cpp-no-console-output` —
+  `ast-grep scan --globs '!externals/**' --off=cpp-no-console-output`.
 - **Vendored** (`@vendored-globs`): `build/`.
 - **The test levels**: the keys of `tddab.md` §1.
 - **The start command**: `cmake --build --preset debug` and the program from `build/debug/`; a library

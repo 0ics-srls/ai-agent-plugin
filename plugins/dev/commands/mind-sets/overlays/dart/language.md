@@ -14,10 +14,11 @@ How the principles and the code principles are written in Dart.
 - **A contract is an `abstract interface class`**, shaped by its consumer.
 - **Private by default** (code principles 4.4): `_` on members, `lib/src/` for the implementation, the package's barrel file
   exporting its public surface with `show`.
-- **Constructor injection**: a composition root registers (`get_it` where the app uses it) and nothing below it looks up.
+- **Constructor injection**: a composition root registers (`get_it` where the app uses it).
 - `!` is not a way to silence the compiler (code principles 3.3): a null is handled with `?.`, `??` or a pattern, and a
   value known to be there fails where that is known (`?? (throw StateError('…why…'))`). No linter of Dart refuses `!`, so the
-  code audit looks for it (card E6). No `print`: the gate refuses it.
+  code audit looks for it (card E6). No `print`: the gate refuses it — a command-line
+  tool's own output aside (§7).
 - A diagnostic is silenced with `// ignore: <name> — <why>`, on the line.
 
 ## 2. Async
@@ -75,6 +76,8 @@ the mapper of each form, and the hand practice it replaces:
 
 - **What LISTEN asks** (`/dev:j-new-project`): what is built, and what it talks to.
 - **The lint gate**: the manifest's `native_lint`, run from the folder of `pubspec.yaml`; §5 says what the pack's file needs.
+- **A command-line tool**: the lines of `avoid_print` — its comment, its entry under `errors:` and its entry under
+  `rules:` — are taken out of the project's copy of `analysis_options.yaml`.
 - **Vendored** (`@vendored-globs`): `.dart_tool/`, `build/`, `*.g.dart`, `*.freezed.dart`.
 - **The test levels**: the keys of `tddab.md` §1.
 - **The start command**: `dart run`; a Flutter app, `flutter run`.

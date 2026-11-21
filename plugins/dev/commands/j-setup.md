@@ -248,6 +248,14 @@ no `@lint-<component>`, no configuration files, no `sgconfig.yml` line; the repo
    submodule.
 4. A component's gate is the one its language's overlay names (`language.md` §7),
    written as the overlay says, asking first when it changes a file of the project.
+
+   **A component that is a command-line tool writes its output to the console** (`code-principles.md` 4.9),
+   so its console rule is switched off, as its language's §7 says («A command-line tool»). Whether a
+   component is one: the profile says it when `/dev:j-new-project` or `/dev:bbc-core` called (step 18); on an
+   existing project ask with AskUserQuestion, once per component whose language's §7 has that entry —
+   *is <component> a command-line tool, whose output goes to the console?* A language whose §7 has no
+   such entry has no console rule to switch off.
+
 5. When a component has `ast_grep: true`, `ast-grep` must answer `ast-grep --version`; when it does
    not, install it with `npm i -g @ast-grep/cli` and check it again; without `npm`, Node.js is installed
    first, as `/dev:j-mcp-setup` installs its runners. The gate `@lint-astgrep` runs it by name, without `externals/`:

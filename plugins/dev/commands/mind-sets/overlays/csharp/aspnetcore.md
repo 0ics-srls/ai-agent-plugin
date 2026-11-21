@@ -23,9 +23,7 @@ endpoint mapping in `App.Api`. Its own rules go in its Domain service (code prin
 - The generic repository is registered once as an open generic:
   `services.AddScoped(typeof(IRepository<>), typeof(Repository<>))`. Every other service is
   registered explicitly, one line each, with the built-in container.
-- Dependencies arrive through the constructor. Services resolve nothing from `IServiceProvider` at
-  run time; a registration that needs another service uses the factory overload that receives the
-  `IServiceProvider`.
+- Dependencies arrive through the constructor.
 - Lifetimes: the `DbContext` and what uses it are scoped; a stateless service is transient or scoped;
   a singleton holds state that is expensive to build or shared by all, and is thread-safe. A service
   depends only on services that live at least as long as it does.
@@ -35,7 +33,8 @@ endpoint mapping in `App.Api`. Its own rules go in its Domain service (code prin
 - Factories registered in the container are fast and synchronous; asynchronous initialization runs
   after resolution, in a hosted service or a static async factory.
 - Configuration reaches services through the Options pattern.
-- Implementations are `internal sealed`; the interface is the public part.
+- The interface is the public part: its consumer receives it by dependency injection and
+  does not know the type that implements it. The implementation is `internal`.
 - Time comes from `TimeProvider`.
 
 ## 3. Api

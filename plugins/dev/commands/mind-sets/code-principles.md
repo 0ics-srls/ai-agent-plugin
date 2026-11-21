@@ -141,8 +141,8 @@ deadline in configuration, and turns the result into a signal the rest of the co
 4.9 **Logging is structured, and the console is one of its sinks.** Every log entry is a constant
 message template with named values (`"Customer {CustomerId} created"`), written by the author of the
 code through the logger abstraction; it carries identifiers, and secrets and personal data stay out of
-it. Output meant for a person watching the console reaches it through the logger's console sink: a
-direct write to the console (`print`, `console.log`, `Console.WriteLine`) is a defect — it skips
-levels, structure and every other sink.
+it. A command-line tool writes its output to the console: that output is its product, not a log.
+Every other program has no need to write to the console, and what it has to say goes through the
+logger, whose console sink shows it to whoever watches.
 
 4.10 **Code that nothing uses is deleted**: the version history keeps it.

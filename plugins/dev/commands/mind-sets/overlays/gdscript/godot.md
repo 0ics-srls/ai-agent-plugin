@@ -49,8 +49,7 @@ nodes up by path.
   the game goes on. So a node has no required `_init` argument.
 - Its dependencies arrive from the parent that owns it, as Godot's scene organization lists them: a
   `setup(...)` method the composition root calls; an `@export` reference the scene file sets; a
-  `Callable` the parent assigns. A node does not reach outward — no `get_node("/root/...")`, no
-  autoload used to find a service — so a test can hand it a double.
+  `Callable` the parent assigns: a test hands it a double the same way.
 - **The engine calls `_ready` on the children before the parent**: the root's `_ready` calls `setup`,
   so a node uses its dependencies from `setup` on, never in its own `_ready`.
 - An object that is not a node (`Health`, `AppLog`, `SaveFile`) takes its dependencies in `_init`.
@@ -122,8 +121,7 @@ func _on_health_depleted() -> void:
 
 An autoload is only for a system that keeps its own data, is reached from every scene and changes no
 other system's data (game branch 4) — a music player, a scene-transition fader. Services, the logger and
-the game's state are built by the composition root and handed in: an autoload used as a service locator
-hides the dependency and cannot be replaced in a test.
+the game's state are built by the composition root and handed in.
 
 ## 5. Input and time
 

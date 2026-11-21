@@ -8,8 +8,7 @@ tests by level and the reference code of a block. How a test is written is `test
 ## 1. Tests by level
 
 The values of the `## Tests — by level` keys of `j-settings.md` in a Godot project (the component is
-the game); a plan copies them into its blocks (`tddab-planner.md`, "The commands, by level"). `RUN` is
-`addons/gdUnit4/runtest.sh --godot_binary "$(command -v godot)" --headless --ignoreHeadlessMode`.
+the game); a plan copies them into its blocks (`tddab-planner.md`, "The commands, by level"). `RUN` is `bash tools/gate/run_tests.sh` (`testing.md`).
 
 | Key | GDScript |
 |---|---|

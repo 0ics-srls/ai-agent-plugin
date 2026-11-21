@@ -43,16 +43,21 @@ languages:
       - python/native/mypy.ini
       - python/native/pytest.ini
   gdscript:
-    # The engine is the compiler: --import writes the cache of the global classes, then --check-only
-    # on every script outside addons/ and .godot/ fails on a warning at error (the pack's project.godot
-    # raises the ones that find a defect); gdlint, with its two rules that find one, skips addons/ and
-    # .godot/ (gdlintrc). No format check. Run from the folder of project.godot.
-    native_lint: "godot --headless --import --quit && find . -name '*.gd' -not -path './addons/*' -not -path './.godot/*' -print0 | xargs -0 -r -n1 godot --headless --check-only --script && gdlint ."
+    # The engine is the compiler: --import writes the cache of the global classes, then the pack's
+    # tools/gate/parse_scripts.sh loads every script outside addons/, .godot/ and the folders with a
+    # .gdignore in one Godot process, and fails on each that does not compile — a warning at error
+    # included (the pack's project.godot raises the ones that find a defect); gdlint, with its two rules
+    # that find one, skips addons/ and .godot/ (gdlintrc). No format check. Run from the folder of
+    # project.godot.
+    native_lint: "godot --headless --import --quit && bash tools/gate/parse_scripts.sh && gdlint ."
     # ast-grep has no GDScript grammar: the engine's warnings and gdlint are the gate.
     ast_grep: false
     config_files:
       - gdscript/native/project.godot
       - gdscript/native/gdlintrc
+      - gdscript/native/tools/gate/parse_scripts.gd
+      - gdscript/native/tools/gate/parse_scripts.sh
+      - gdscript/native/tools/gate/run_tests.sh
   cpp:
     # The build is the gate: cmake/lint-gate.cmake turns the warnings that find a defect into errors and
     # runs clang-tidy on each target of the project (its .clang-tidy: the checks that find one), the

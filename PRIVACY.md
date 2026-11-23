@@ -24,6 +24,10 @@ The plugins work inside other software, each under its own terms, not under this
 - **Tools the commands install or run at your request**: the linters and compilers of your project's
   languages, `ast-grep`, and the Python packages of the audit tool. Installing them downloads them
   from their public registries (npm, PyPI and the like).
+- **The App Store Compliance Playbook, when you run `/store:store-setup`.** The command clones it from
+  its author's repository on GitHub into `~/repositories/app-store-compliance`, after asking you, and
+  `/store:store-audit` runs its scripts on your machine against your app's project. It is the work of
+  Mirza Iqbal under the OpenRoots Agent License 2.3: its terms, not this policy, govern it.
 - **MCP servers you choose in `/j-mcp-setup`.** Each one is optional and is configured only when you
   pick it. Some are services on the network — for example a web search server, or the `claude-chat`
   relay at `cc-chat.0ics.ai`, which is operated by 0ics srl and carries the

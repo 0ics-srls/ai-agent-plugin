@@ -5,6 +5,7 @@
     { "name": "dev", "source": "./plugins/dev", "description": "Software development with an agent that writes well-organized code: the junior workflow (j-*), the black-box method (bbc-*), the code audit, the mindsets and the lint gates." },
     { "name": "biz", "source": "./plugins/biz", "description": "The funnel of the startup ideas (biz-*): capture, evaluate, techscape, research, validate, MVP spec." },
     { "name": "info", "source": "./plugins/info", "description": "Research verified (info-*): search, cross-reference, audit, report." },
+    { "name": "store", "source": "./plugins/store", "description": "An iOS or Android app audited before it is submitted to the App Store or to Google Play (store-*), with the App Store Compliance Playbook of Mirza Iqbal: another author's tool, under the OpenRoots Agent License 2.3, fetched on your machine and never shipped here." },
     { "name": "ai-agent", "source": "./plugins/ai-agent", "description": "The whole ai-agent set: it installs the plugins dev, biz and info." }
   ]
 }

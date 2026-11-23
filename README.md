@@ -1,6 +1,6 @@
 # ai-agent — a development workflow for Claude Code
 
-**v2.31.59** · by 0ics srl · [how it works](FLOW.md)
+**v2.32.0** · by 0ics srl · [how it works](FLOW.md)
 
 `dev` is a Claude Code plugin that makes the agent work the way a careful developer does: it listens
 before it reads, looks for what already exists before it writes, has you approve the structure and
@@ -130,18 +130,20 @@ what else still names the submodule (a pipeline, a script) and commits.
 
 ## The other plugins of this catalogue
 
-The catalogue has two more plugins, for work that is not software development. They stand on their
-own: neither needs `dev`, and `dev` needs neither.
+The catalogue has three more plugins: two for work that is not software development, and one that
+audits an app for the stores. They stand on their own: none needs `dev`, and `dev` needs none.
 
 | Plugin | What it does | Start |
 |---|---|---|
 | `biz` | A funnel for startup ideas: an idea is captured, scored, checked against the software that already exists, researched on its market, validated on its assumptions, and turned into the specification of an MVP — which `dev` can then build | `/biz:biz-help` |
 | `info` | Research that is verified: facts gathered with their sources, cross-referenced against independent ones, audited for reliability and bias, reported with a confidence level each | `/info:info-help` |
+| `store` | An iOS or Android app audited for the App Store and Google Play before a submission, with another author's tool fetched on your machine | `/store:store-setup` |
 | `ai-agent` | Nothing of its own: it installs `dev`, `biz` and `info` together | — |
 
 ```
 claude plugin install biz@ai-agent
 claude plugin install info@ai-agent
+claude plugin install store@ai-agent
 claude plugin install ai-agent@ai-agent     # all three
 ```
 

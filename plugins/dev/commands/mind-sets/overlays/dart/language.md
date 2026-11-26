@@ -20,6 +20,8 @@ How the principles and the code principles are written in Dart.
   code audit looks for it (card E6). No `print`: the gate refuses it — a command-line
   tool's own output aside (§7).
 - A diagnostic is silenced with `// ignore: <name> — <why>`, on the line.
+- **A class stays open** (code principles 1.9): no `final class` — no linter of Dart refuses it, so
+  the code audit looks for it (card C7); a `sealed` class for a closed set of states is another thing.
 
 ## 2. Async
 

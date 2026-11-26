@@ -1,6 +1,6 @@
 {
   "name": "info",
-  "version": "2.32.0",
+  "version": "2.32.1",
   "description": "Research verified (info-*): search, cross-reference, audit, report.",
   "license": "MPL-2.0",
   "repository": "https://github.com/0ics-srls/ai-agent-plugin",

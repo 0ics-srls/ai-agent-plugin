@@ -39,6 +39,9 @@ How the principles and the code principles are written in C# 14 on .NET 10.
 - Conditions use the short-circuit operators `&&` and `||`.
 - Disposable locals use the `using` declaration (`using var stream = ...;`).
 - The public members of a library shared by several applications carry XML documentation comments.
+- **A class stays open** (code principles 1.9): no `sealed` on a class or a record — the pack's rule
+  `no-sealed-class` refuses it. Closed on the owner's yes only: the reason in a comment above the
+  class, then `// ast-grep-ignore: no-sealed-class`.
 
 ## 2. Async
 
@@ -224,6 +227,7 @@ How the principles and the code principles are written in C# 14 on .NET 10.
   to the folder of the solution, the pack's `externals/` files to `externals/` (§5).
 - **A command-line tool**: `@lint-astgrep` carries `--off=no-console-writeline` —
   `ast-grep scan --globs '!externals/**' --off=no-console-writeline`.
+- **Closed classes allowed** (`@closed-classes`): `@lint-astgrep` carries `--off=no-sealed-class`.
 - **Vendored** (`@vendored-globs`): `bin/`, `obj/`, `artifacts/`.
 - **The test levels**: the keys of `tddab.md` §1 — `@test-fast` on the solution filter of the unit
   projects (`*.Unit.slnf`), `@test-slow` on the solution. Their commands need the test runner in

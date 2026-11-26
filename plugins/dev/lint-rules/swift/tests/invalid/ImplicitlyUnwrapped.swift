@@ -1,3 +1,3 @@
-final class Screen {
+class Screen {
   var title: String!
 }

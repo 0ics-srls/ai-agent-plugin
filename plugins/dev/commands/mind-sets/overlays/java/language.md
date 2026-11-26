@@ -19,6 +19,10 @@ How the principles and the code principles are written in Java.
 - No `System.out`, no `System.err`: the gate refuses each — a command-line tool's own output aside (§7).
 - `Optional` as a return value, never as a field or a parameter.
 - A warning is silenced with `@SuppressWarnings` on the smallest scope, with a comment saying why.
+- **A class stays open** (code principles 1.9): no `final` on a class — the pack's rule
+  `no-final-class` refuses it. Closed on the owner's yes only: the reason in a comment above the
+  class, then `// ast-grep-ignore: no-final-class`. A `sealed` interface for a closed set of states is
+  another thing.
 
 ## 2. Async
 
@@ -93,6 +97,7 @@ the mapper of each form, and the hand practice it replaces:
   pack's files go.
 - **A command-line tool**: `@lint-astgrep` carries `--off=no-system-out-println` —
   `ast-grep scan --globs '!externals/**' --off=no-system-out-println`.
+- **Closed classes allowed** (`@closed-classes`): `@lint-astgrep` carries `--off=no-final-class`.
 - **Vendored** (`@vendored-globs`): `target/`.
 - **The test levels**: the keys of `tddab.md` §1.
 - **The start command**: `java -jar target/<artifact>.jar`.

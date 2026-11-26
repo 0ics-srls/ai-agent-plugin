@@ -1,0 +1,14 @@
+# A class stays open to inheritance (code principles 1.9): a base that cannot be extended gets copied.
+# Closing a class is the owner's decision: on the owner's yes, the reason is written above the class
+# and the line `// ast-grep-ignore: no-final-class` under it.
+id: no-final-class
+language: java
+severity: error
+message: "A class stays open to inheritance: no `final` on a class."
+rule:
+  kind: class_declaration
+  has:
+    kind: modifiers
+    # The keyword itself, a child of `modifiers`: an annotation that holds the word is not it.
+    has:
+      regex: '^final$'

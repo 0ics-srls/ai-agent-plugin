@@ -60,3 +60,4 @@ ignore = [
 # guarantees (code principles 3.3).
 [lint.flake8-tidy-imports.banned-api]
 "typing.cast".msg = "cast() silences the type checker: validate the value into its type, narrow it with a check, or fail where it is known (raise with why it cannot be missing)."
+"typing.final".msg = "A class stays open to inheritance (code principles 1.9): closing one is the owner's decision."

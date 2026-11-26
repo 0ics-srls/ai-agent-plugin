@@ -20,6 +20,9 @@ How the principles and the code principles are written in PHP.
 - **Constructor injection.**
 - No `var_dump`, `dd`, `dump`, `print_r`, `ray`: the gate refuses each.
 - A PHPStan finding is silenced with its ignore comment, on the line, naming the identifier and saying why.
+- **A class stays open** (code principles 1.9): no `final` on a class — the pack's rule
+  `php-no-final-class` refuses it. Closed on the owner's yes only: the reason in a comment above the
+  class, then `// ast-grep-ignore: php-no-final-class`.
 
 ## 2. Async
 
@@ -87,6 +90,7 @@ the mapper of each form, and the hand practice it replaces:
   here — moving the tests into `tests/Unit` and `tests/Feature` under the pack's `phpunit.xml` is a
   work of its own, `/dev:j-new-feature`, and until it closes the project is set up as *Keep*.
 - **The lint gate**: the manifest's `native_lint`, run from the folder of `composer.json`; §5 says where the pack's files go.
+- **Closed classes allowed** (`@closed-classes`): `@lint-astgrep` carries `--off=php-no-final-class`.
 - **Vendored** (`@vendored-globs`): `vendor/`, `.phpunit.cache/`.
 - **The test levels**: the keys of `tddab.md` §1.
 - **The start command**: the project's script in `bin/`.

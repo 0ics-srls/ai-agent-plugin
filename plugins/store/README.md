@@ -1,6 +1,6 @@
 # store — a plugin of the ai-agent catalogue
 
-**v2.32.0** — An iOS or Android app audited before it is submitted to the App Store or to Google Play (store-*), with the App Store Compliance Playbook of Mirza Iqbal: another author's tool, under the OpenRoots Agent License 2.3, fetched on your machine and never shipped here.
+**v2.32.1** — An iOS or Android app audited before it is submitted to the App Store or to Google Play (store-*), with the App Store Compliance Playbook of Mirza Iqbal: another author's tool, under the OpenRoots Agent License 2.3, fetched on your machine and never shipped here.
 
 Start with `/store:store-setup`, which asks before it downloads the tool at a release into `~/repositories/app-store-compliance`, then `/store:store-audit` in the app's project. The tool is the work of Mirza Iqbal (https://github.com/mjmirza/app-store-compliance) under the OpenRoots Agent License 2.3 (https://openroots.org/licenses/ora/2.3): free for a person and for a company at or below 20 million US dollars of yearly revenue; you are its licensee. This plugin holds no file of it. Its guard is a bash script: on Windows it needs Git for Windows.
 

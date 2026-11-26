@@ -24,6 +24,9 @@ How the principles and the code principles are written in Swift 6, for the Apple
 - **The console is never written directly** — `print`, `debugPrint`, `dump`, `NSLog`: the pack's
   ast-grep rule `swift-no-console-output` refuses them; a command-line tool writes its output with
   `print` (code principles 4.9; §7), everything else goes through the logger (§4).
+- **A class stays open** (code principles 1.9): no `final` on a class — the pack's rule
+  `swift-no-final-class` refuses it. Closed on the owner's yes only: the reason in a comment above the
+  class, then `// ast-grep-ignore: swift-no-final-class`.
 
 ## 2. Concurrency and waiting
 
@@ -99,6 +102,7 @@ the mapper of each form, and the hand practice it replaces:
   has no configuration file to copy.
 - **A command-line tool**: `@lint-astgrep` carries `--off=swift-no-console-output` —
   `ast-grep scan --globs '!externals/**' --off=swift-no-console-output`.
+- **Closed classes allowed** (`@closed-classes`): `@lint-astgrep` carries `--off=swift-no-final-class`.
 - **Vendored** (`@vendored-globs`): `.build/`, `DerivedData/`, `*.xcodeproj/xcuserdata/`.
 - **The test levels**: the keys of `tddab.md` §1.
 - **The start command**: a tool `swift run <product>`; an app from Xcode, or `xcodebuild` and the

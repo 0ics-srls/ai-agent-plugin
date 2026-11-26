@@ -1,0 +1,14 @@
+# A class stays open to inheritance (code principles 1.9): a base that cannot be extended gets copied.
+# Closing a class is the owner's decision: on the owner's yes, the reason is written above the class
+# and the line `// ast-grep-ignore: no-sealed-class` under it.
+id: no-sealed-class
+language: csharp
+severity: error
+message: "A class stays open to inheritance: no `sealed` on a class or a record."
+rule:
+  any:
+    - kind: class_declaration
+    - kind: record_declaration
+  has:
+    kind: modifier
+    regex: '^sealed$'

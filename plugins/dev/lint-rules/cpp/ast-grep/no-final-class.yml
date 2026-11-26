@@ -1,0 +1,14 @@
+# A class stays open to inheritance (code principles 1.9): a base that cannot be extended gets copied.
+# Closing a class is the owner's decision: on the owner's yes, the reason is written above the class
+# and the line `// ast-grep-ignore: cpp-no-final-class` under it.
+id: cpp-no-final-class
+language: cpp
+severity: error
+message: "A class stays open to inheritance: no `final` on a class or a struct."
+rule:
+  any:
+    - kind: class_specifier
+    - kind: struct_specifier
+  has:
+    kind: virtual_specifier
+    regex: '^final$'

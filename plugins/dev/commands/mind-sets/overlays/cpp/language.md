@@ -24,6 +24,9 @@ How the principles and the code principles are written in C++23.
 - **The console is never written directly** — `std::cout`, `printf`, `puts`, `std::print`: the pack's
   ast-grep rule `cpp-no-console-output` refuses them; output goes through the logger (§4) —
   a command-line tool's own output aside (§7).
+- **A class stays open** (code principles 1.9): no `final` on a class or a struct — the pack's rule
+  `cpp-no-final-class` refuses it. Closed on the owner's yes only: the reason in a comment above the
+  class, then `// ast-grep-ignore: cpp-no-final-class`.
 
 ## 2. Concurrency and waiting
 
@@ -97,6 +100,7 @@ the mapper of each form, and the hand practice it replaces:
   `.clang-tidy`, `CMakePresets.json` and `cmake/lint-gate.cmake` go to that folder.
 - **A command-line tool**: `@lint-astgrep` carries `--off=cpp-no-console-output` —
   `ast-grep scan --globs '!externals/**' --off=cpp-no-console-output`.
+- **Closed classes allowed** (`@closed-classes`): `@lint-astgrep` carries `--off=cpp-no-final-class`.
 - **Vendored** (`@vendored-globs`): `build/`.
 - **The test levels**: the keys of `tddab.md` §1.
 - **The start command**: `cmake --build --preset debug` and the program from `build/debug/`; a library

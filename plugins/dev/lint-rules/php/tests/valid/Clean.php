@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-final class Clean
+class Clean
 {
     public function store(CreateUserDTO $dto): void
     {

@@ -22,6 +22,9 @@ How the principles and the code principles are written in Python.
   tuples.
 - No `print`, no `breakpoint()`, no `eval`/`exec`, no `pickle` or unsafe `yaml.load` on what comes from
   outside: ruff refuses each — `print` aside, in a command-line tool (§7).
+- **A class stays open** (code principles 1.9): no `typing.final` on a class — ruff's banned API
+  refuses it (`TID251`). Closed on the owner's yes only: `# noqa: TID251` on the import, with the
+  reason.
 
 ## 2. Async
 
@@ -110,6 +113,8 @@ the mapper of each form, and the hand practice it replaces:
   and it is kept out of an existing project (above).
 - **A command-line tool**: its gate is `uv run ruff check --ignore T20 . && uv run mypy .` — `print` is
   its output; `T10`, the check on a `breakpoint()` left behind, stays.
+- **Closed classes allowed** (`@closed-classes`): the line of `typing.final` is taken out of the
+  project's copy of `ruff.toml`.
 - **Vendored** (`@vendored-globs`): `.venv/`, `.mypy_cache/`, `.ruff_cache/`, `.pytest_cache/`.
 - **The test levels**: the keys of `tddab.md` §1.
 - **The start command**: `uv run <the entry point>`, as `[project.scripts]` declares it.

@@ -64,8 +64,8 @@ languages:
     # dependencies being SYSTEM. No format check. Run from the folder of CMakeLists.txt and
     # CMakePresets.json.
     native_lint: "cmake --preset debug && cmake --build --preset debug"
-    # ast-grep: the console written directly (clang-tidy has no check for it), and the _shared
-    # rules (secrets, SQL built by concatenation, TODO without an issue).
+    # ast-grep: the console written directly (clang-tidy has no check for it), a class closed to
+    # inheritance, and the _shared rules (secrets, SQL built by concatenation, TODO without an issue).
     ast_grep: true
     config_files:
       - cpp/native/.clang-tidy
@@ -99,7 +99,7 @@ languages:
     # Package.swift; an app adds its xcodebuild build.
     native_lint: "swift build"
     # ast-grep: a forced unwrap, a forced try, an implicitly unwrapped optional, the console written
-    # directly (print, debugPrint, dump, NSLog), and the _shared rules.
+    # directly (print, debugPrint, dump, NSLog), a class closed to inheritance, and the _shared rules.
     ast_grep: true
     config_files: []
   rust:
@@ -117,7 +117,8 @@ languages:
     # in the compiler, three Checkstyle checks and SpotBugs' bug categories on verify. Run from the
     # folder of the root pom.xml.
     native_lint: "./mvnw -q -DskipTests verify"
-    # ast-grep: the console, blocking on a future, JUnit's assertions, and the _shared rules.
+    # ast-grep: the console, blocking on a future, JUnit's assertions, a class closed to inheritance,
+    # and the _shared rules.
     ast_grep: true
     config_files:
       - java/native/pom-plugins.xml
@@ -136,7 +137,8 @@ languages:
     # PHPStan at its highest level with the strict rules that find a defect. No format check. Run from the
     # folder of composer.json.
     native_lint: "vendor/bin/phpstan analyse"
-    # ast-grep: debug output, SQL built by interpolation, weak password hashes, and the _shared rules.
+    # ast-grep: debug output, SQL built by interpolation, weak password hashes, a class closed to
+    # inheritance, and the _shared rules.
     ast_grep: true
     config_files:
       - php/native/phpstan.neon

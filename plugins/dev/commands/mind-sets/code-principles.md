@@ -35,6 +35,16 @@ no-op methods.
 the details — storage, network, external services, the clock — sit behind them. Injection is the
 usual mechanism, not the principle.
 
+1.9 **A class stays open to inheritance.** A base that cannot be extended gets copied: the next case
+that needs it writes a second one beside it. So whoever writes the code closes no class — `sealed`,
+`final`, the language's own word — not for style, not for speed, not because the class has no
+subclass today. Closing a class is the owner's decision: when there seems to be a reason — an
+invariant a subclass would break, a contract published to others — the work stops, the reason is said
+and the owner is asked; on a yes, the class is closed with the reason written above it. A project
+whose owner decided at its setup that it closes its classes — `j-settings.md` `@closed-classes`, with
+where and why — closes them there, and only there. A hierarchy closed because it is a closed set of
+cases (2.1, 3.3) — a `sealed interface` with its states — is another thing, and stays.
+
 ## 2. The mechanism that governs behaviour
 
 For each behaviour with more than one case, a mechanism is chosen at design time. The question: when

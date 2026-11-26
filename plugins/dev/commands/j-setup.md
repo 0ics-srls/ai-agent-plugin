@@ -256,6 +256,11 @@ no `@lint-<component>`, no configuration files, no `sgconfig.yml` line; the repo
    *is <component> a command-line tool, whose output goes to the console?* A language whose §7 has no
    such entry has no console rule to switch off.
 
+   **Whether the project closes its classes** — `@closed-classes` (`code-principles.md` 1.9). It is
+   `none` unless the owner said otherwise: the question is «Closed classes» of step 10, put only when
+   it has a reason; with a profile, step 18 says when. On `allowed — <where and why>` the rule is
+   switched off as each language's §7 says («Closed classes allowed»).
+
 5. When a component has `ast_grep: true`, `ast-grep` must answer `ast-grep --version`; when it does
    not, install it with `npm i -g @ast-grep/cli` and check it again; without `npm`, Node.js is installed
    first, as `/dev:j-mcp-setup` installs its runners. The gate `@lint-astgrep` runs it by name, without `externals/`:
@@ -325,6 +330,12 @@ profile (branches and overlay files), the base library, the lint keys, the test 
 with AskUserQuestion only what the scan could not establish:
 - **Exposure**: is the system reached by callers it does not control (internet, other
   organizations)? yes → `security` joins the branches.
+- **Closed classes** (`code-principles.md` 1.9) — asked only when `security` is among the branches,
+  or when the code already has closed classes: the pack's rule finds them (`ast-grep scan` with the
+  language's rule; ruff for Python). *Does this project close its classes?* — no, and they stay open
+  (classes already closed are opened in a work of its own, `/dev:j-new-feature`; until then the gate is
+  red on them); or yes, and the owner says where and why → `@closed-classes: allowed — <where and
+  why>`. Not asked → `@closed-classes: none`.
 - **Base library**, when none is visible: is there a library this project builds on? its repository
   and how it is referenced (submodule path or package).
 - **Kind of plans**: TDDAB (building functionality, the default) or Step (removing, migrating,
@@ -374,6 +385,7 @@ the scan or the answers, the unknown ones left out.
 
 ## Linting
 @lint-astgrep: ast-grep scan --globs '!externals/**'
+@closed-classes: {none | allowed — <where and why>}
 @lint-backend: {command}
 @lint-frontend: {command}
 @lint-scripts: {command, when the project has scripts}
@@ -463,7 +475,8 @@ command: `/dev:j-new-project` — or `/dev:bbc-analyze`, for a project designed 
 
 ### 18. Complete the settings from the profile
 `/dev:j-new-project` — or `/dev:bbc-core`, for a project designed as black boxes — hands over what it decided with the user: the project's name, language, kind, the
-mindsets branches and overlay files, the base library, the exposure. Nothing is scanned and nothing is asked again:
+mindsets branches and overlay files, the base library, the exposure. Nothing is scanned, and one thing only is asked: when `security` is among the
+profile's branches, the question «Closed classes» of step 10; otherwise `@closed-classes: none`:
 1. Write the keys of step 11 from the profile into `j-settings.md` — the test levels in the forms of
    the language's overlay (step 8) — keeping the base settings already there; the header line
    `# Base settings — j-new-project completes them` goes.

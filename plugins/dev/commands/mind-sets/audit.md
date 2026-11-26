@@ -268,6 +268,16 @@ From the top down:
 - **Confirmation**: the call to the detail (file:line) inside the code that decides.
 - **Gravity**: `da correggere`.
 
+### C7. A class closed to inheritance
+- **Rule**: `code-principles.md` 1.9: «A class stays open to inheritance … Closing a class is the owner's decision».
+- **The defect**: a class closed — `sealed`, `final` — with no reason above it, or closed by whoever wrote it.
+- **Where to look**: no fact of the tool: the pack's rule run on the project, where the language has one; a search of the keyword with `@code-nav-local` where it has none (Dart); the lines that silence the rule.
+- **At scale**: the gate finds the closed classes where the language has a rule, so what is left are the languages without one, searched by the keyword on the whole project, and the exceptions.
+- **The questions**: is the reason written above the class? Did the owner ask for it? Would a subclass really break what the reason names?
+- **Not a violation**: a hierarchy closed because it is a closed set of cases; a class the language closes by itself; a class closed where the project's `@closed-classes` says.
+- **Confirmation**: the declaration (file:line), and the reason that is missing or does not hold.
+- **Gravity**: `da correggere`.
+
 ---
 
 ## D. The mechanism of the behaviour

@@ -10,6 +10,6 @@ func load(_ url: URL) throws -> Data {
   return try Data(contentsOf: url)
 }
 
-final class Screen {
+class Screen {
   var title: String?
 }

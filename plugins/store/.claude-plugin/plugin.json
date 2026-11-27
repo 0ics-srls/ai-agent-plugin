@@ -1,6 +1,6 @@
 {
   "name": "store",
-  "version": "2.32.1",
+  "version": "2.32.2",
   "description": "An iOS or Android app audited before it is submitted to the App Store or to Google Play (store-*), with the App Store Compliance Playbook of Mirza Iqbal: another author's tool, under the OpenRoots Agent License 2.3, fetched on your machine and never shipped here.",
   "license": "MPL-2.0",
   "repository": "https://github.com/0ics-srls/ai-agent-plugin",

@@ -72,6 +72,7 @@ IDLE is no work in progress. A debugging session (`/dev:j-debug`) leaves its out
 | `/dev:j-continue` | Read MB, resume from saved state |
 | `/dev:j-setup` | Configure/update project settings |
 | `/dev:j-ci-setup` | CI/CD for the project, when the user wants it |
+| `/dev:j-cvm-status` | The status line of Claude Code, on or off: the branch, the model, the CVM's bar |
 | `/dev:j-debug`, `/dev:j-debug-mb` | Protocol D on a problem, without a branch or a task (`debug-protocol.md`) |
 | `/dev:j-browse` | The running application in the browser, guided by the user |
 | `/dev:j-e2e-generate`, `/dev:j-e2e` | The manual end-to-end checklist: written from the use cases, run in the browser |

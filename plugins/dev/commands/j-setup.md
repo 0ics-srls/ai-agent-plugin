@@ -58,6 +58,10 @@ prepared the project. Each of these is checked on every run, and written when it
 - `memory-bank/README.md` is a copy of `${CLAUDE_PLUGIN_ROOT}/project/memory-bank/README.md`: it is the set's page,
   not the project's, so a copy that differs is replaced.
 - The root `.gitignore` has the lines `.cvm/`, `.lsai/` and `problem-chrome-dt/`.
+- The status line of Claude Code — the branch, the model, the CVM's progress while a plan runs —
+  is on by default: run `python3 ${CLAUDE_PLUGIN_ROOT}/support/statusline/install.py default` (`python` where
+  `python3` does not answer) and report its line. With the plugin it is turned on for the user;
+  it leaves a status line the user already has. `/dev:j-cvm-status` switches it off, and on again.
 
 What was written is committed with what this command produces.
 

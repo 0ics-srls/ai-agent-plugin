@@ -28,6 +28,7 @@ DURING WORK:
   /dev:j-cvm-exec-plan  → Execute the plan, block by block
   /dev:j-review-plan    → Review a plan against its methodology, the mindsets and the code
   /dev:j-cvm-check-plan → Check a plan's structure with the CVM parser
+  /dev:j-cvm-status     → Turn the status line on or off: branch, model, the plan's progress bar
   /dev:j-debug          → Debug any problem (Protocol D)
   /dev:j-debug-mb       → Same as /dev:j-debug but uses less memory (for long sessions)
   /dev:j-status         → See current status
